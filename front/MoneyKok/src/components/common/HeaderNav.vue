@@ -30,7 +30,7 @@
                 <li class="nav-item">
                     <RouterLink :to="{ name : 'exchangerate' }">환율 계산기</RouterLink>                    
                 </li>
-                <button class="login-button">로그인</button>
+                <button class="btn-common btn-orange">로그인</button>
             </ul>
             </div>
         </div>
@@ -123,26 +123,7 @@ import { RouterLink } from 'vue-router';
     border-radius: 30px; /* 활성화된 메뉴도 동그란 효과 */
 }
 
-/* 로그인 버튼 스타일 */
-.navbar .login-button {
-    background: linear-gradient(to right, #FF4500, #FF7A24); /* 그라데이션 배경 */
-    color: white; /* 텍스트 색상 */
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px 20px; /* 내부 여백 */
-    border: none; /* 테두리 제거 */
-    border-radius: 10px; /* 둥근 모서리 */
-    cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
-    transition: all 0.3s ease; /* 부드러운 전환 효과 */
-}
 
-/* 로그인 버튼 호버 스타일 */
-.navbar .login-button:hover {
-    background: linear-gradient(to right, #FF4500, #FF7A24); /* 호버 시 그라데이션 반전 */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강조 */
-    transform: scale(1.05); /* 호버 시 살짝 확대 */
-}
 
 /* 반응형 스타일 */
 @media (max-width: 992px) {

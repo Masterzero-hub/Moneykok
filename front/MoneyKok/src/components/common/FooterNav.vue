@@ -43,14 +43,20 @@
 
 .footer {
   background-color: #f9fafc; /* Footer 배경색 */
-  padding: 40px 20px; /* 내부 여백 */
+  padding: 80px; /* 내부 여백 */
   text-align: center;
+  height: 400px;
   color: #2c3e50; /* 텍스트 기본 색상 */
   font-size: 16px;
+  /* 수직 정렬을 위한 Flexbox 설정 */
+  display: flex;
+  flex-direction: column; /* 요소들을 수직 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
+  gap: 30px; /* 각 섹션 간의 간격 */
 }
 
 .newsletter {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 /* Newsletter 컨테이너 스타일 */
@@ -138,6 +144,6 @@
 .copyright {
   font-size: 14px;
   color: #999;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 </style>
