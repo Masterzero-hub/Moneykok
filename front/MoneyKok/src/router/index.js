@@ -5,6 +5,7 @@ import SavingsView from '@/views/SavingsView.vue'
 import AiView from '@/views/AiView.vue'
 import CommunityView from '@/views/CommunityView.vue'
 import BankView from '@/views/BankView.vue'
+import ExchangeRateView from '@/views/ExchangeRateView.vue'
 
 
 const router = createRouter({
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/bank',
       name: 'bank',
       component: BankView
+    },
+    {
+      path: '/exchangerate',
+      name: 'exchangerate',
+      component: ExchangeRateView
     },
   ],
 })
