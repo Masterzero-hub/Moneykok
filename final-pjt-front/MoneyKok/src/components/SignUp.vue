@@ -18,6 +18,19 @@
         </div>
       </div>
 
+      <!-- 닉네임 -->
+      <div class="mb-3">
+        <label for="nickname" class="form-label">닉네임</label>
+        <input
+          type="text"
+          id="nickname"
+          class="form-control"
+          v-model="nickname"
+          placeholder="동에 번쩍 서에 번쩍 홍길동"
+          :class="{ 'is-invalid': nameError }"
+        />
+      </div>
+
       <!-- 이메일 -->
       <div class="mb-3">
         <label for="email" class="form-label">이메일</label>
@@ -59,6 +72,14 @@
             v-model="verificationCode"
             placeholder="인증번호를 입력하세요"
           />
+          <button
+          type="button"
+          class="btn-common btn-dark"
+          @click="checkVerificationCode"
+          v-if="codeSent"
+          >
+          인증번호 확인
+          </button>
         </div>
         </div>
       </div>
@@ -190,6 +211,7 @@ import axios from "axios";
 
 // Refs for data
 const name = ref("");
+const nickname = ref("");
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
@@ -289,13 +311,14 @@ const formatPhoneNumber = () => {
   }
 };
 
+
 // Axios requests
 const sendVerificationCode = () => {
   checkEmail();
   if (emailHasError.value) return;
 
   axios
-    .post("http://127.0.0.1:8000/accounts/send-verification-code/", {
+    .post("http://127.0.0.1:8000/accounts/signup/send-email/", {
       email: email.value,
     })
     .then(() => {
@@ -310,6 +333,22 @@ const sendVerificationCode = () => {
 const resendVerificationCode = () => {
   sendVerificationCode();
 };
+
+
+const checkVerificationCode = () => {
+    axios
+    .post("http://127.0.0.1:8000/accounts/signup/verify-email/", {
+      email: email.value,
+      code: verificationCode.value
+    })
+    .then(() => {
+      codeSent.value = true;
+      alert("이메일 인증에 성공하였습니다.");
+    })
+    .catch(() => {
+      alert("이메일 인증에 실패했습니다.");
+    });
+}
 
 const handleSubmit = () => {
   checkName();
@@ -328,12 +367,12 @@ const handleSubmit = () => {
     const payload = {
       name: name.value,
       email: email.value,
-
+      nickname: nickname.value,
       password: password.value,
-      formattedPhone: phone.value,
+      phone: formattedPhone.value,
       birthdate: `${birthYear.value}-${birthMonth.value}-${birthDay.value}`,
       gender: gender.value,
-      salary: salary.value,
+      income: salary.value,
     };
 
     axios
@@ -343,6 +382,7 @@ const handleSubmit = () => {
       })
       .catch((err) => {
         console.error(err);
+        co
         alert("회원가입 중 오류가 발생했습니다.");
       });
   } 
