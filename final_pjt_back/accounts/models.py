@@ -3,7 +3,6 @@ from django.db import models
 from django.utils import timezone
 from datetime import timedelta
 import random
-from django.core.mail import send_mail, BadHeaderError
 from django.core.validators import RegexValidator
 
 
@@ -21,7 +20,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, verbose_name="이메일")
     name = models.CharField(max_length=20, verbose_name="이름")
-    nickname = models.CharField(max_length=20, unique=True, verbose_name="닉네임")
+    nickname = models.CharField(max_length=20, verbose_name="닉네임")
     phone = models.CharField(
         max_length=13,
         unique=True,
@@ -55,9 +54,6 @@ class EmailVerification(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['email'], name='unique_email_verification')
         ]
-
-    def __str__(self):
-        return f"{self.email} - {'인증완료' if self.is_verified else '미인증'}"
 
     @property
     def is_expired(self):
