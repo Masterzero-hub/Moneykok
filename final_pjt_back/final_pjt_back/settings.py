@@ -70,14 +70,14 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 # REST Framework 기본 설정
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication',
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+#     ],
+# }
 
 
 MIDDLEWARE = [
@@ -92,8 +92,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS =[
-    'http://127.0.0.1:573',
-    'http://localhost:573',
+    'http://127.0.0.1:5173',
+    'http://localhost:5173',
 ]
 
 ROOT_URLCONF = 'final_pjt_back.urls'

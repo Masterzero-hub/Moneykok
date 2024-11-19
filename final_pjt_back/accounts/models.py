@@ -33,7 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             )
         ]
     )
-    gender = models.CharField(max_length=1, choices=[("M", "남성"), ("F", "여성")], verbose_name="성별")
+    gender = models.CharField(max_length=2, verbose_name="성별")
     birthdate = models.DateField(verbose_name="연도")
     income = models.IntegerField(verbose_name="소득")
     is_active = models.BooleanField(default=True, verbose_name="활성 상태")
