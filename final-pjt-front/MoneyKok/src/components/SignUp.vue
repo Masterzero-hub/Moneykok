@@ -32,57 +32,57 @@
       </div>
 
       <!-- 이메일 -->
-      <div class="mb-3">
+        <div class="mb-3">
         <label for="email" class="form-label">이메일</label>
         <div class="email-input">
-        <input
-          type="email"
-          id="email"
-          class="form-control"
-          v-model="email"
-          @blur="checkEmail"
-          placeholder="example@example.com"
-          :class="{ 'is-invalid': emailHasError }"
-        />
-        <div class="invalid-feedback" v-if="emailHasError">
-          {{ emailError }}
+            <input
+            type="email"
+            id="email"
+            class="form-control"
+            v-model="email"
+            @blur="checkEmail"
+            placeholder="example@example.com"
+            :class="{ 'is-invalid': emailHasError }"
+            />
+            <div class="invalid-feedback" v-if="emailHasError">
+            {{ emailError }}
+            </div>
+            <button
+            type="button"
+            class="btn-small-common btn-mint"
+            @click="sendVerificationCode"
+            v-if="!codeSent"
+            >
+            인증번호 발송
+            </button>
+            <button
+            type="button"
+            class="btn-small-common btn-mint"
+            @click="resendVerificationCode"
+            v-if="codeSent"
+            >
+            인증번호 재발송
+            </button>
         </div>
-        <button
-          type="button"
-          class="btn-small-common btn-mint"
-          @click="sendVerificationCode"
-          v-if="!codeSent"
-        >
-          인증번호 발송
-        </button>
-        <button
-          type="button"
-          class="btn-common btn-dark"
-          @click="resendVerificationCode"
-          v-if="codeSent"
-        >
-          인증번호 재발송
-        </button>
-        <div v-if="codeSent" class="mt-3">
-          <label for="verificationCode" class="form-label">인증번호</label>
-          <input
+
+        <!-- 인증 번호 입력 필드 -->
+        <div v-if="codeSent" class="verification-code mt-3">
+            <input
             type="text"
             id="verificationCode"
             class="form-control"
             v-model="verificationCode"
             placeholder="인증번호를 입력하세요"
-          />
-          <button
-          type="button"
-          class="btn-common btn-dark"
-          @click="checkVerificationCode"
-          v-if="codeSent"
-          >
-          인증번호 확인
-          </button>
+            />
+            <button
+            type="button"
+            class="btn-small-common btn-mint"
+            @click="checkVerificationCode"
+            >
+            인증번호 확인
+            </button>
         </div>
         </div>
-      </div>
 
 
       <!-- 비밀번호 -->
@@ -199,7 +199,7 @@
       </div>
       
       <!-- 제출 버튼 -->
-      <button type="submit" class="btn-small-common btn-mint">가입하기</button>
+      <button @click="signUp" type="submit" class="btn-small-common btn-mint">가입하기</button>
     </form>
   </div>
 </template>
@@ -208,6 +208,10 @@
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import { useRouter } from "vue-router";
+import { useUserStore } from "@/stores/user";
+const store = useUserStore()
+const router = useRouter()
 
 // Refs for data
 const name = ref("");
@@ -318,7 +322,7 @@ const sendVerificationCode = () => {
   if (emailHasError.value) return;
 
   axios
-    .post("http://127.0.0.1:8000/accounts/signup/send-email/", {
+    .post("http://127.0.0.1:8000/accounts/signup/send-code-email/", {
       email: email.value,
     })
     .then(() => {
@@ -389,6 +393,12 @@ const handleSubmit = () => {
 //     alert("모든 항목을 작성해 주세요.");
 //   }
 };
+
+const signUp = function () {
+    router.push({ name : 'home '})
+    store.isLogin = true
+}
+
 </script>
 
 
@@ -412,6 +422,12 @@ const handleSubmit = () => {
 
 .email-input button {
   white-space: nowrap; /* 버튼 텍스트 줄바꿈 방지 */
+}
+
+.verification-code {
+    display: flex; /* 요소들을 가로로 배치 */
+    align-items: center; /* 버튼과 입력 필드의 세로 정렬 */
+    gap: 10px; /* 입력 필드와 버튼 사이의 공백 */
 }
 
 button[type="submit"] {
