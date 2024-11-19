@@ -168,7 +168,7 @@
       <!-- 성별 -->
       <div class="mb-3">
         <label class="form-label">성별</label>
-        <div>
+        <div class="gender-radios">
           <input
             type="radio"
             id="male"
@@ -370,9 +370,18 @@ if (
     .post("http://127.0.0.1:8000/accounts/signup/", payload)
     .then(() => {
         alert("회원가입이 완료되었습니다!");
-        router.push({ name : 'home' })
-        store.isLogin = true
+        return axios.post("http://127.0.0.1:8000/accounts/login/", {
+                    email: store.email,
+                    password: store.password,
+                });
     })
+    .then((res) => {
+      // 로그인 성공 시 token 업데이트
+      console.log(res.data);
+      store.token = res.data.key; // API에서 반환된 토큰 저장
+      console.log('자동 로그인되었습니다!');
+      router.push({ name : 'home' })
+    })            
     .catch((err) => {
         console.error(err);
         alert("회원가입 중 오류가 발생했습니다.");
@@ -417,6 +426,10 @@ if (
     display: flex; /* 요소들을 가로로 배치 */
     align-items: center; /* 버튼과 입력 필드의 세로 정렬 */
     gap: 10px; /* 입력 필드와 버튼 사이의 공백 */
+}
+
+.gender-radios {
+  gap: 10px;
 }
 
 button[type="submit"] {

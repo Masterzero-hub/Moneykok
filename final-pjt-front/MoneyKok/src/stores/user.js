@@ -10,7 +10,7 @@ export const useUserStore = defineStore('user', () => {
   const password = ref("");
   const confirmPassword = ref("");
   const phone = ref("");
-  const formattedPhone = ref(""); // 포맷팅된 휴대폰 번호
+  const formattedPhone = ref(""); 
   const birthYear = ref("");
   const birthMonth = ref("");
   const birthDay = ref("");
@@ -32,4 +32,4 @@ export const useUserStore = defineStore('user', () => {
 
 
   return { isLogin, name, nickname, email, password, confirmPassword, phone, formattedPhone, birthYear, birthMonth, birthDay, gender, salary, verificationCode, codeSent, token }
-})
+}, { persist: true })
