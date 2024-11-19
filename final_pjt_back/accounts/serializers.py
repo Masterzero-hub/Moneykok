@@ -23,34 +23,13 @@ class SignupSerializer(serializers.ModelSerializer):
         return user
 
 
-class EmailVerificationSerializer(serializers.ModelSerializer):
-    code = serializers.CharField(write_only=True)
-
+class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = EmailVerification
-        fields = ['email', 'code']
+        model = User
+        exclude = ('password',)  # 비밀번호는 제외
 
-    def validate_code(self, value):
-        """인증 코드 검증"""
-        email = self.initial_data.get('email')
-        verification = EmailVerification.objects.filter(email=email).first()
-
-        if not verification:
-            raise ValidationError("이메일 인증이 필요합니다.")
-        
-        if verification.is_verified:
-            raise ValidationError("이미 이메일 인증이 완료되었습니다.")
-        
-        if verification.is_expired:
-            raise ValidationError("인증 코드가 만료되었습니다. 새로운 인증 코드를 요청해주세요.")
-        
-        if verification.verification_code != value:
-            raise ValidationError("잘못된 인증 코드입니다.")
-        
-        return value
-
-    def update(self, instance, validated_data):
-        """이메일 인증 처리"""
-        instance.is_verified = True
-        instance.save()
-        return instance
+class UserInfoChangeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        exclude = ('email', 'password', 'name',)  # 수정할 수 없는 필드
+        read_only_fields = ('email', 'password', 'name',)  # 읽기 전용 필드
