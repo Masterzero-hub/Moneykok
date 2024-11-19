@@ -10,7 +10,7 @@
           type="text"
           id="name"
           class="form-control"
-          v-model="name"
+          v-model="store.name"
           placeholder="홍길동"
           :class="{ 'is-invalid': nameError }"
         />
@@ -28,7 +28,7 @@
           type="email"
           id="email"
           class="form-control"
-          v-model="email"
+          v-model="store.email"
           @blur="checkEmail"
           placeholder="example@example.com"
           :class="{ 'is-invalid': emailHasError }"
@@ -47,7 +47,7 @@
           type="password"
           id="password"
           class="form-control"
-          v-model="password"
+          v-model="store.password"
           @blur="checkPassword"
           placeholder="비밀번호를 입력하세요"
           :class="{ 'is-invalid': passwordHasError }"
@@ -64,7 +64,7 @@
           type="password"
           id="confirmPassword"
           class="form-control"
-          v-model="confirmPassword"
+          v-model="store.confirmPassword"
           @blur="checkConfirmPassword"
           placeholder="비밀번호를 다시 입력하세요"
           :class="{ 'is-invalid': confirmPasswordError }"
@@ -81,7 +81,7 @@
           type="text"
           id="phone"
           class="form-control"
-          v-model="formattedPhone"
+          v-model="store.formattedPhone"
           @input="formatPhoneNumber"
           placeholder="010-1234-5678"
           :class="{ 'is-invalid': phoneHasError }"
@@ -99,12 +99,12 @@
             <input
               type="text"
               class="form-control"
-              v-model="birthYear"
+              v-model="store.birthYear"
               placeholder="년(4자)"
             />
           </div>
           <div class="col">
-            <select class="form-select" v-model="birthMonth">
+            <select class="form-select" v-model="store.birthMonth">
               <option disabled selected>월</option>
               <option v-for="month in 12" :key="month" :value="month">{{ month }}</option>
             </select>
@@ -113,7 +113,7 @@
             <input
               type="text"
               class="form-control"
-              v-model="birthDay"
+              v-model="store.birthDay"
               placeholder="일"
             />
           </div>
@@ -123,19 +123,19 @@
       <!-- 성별 -->
       <div class="mb-3">
         <label class="form-label">성별</label>
-        <div>
+        <div class="gender-radios">
           <input
             type="radio"
             id="male"
             value="남성"
-            v-model="gender"
+            v-model="store.gender"
           />
           <label for="male" class="form-check-label">남성</label>
           <input
             type="radio"
             id="female"
             value="여성"
-            v-model="gender"
+            v-model="store.gender"
           />
           <label for="female" class="form-check-label">여성</label>
         </div>
@@ -148,7 +148,7 @@
           type="number"
           id="salary"
           class="form-control"
-          v-model="salary"
+          v-model="store.salary"
           placeholder="예: 3000"
         />
       </div>
@@ -160,9 +160,13 @@
 </template>
 
 <script setup>
+import { useUserStore } from '@/stores/user';
+const store = useUserStore()
 
 </script>
 
 <style scoped>
-
+.gender-radios {
+  gap: 10px;
+}
 </style>
