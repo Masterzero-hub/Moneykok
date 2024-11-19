@@ -18,7 +18,7 @@
 
 <script setup>
 import '@/assets/main.css';
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterView } from 'vue-router';
 import HeaderNav from './components/common/HeaderNav.vue';
 import FooterNav from './components/common/FooterNav.vue';
 import HomeView from './views/HomeView.vue';
