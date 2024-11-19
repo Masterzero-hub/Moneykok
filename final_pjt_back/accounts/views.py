@@ -51,7 +51,7 @@ def signup(request):
 @api_view(['POST'])
 @authentication_classes([])
 @permission_classes([])
-def send_email(request):
+def send_code_email(request):
     """이메일 인증 코드 발송"""
     email = request.data.get('email')
     
@@ -138,7 +138,7 @@ def verify_email(request):
 @api_view(['POST'])
 @authentication_classes([])
 @permission_classes([])
-def resend_email(request):
+def resend_code_email(request):
     """이메일 인증 코드 재발송 뷰"""
     email = request.data.get("email")
     if not email:
