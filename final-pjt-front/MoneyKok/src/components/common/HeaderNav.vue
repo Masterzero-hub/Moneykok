@@ -37,7 +37,7 @@
                     <li class="nav-item">
                         <RouterLink :to="{ name : 'userinfo' }">회원정보</RouterLink>                    
                     </li>
-                    <button class="btn-common btn-orange">로그아웃</button>
+                    <button class="btn-common btn-orange" @click="logout">로그아웃</button>
                 </template>
             </ul>
             </div>
@@ -52,12 +52,33 @@
 import { useUserStore } from '@/stores/user';
 import { ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
+import axios from 'axios';
+
 const store = useUserStore()
 const router = useRouter()
 
 const goLogin = function() {
     router.push({ name : 'login' })    
 }
+
+
+const logout = function () {
+    axios({
+      method: 'post',
+      url: `http://127.0.0.1:8000/accounts/logout/`,
+    })
+      .then((res) => {
+          store.token = null
+          router.push({ name: 'home' })
+          console.log(store.token)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+
+
 
 </script>
 
