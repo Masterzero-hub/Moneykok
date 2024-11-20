@@ -4,9 +4,9 @@ from . import views
 app_name = 'accounts'
 
 urlpatterns = [
-    path('', include('dj_rest_auth.urls')),
-    path('signup/', views.signup, name='signup'),
-    path('signup/send-email/', views.send_email, name='send_email'),
+    path('verify-email/', views.signup, name='signup'),
+    path('signup/send-code-email/', views.send_code_email, name='send_code_email'),
     path('signup/verify-email/', views.verify_email, name='verify_email'),
-    path('signup/resend-email/', views.resend_email, name='resend_email'),
+    path('', include('dj_rest_auth.urls')),
+    path('<str:user_id>/', views.user_info_update_delete, name="user_info_update_delete"),
 ]

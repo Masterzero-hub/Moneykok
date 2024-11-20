@@ -42,7 +42,11 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = 'no-reply@moneykok.com'
+
+# 예금 API & KEY
+DEPOSIT_URL=env('DEPOSIT_URL')
+API_KEY=env('API_KEY')
 
 
 # dj-rest-auth 설정
@@ -50,14 +54,18 @@ REST_USE_TOKEN = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"  # 이메일로 로그인
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 
 # Application definition
 INSTALLED_APPS = [
     'accounts',
+    'deposits',
     'dj_rest_auth',
     'rest_framework',
     'rest_framework.authtoken',
+    'allauth',              
+    'allauth.account', 
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -69,15 +77,20 @@ INSTALLED_APPS = [
 ]
 SITE_ID = 1
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # 기본 인증 백엔드
+    'allauth.account.auth_backends.AuthenticationBackend',  # allauth 백엔드
+]
+
 # REST Framework 기본 설정
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework.authentication.TokenAuthentication',
-#     ],
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.IsAuthenticated',
-#     ],
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
+}
 
 
 MIDDLEWARE = [
@@ -89,6 +102,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
+
 ]
 
 CORS_ALLOWED_ORIGINS =[
@@ -137,6 +152,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 8,  
+        },
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -144,15 +162,17 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    {
+        'NAME': 'accounts.validators.CustomPasswordValidator',
+    },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
