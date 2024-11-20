@@ -4,6 +4,8 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from django.conf import settings
 import requests
+from rest_framework.response import Response
+
 
 
 from .models import DepositOptions, DepositProducts, Banks
@@ -95,3 +97,31 @@ def save_products(request):
 
     return JsonResponse({'message':'예금 상품 저장'})
 
+@api_view(['GET'])
+def products_all_list(request):
+    if request.method == "GET":
+        products = DepositProducts.objects.all()
+        serializers = DepositProductsSerializer(products,many=True)
+        return Response(serializers.data)
+
+@api_view(['GET'])
+def products_query_list(request):
+    fin_prdt_cd = request.GET.get('fin_prdt_cd')
+    fin_co_no = request.GET.get('fin_co_no')
+    fin_prdt_nm = request.GET.get('fin_prdt_nm')
+    join_deny = request.GET.get('join_deny')
+    # 필요에 따라 추가적인 필터링 조건을 가져옵니다.
+
+    filters = {}
+    if fin_prdt_cd:
+        filters['fin_prdt_cd'] = fin_prdt_cd
+    if fin_co_no:
+        filters['fin_co_no'] = fin_co_no
+    if fin_prdt_nm:
+        filters['fin_prdt_nm__icontains'] = fin_prdt_nm
+    if join_deny:
+        filters['join_deny'] = join_deny
+
+    products = DepositProducts.objects.filter(**filters)
+    serializer = DepositProductsSerializer(products, many=True)
+    return JsonResponse(serializer.data, safe=False)
