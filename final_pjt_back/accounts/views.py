@@ -23,10 +23,8 @@ User = get_user_model()
 def get_verification(email):
     """이메일에 해당하는 인증 정보를 가져오는 함수"""
     try:
-        print(EmailVerification.objects.get(email=email, is_verified=False))
         return EmailVerification.objects.get(email=email, is_verified=False)
     except EmailVerification.DoesNotExist:
-        print("오류")
         return None
     
 
