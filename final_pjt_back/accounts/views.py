@@ -148,7 +148,6 @@ def user_info_update_delete(request, user_id):
         # 사용자가 자신의 정보만 수정할 수 있도록 검증
         if request.user != user:
             return Response({'error': '본인의 정보만 수정할 수 있습니다.'}, status=status.HTTP_403_FORBIDDEN)
-
         serializer = UserInfoChangeSerializer(instance=user, data=request.data, partial=True)
         if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user)
