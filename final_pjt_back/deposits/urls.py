@@ -5,4 +5,5 @@ app_name = 'deposits'
 
 urlpatterns = [
     path('save_products/', views.save_products, name="save_products"),
+
 ]
