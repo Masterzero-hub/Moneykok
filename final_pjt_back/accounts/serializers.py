@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, EmailVerification
+from .models import User
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
@@ -33,3 +33,4 @@ class UserInfoChangeSerializer(serializers.ModelSerializer):
         model = User
         exclude = ('email', 'password', 'name',)  # 수정할 수 없는 필드
         read_only_fields = ('email', 'password', 'name',)  # 읽기 전용 필드
+
