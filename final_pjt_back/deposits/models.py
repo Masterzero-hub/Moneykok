@@ -29,4 +29,4 @@ class DepositSpecialCondition(models.Model):
     product = models.ForeignKey("DepositProducts", on_delete=models.CASCADE )  # 예금 상품과의 외래 키 관계
     fin_prdt_cd = models.TextField()  # 금융 상품 코드
     condition_name = models.TextField()  # 우대조건 이름
-    prime_rate = models.FloatField()  # 우대금r
+    prime_rate = models.FloatField()  # 우대금리
