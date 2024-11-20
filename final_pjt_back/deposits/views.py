@@ -97,7 +97,6 @@ def save_products(request):
 
     return JsonResponse({'message':'예금 상품 저장'})
 
-
 import os
 from dotenv import load_dotenv
 from django.http import JsonResponse
