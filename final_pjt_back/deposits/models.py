@@ -18,7 +18,7 @@ class DepositProducts(models.Model):
     spcl_cnd = models.TextField()  # 우대 조건
 
 class DepositOptions(models.Model):
-    product = models.ForeignKey("DepositProducts", on_delete=models.CASCADE)  # 예금 상품과의 외래 키 관계
+    product = models.ForeignKey("DepositProducts", on_delete=models.CASCADE, related_name='options')  # 예금 상품과의 외래 키 관계
     fin_prdt_cd = models.TextField()  # 금융 상품 코드
     intr_rate_type_nm = models.CharField(max_length=100)  # 저축금리 유형명
     intr_rate = models.FloatField()  # 저축금리
@@ -26,7 +26,7 @@ class DepositOptions(models.Model):
     save_trm = models.IntegerField()  # 저축기간 (단위: 개월)
 
 class DepositSpecialCondition(models.Model):
-    product = models.ForeignKey("DepositProducts", on_delete=models.CASCADE)  # 예금 상품과의 외래 키 관계
+    product = models.ForeignKey("DepositProducts", on_delete=models.CASCADE )  # 예금 상품과의 외래 키 관계
     fin_prdt_cd = models.TextField()  # 금융 상품 코드
     condition_name = models.TextField()  # 우대조건 이름
-    prime_rate = models.FloatField()  # 우대금리
+    prime_rate = models.FloatField()  # 우대금r
