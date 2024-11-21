@@ -7,6 +7,12 @@ class BanksSerializer(serializers.ModelSerializer):
         model = Banks
         fields ="__all__"
 
+class DepositProductsSaveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DepositProducts
+        fields =('fin_prdt_cd','fin_prdt_nm','etc_note','join_deny', 'join_member', 'join_way', 'spcl_cnd',)
+        read_only_fields = ('bank',)
+
 class DepositProductsSerializer(serializers.ModelSerializer):
     class Meta:
         model = DepositProducts

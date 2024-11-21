@@ -50,6 +50,7 @@ API_KEY=env('API_KEY')
 
 # GROQ_API_KEY
 GROQ_API_KEY = env("GROQ_API_KEY")
+OPENAI_API_KEY = env("OPENAI_API_KEY")
 
 
 # dj-rest-auth 설정
