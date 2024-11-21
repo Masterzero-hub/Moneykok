@@ -15,6 +15,8 @@ class DepositProducts(models.Model):
     join_member = models.TextField()  # 가입 대상
     join_way = models.TextField()  # 가입 방법
     spcl_cnd = models.TextField()  # 우대 조건
+    deposit_min_amount = models.IntegerField(null=True, blank=True)  # 최소 금액(만원)
+    deposit_max_amount = models.IntegerField(null=True, blank=True)  # 최대 금액(만원)
 
 class DepositOptions(models.Model):
     product = models.ForeignKey("DepositProducts", on_delete=models.CASCADE, related_name='options')  # 예금 상품과의 외래 키 관계
