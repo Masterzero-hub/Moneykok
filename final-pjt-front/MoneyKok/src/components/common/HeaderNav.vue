@@ -53,7 +53,8 @@ import { useUserStore } from '@/stores/user';
 import { ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import axios from 'axios';
-
+import { useDepositsStore } from '@/stores/deposits';
+const depositStore = useDepositsStore()
 const store = useUserStore()
 const router = useRouter()
 
@@ -92,8 +93,6 @@ const logout = function () {
         console.log(err)
       })
   }
-
-
 
 
 </script>
