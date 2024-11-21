@@ -32,37 +32,31 @@ def save_products(request):
             join_way = baselist.get('join_way')
             spcl_cnd = baselist.get('spcl_cnd')
             
-            if not Banks.objects.filter(fin_co_no=fin_co_no, kor_co_nm=kor_co_nm).exists():
+            try:
+                bank = Banks.objects.get(fin_co_no=fin_co_no, kor_co_nm=kor_co_nm)
+            except Banks.DoesNotExist:
                 save_data_B = {
                     'fin_co_no': fin_co_no,
                     'kor_co_nm': kor_co_nm,
                 }
-
-                serializerBanks = BanksSerializer(data=save_data_B) 
+                serializerBanks = BanksSerializer(data=save_data_B)
                 if serializerBanks.is_valid(raise_exception=True):
-                    serializerBanks.save()
+                    bank = serializerBanks.save()
 
-            if DepositProducts.objects.filter(fin_prdt_cd=fin_prdt_cd,fin_co_no=fin_co_no,
-                                            fin_prdt_nm=fin_prdt_nm,etc_note=etc_note,
-                                            join_deny= join_deny,join_member= join_member,
-                                            join_way= join_way,spcl_cnd= spcl_cnd).exists():
-                continue    
+            if not DepositProducts.objects.filter(fin_prdt_cd=fin_prdt_cd).exists():
+                save_data_P = {
+                    'fin_prdt_cd': fin_prdt_cd,
+                    'fin_prdt_nm': fin_prdt_nm,
+                    'etc_note': etc_note,
+                    'join_deny': join_deny,
+                    'join_member': join_member,
+                    'join_way': join_way,
+                    'spcl_cnd': spcl_cnd,
+                }
+                serializerProducts = DepositProductsSerializer(data=save_data_P)
+                if serializerProducts.is_valid(raise_exception=True):
+                    serializerProducts.save(bank=bank)
 
-            save_data_P ={
-                'fin_prdt_cd':fin_prdt_cd,
-                'fin_co_no':fin_co_no,
-                'fin_prdt_nm':fin_prdt_nm,
-                'etc_note':etc_note,
-                'join_deny':join_deny,
-                'join_member':join_member,
-                'join_way':join_way,
-                'spcl_cnd':spcl_cnd,
-            }
-
-            bank = Banks.objects.get(fin_co_no=fin_co_no)
-            serializerProducts = DepositProductsSerializer(data=save_data_P) 
-            if serializerProducts.is_valid(raise_exception=True):
-                serializerProducts.save(bank= bank)
 
     for optionlist in response.get('result')['optionList']:
         fin_prdt_cd = optionlist.get('fin_prdt_cd')
@@ -73,29 +67,31 @@ def save_products(request):
 
         intr_rate = intr_rate if intr_rate else -1
         intr_rate2 = intr_rate2 if intr_rate2 else -1
-        
 
-        if DepositOptions.objects.filter(fin_prdt_cd=fin_prdt_cd,
-                                        intr_rate_type_nm=intr_rate_type_nm,
-                                        intr_rate=intr_rate,
-                                        intr_rate2=intr_rate2,
-                                        save_trm= save_trm).exists():
-            continue 
+        products = DepositProducts.objects.filter(fin_prdt_cd=fin_prdt_cd)
+        for product in products:
+            # 중복 데이터 확인
+            if DepositOptions.objects.filter(
+                product=product,
+                intr_rate_type_nm=intr_rate_type_nm,
+                intr_rate=intr_rate,
+                intr_rate2=intr_rate2,
+                save_trm=save_trm
+            ).exists():
+                continue
 
-        save_data_O ={
-            'fin_prdt_cd':fin_prdt_cd,
-            'intr_rate_type_nm':intr_rate_type_nm,
-            'intr_rate':intr_rate,
-            'intr_rate2':intr_rate2,
-            'save_trm':save_trm,
-        }
+            # DepositOptions 저장
+            save_data_O = {
+                'intr_rate_type_nm': intr_rate_type_nm,
+                'intr_rate': intr_rate,
+                'intr_rate2': intr_rate2,
+                'save_trm': save_trm,
+            }
+            serializerOptions = DepositOptionsSerializer(data=save_data_O)
+            if serializerOptions.is_valid(raise_exception=True):
+                serializerOptions.save(product=product)
 
-        product = DepositProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
-        serializerOptions = DepositOptionsSerializer(data=save_data_O) 
-        if serializerOptions.is_valid(raise_exception=True):
-            serializerOptions.save(product=product)
-
-    return JsonResponse({'message':'예금 상품 저장'})
+    return JsonResponse({'message': '예금 상품 및 옵션 저장 완료'})
 
 import os
 from dotenv import load_dotenv
@@ -188,28 +184,26 @@ def parse_special_conditions(spcl_cnd_text):
 @api_view(['GET'])
 def products_all_list(request):
     if request.method == "GET":
-        products = DepositProducts.objects.all()
-        serializers = DepositProductsSerializer(products,many=True)
+        # prefetch_related를 사용해 옵션 데이터 로드 최적화
+        products = DepositProducts.objects.prefetch_related('options', 'bank').all()
+        serializers = DepositProductsSerializer(products, many=True)
         return Response(serializers.data)
 
 @api_view(['GET'])
 def products_query_list(request):
-    fin_prdt_cd = request.GET.get('fin_prdt_cd')
-    fin_co_no = request.GET.get('fin_co_no')
-    fin_prdt_nm = request.GET.get('fin_prdt_nm')
-    join_deny = request.GET.get('join_deny')
+    kor_co_nm = request.GET.get('kor_co_nm')
+    intr_rate_type_nm = request.GET.get('intr_rate_type_nm')
     # 필요에 따라 추가적인 필터링 조건을 가져옵니다.
 
     filters = {}
-    if fin_prdt_cd:
-        filters['fin_prdt_cd'] = fin_prdt_cd
-    if fin_co_no:
-        filters['fin_co_no'] = fin_co_no
-    if fin_prdt_nm:
-        filters['fin_prdt_nm__icontains'] = fin_prdt_nm
-    if join_deny:
-        filters['join_deny'] = join_deny
+    if kor_co_nm:
+        filters['bank__kor_co_nm__icontains'] = kor_co_nm 
+    if intr_rate_type_nm:
+        filters['options__intr_rate_type_nm__icontains'] = intr_rate_type_nm 
 
-    products = DepositProducts.objects.filter(**filters)
-    serializer = DepositProductsSerializer(products, many=True)
+    products = DepositProducts.objects.filter(**filters).distinct()
+    if not products.exists():
+        return JsonResponse({'message': '조건에 맞는 데이터가 없습니다.', 'data': []}, status=404)
+
+    serializer = DepositProductsSerializer(products, many=True, context={'request': request})
     return JsonResponse(serializer.data, safe=False)
