@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import DepositOptions, DepositProducts, Banks
+from .models import DepositOptions, DepositProducts, DepositSpecialCondition, Banks
 
 
 class BanksSerializer(serializers.ModelSerializer):
@@ -8,23 +8,29 @@ class BanksSerializer(serializers.ModelSerializer):
         fields ="__all__"
 
 class DepositProductsSerializer(serializers.ModelSerializer):
-    bank = BanksSerializer(read_only=True)
     class Meta:
         model = DepositProducts
         fields ="__all__"
-        # read_only_fields = ('bank',)
+        read_only_fields = ('bank',)
 
 class DepositOptionsSerializer(serializers.ModelSerializer):
-    product = DepositProductsSerializer(read_only=True)
     class Meta:
         model = DepositOptions
         fields ="__all__"
-        # read_only_fields = ('product',)
-        
+        read_only_fields = ('product',)
 
-class DepositProductsSerializer(serializers.ModelSerializer):
+
+class DepositSpecialConditionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DepositSpecialCondition
+        fields = ('category', 'condition_title','condition_content','prime_rate')
+        read_only_fields = ('product',)
+
+
+class DepositProductsGETSerializer(serializers.ModelSerializer):
     bank = BanksSerializer(read_only=True)  # 은행 정보를 포함
     options = DepositOptionsSerializer(many=True, read_only=True)  # 옵션 정보를 포함
+    special_conditions = DepositSpecialConditionSerializer(many=True, read_only=True, source='depositspecialcondition_set')
 
     class Meta:
         model = DepositProducts
@@ -38,5 +44,6 @@ class DepositProductsSerializer(serializers.ModelSerializer):
             'join_member', # 가입 대상
             'join_way',    # 가입 방법
             'spcl_cnd',    # 우대 조건
-            'options'      # 옵션 정보
+            'options',     # 옵션 정보
+            'special_conditions' # 우대 조건 상세 정보
         ]
