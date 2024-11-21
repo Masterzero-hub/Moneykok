@@ -7,14 +7,14 @@ export const useDepositsStore = defineStore(
   () => {
     const products = ref([]);
 
-    const filters = reactive({
-      term: null,
+    const filters = ref({
+      join_term: null,
       amount: null,
-      bank: null,
-      conditions: ["거래연동", "사용실적"],
+      fin_co_no: [],
+      conditions: [],
     });
 
-    const filteredProducts = ref({
+    const filteredProducts = ref([{
       id: 44,
       fin_prdt_cd: "10511008001166004",
       bank: {
@@ -77,7 +77,7 @@ export const useDepositsStore = defineStore(
           prime_rate: 0.05,
         },
       ],
-    });
+    }]);
 
 
     // const saveProducts
@@ -86,7 +86,6 @@ export const useDepositsStore = defineStore(
         .get("http://127.0.0.1:8000/deposits/deposits-list/")
         .then((res) => {
           products.value = res.data;
-          console.log(products);
         })
         .catch((error) => {
           console.error("데이터를 불러오는 중 오류가 발생했습니다:", error);
