@@ -66,19 +66,58 @@ const login = function () {
         password: password.value,
       }
     })
-      .then((res) => {
-        store.token = res.data.key
-        // store.isLogin = true
-        console.log(store.isLogin)
-        router.push({ name : 'home'})
-      })
-      .catch((err) => {
-        console.log('로그인 실패')
-        console.log(err)
-        console.log(store.isLogin)
-        console.log(store.token)
-      })
-  }
+    .then((res) => {
+      // 1. 로그인 성공: 토큰 저장
+      store.token = res.data.key;
+      store.email = email.value
+      store.password = password.value
+
+      // console.log('로그인 성공:', store.email);
+      // router.push({ name: 'home' }); // 홈 화면으로 이동
+      
+      // 2. 사용자 정보 가져오기
+      return axios.get(`http://127.0.0.1:8000/accounts/${store.email}/`, {
+        headers: {
+          Authorization: `Token ${store.token}`, // 인증 토큰 헤더 추가
+        },
+      });
+      
+    })
+    .then((userInfoResponse) => {
+      // 3. 사용자 정보를 store에 저장
+      console.log(userInfoResponse)
+      const userInfo = userInfoResponse.data;
+      store.name = userInfo.name;
+      store.formattedPhone = userInfo.phone;
+      store.phone = userInfo.phone;
+      store.nickname = userInfo.nickname;
+      store.birthDate = userInfo.birthdate;
+      store.birthYear = userInfo.birthdate.slice(0, 4); // 맨 앞 4자리 추출
+      store.birthMonth = userInfo.birthdate.slice(5, 7); // 월 추출 (필요 시)
+      store.birthDay = userInfo.birthdate.slice(8, 10); // 일 추출 (필요 시)
+      store.gender = userInfo.gender;
+      store.income = userInfo.income;
+
+      
+      console.log('로그인 성공');
+      console.log(store.name)
+      console.log(store.email)
+      console.log(store.nickname)
+      console.log(store.formattedPhone)
+      console.log(store.birthDate)
+      console.log(store.birthYear)
+      console.log(store.birthMonth)
+      console.log(store.birthDay)
+      console.log(store.gender)
+      console.log(store.income)
+      router.push({ name: 'home' }); // 홈 화면으로 이동
+    })
+    .catch((err) => {
+      console.error('로그인 실패:', err);
+      alert('로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.');
+    });
+};
+
 
 const goSignUp = function() {
     router.push({ name : 'signup' })
