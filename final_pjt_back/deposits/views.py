@@ -5,6 +5,7 @@ from rest_framework import status
 from django.conf import settings
 import requests
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 
 
 
@@ -112,66 +113,74 @@ def save_products(request):
 #         serializers = DepositProductsGETSerializer(products, many=True)
 #         return Response(serializers.data)
 
+@api_view(['GET'])
+def deposit_detail(request, fin_prdt_cd):
+    try:
+        # 예금 상품 가져오기
+        deposit = get_object_or_404(DepositProducts, fin_prdt_cd=fin_prdt_cd)
+        
+        # 직렬화 후 반환
+        serializer = DepositProductsGETSerializer(deposit, context={'request': request})
+        return Response(serializer.data)
+    except Exception as e:
+        # 기타 예외 처리
+        return JsonResponse({'message': '예금 상품 정보를 가져오는 중 오류가 발생했습니다.', 'error': str(e)}, status=500)
+    
 from django.db.models import Q
 
 @api_view(['GET'])
 def deposits_list(request):
-    kor_co_nm = request.GET.get('kor_co_nm')  # 은행명 필터
-    special_condition_category = request.GET.get('special_condition_category')  # 우대조건 카테고리 필터
-    join_term = request.GET.get('join_term')  # 가입 기간 필터 (단위: 개월)
-    deposit_amount = request.GET.get('deposit_amount')  # 가입금액 필터
+    data = request.GET  # GET 요청 데이터 가져오기
+    bank = data.get('bank', None)  # 은행명 필터 (JSON 문자열 형태)
+    conditions = data.get('conditions', None)  # 우대조건 필터 (JSON 문자열 형태)
+    join_term = data.get('join_term', None)  # 가입 기간 필터
+    amount = data.get('amount', None)  # 가입금액 필터
 
-    # QuerySet 생성 (prefetch_related로 최적화)
-    products = DepositProducts.objects.prefetch_related('options', 'bank').all()
+    # QuerySet 생성
+    products = DepositProducts.objects.all()
 
     # 은행명 필터
-    if kor_co_nm:
-        products = products.filter(bank__kor_co_nm__icontains=kor_co_nm)
+    if bank:
+        try:
+            fin_co_no_list = json.loads(bank)  # JSON 문자열 -> Python 리스트로 변환
+            products = products.filter(bank__fin_co_no__in=fin_co_no_list)
+        except json.JSONDecodeError:
+            return JsonResponse({'message': 'fin_co_no는 유효한 JSON 배열이어야 합니다.'}, status=400)
 
     # 우대조건 카테고리 필터
-    if special_condition_category:
-        # 쉼표로 분리된 값을 리스트로 변환
-        categories = [category.strip() for category in special_condition_category.split(',')]
-        products = products.filter(
-            Q(depositspecialcondition__category__in=categories) |
-            Q(depositspecialcondition__isnull=True)
-        ).distinct()
+    if conditions:
+        try:
+            category_list = json.loads(conditions)  # JSON 문자열 -> Python 리스트로 변환
+            products = products.filter(
+                Q(depositspecialcondition__category__in=category_list) |
+                Q(depositspecialcondition__isnull=True)
+            ).distinct()
+        except json.JSONDecodeError:
+            return JsonResponse({'message': 'special_condition_category는 유효한 JSON 배열이어야 합니다.'}, status=400)
 
     # 가입 기간 필터
     if join_term:
         try:
             join_term = int(join_term)  # 입력받은 기간을 정수로 변환
-
-            # 옵션에서 입력된 가입 기간과 정확히 매칭되는 조건만 필터링
-            filtered_products = []
-            for product in products:
-                # 해당 상품의 옵션 중 save_trm이 join_term과 일치하는 옵션만 선택
-                options = product.options.filter(save_trm=join_term)
-                if options.exists():  # 조건에 맞는 옵션이 있는 경우에만 상품 포함
-                    product.best_option = options.first()  # 일치하는 첫 번째 옵션 추가
-                    filtered_products.append(product)
-
-            products = filtered_products  # 필터링된 상품 리스트로 교체
+            products = products.filter(options__save_trm=join_term)
         except ValueError:
             return JsonResponse({'message': '잘못된 가입 기간 값입니다.'}, status=400)
 
     # 가입금액 필터
-    if deposit_amount:
+    if amount:
         try:
-            deposit_amount = int(deposit_amount)  # 입력받은 금액을 정수로 변환
-            
-            # DepositProducts에서 직접 필터링
+            amount = int(amount)  # 입력받은 금액을 정수로 변환
             products = products.filter(
-                Q(deposit_min_amount__isnull=True, deposit_max_amount__isnull=True) |  # 두 필드가 NULL인 경우
-                Q(deposit_min_amount__isnull=True, deposit_max_amount__gte=deposit_amount) |  # 최소 금액만 NULL
-                Q(deposit_max_amount__isnull=True, deposit_min_amount__lte=deposit_amount) |  # 최대 금액만 NULL
-                Q(deposit_min_amount__lte=deposit_amount, deposit_max_amount__gte=deposit_amount)  # 둘 다 값이 있는 경우
+                Q(deposit_min_amount__isnull=True, deposit_max_amount__isnull=True) |
+                Q(deposit_min_amount__isnull=True, deposit_max_amount__gte=amount) |
+                Q(deposit_max_amount__isnull=True, deposit_min_amount__lte=amount) |
+                Q(deposit_min_amount__lte=amount, deposit_max_amount__gte=amount)
             )
         except ValueError:
             return JsonResponse({'message': '잘못된 가입금액 값입니다.'}, status=400)
 
     # 조건에 맞는 데이터가 없을 경우 처리
-    if not products:
+    if not products.exists():
         return JsonResponse({'message': '조건에 맞는 데이터가 없습니다.', 'data': []}, status=404)
 
     # 직렬화 후 응답
