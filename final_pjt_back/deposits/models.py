@@ -9,7 +9,6 @@ class Banks(models.Model):
 class DepositProducts(models.Model):
     fin_prdt_cd = models.TextField(unique=True)  # 금융 상품 코드
     bank = models.ForeignKey("Banks", on_delete=models.CASCADE)  # 은행과의 외래 키 관계
-    fin_co_no  = models.CharField(max_length=7)  # 금융회사 코드
     fin_prdt_nm = models.TextField()  # 금융 상품명
     etc_note = models.TextField()  # 금융 상품 설명
     join_deny = models.IntegerField()  # 가입 제한 (1: 제한없음, 2: 서민전용, 3: 일부제한)
@@ -19,7 +18,6 @@ class DepositProducts(models.Model):
 
 class DepositOptions(models.Model):
     product = models.ForeignKey("DepositProducts", on_delete=models.CASCADE, related_name='options')  # 예금 상품과의 외래 키 관계
-    fin_prdt_cd = models.TextField()  # 금융 상품 코드
     intr_rate_type_nm = models.CharField(max_length=100)  # 저축금리 유형명
     intr_rate = models.FloatField()  # 저축금리
     intr_rate2 = models.FloatField()  # 최고 우대금리
@@ -27,6 +25,18 @@ class DepositOptions(models.Model):
 
 class DepositSpecialCondition(models.Model):
     product = models.ForeignKey("DepositProducts", on_delete=models.CASCADE )  # 예금 상품과의 외래 키 관계
-    fin_prdt_cd = models.TextField()  # 금융 상품 코드
-    condition_name = models.TextField()  # 우대조건 이름
+    # fin_prdt_cd = models.TextField()  # 금융 상품 코드
+    category = models.CharField(
+        max_length=20,
+        choices=[
+            ('거래 연동', '거래 연동'),
+            ('사용 실적', '사용 실적'),
+            ('신규 가입', '신규 가입'),
+            ('비대면/모바일 뱅킹', '비대면/모바일 뱅킹'),
+            ('마케팅 및 기타 동의', '마케팅 및 기타 동의'),
+            ('기타', '기타'),
+        ]
+    )
+    condition_title = models.TextField() 
+    condition_content = models.TextField()
     prime_rate = models.FloatField()  # 우대금리
