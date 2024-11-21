@@ -69,8 +69,24 @@ const logout = function () {
     })
       .then((res) => {
           store.token = null
+          store.name = '';
+          store.nickname = '';
+          store.email = '';
+          store.birthYear = '';
+          store.birthMonth = '';
+          store.birthDay = '';
+          store.birthDate = '';
+          store.gender = '';
+          store.income = null;
+          store.formattedPhone = '';
+          store.phone = '';
+          store.password = '';
+          store.confirmPassword = '';
+          store.newPassword = '';
+          store.confirmNewPassword = '';
           router.push({ name: 'home' })
-          console.log(store.token)
+          console.log(`토큰값 ${store.token}`)
+          console.log('로그아웃 되었습니다.')
       })
       .catch((err) => {
         console.log(err)

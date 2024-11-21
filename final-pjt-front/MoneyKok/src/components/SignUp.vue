@@ -1,6 +1,5 @@
 <template>
   <div class="container mt-5">
-    <!-- <h3>회원가입</h3> -->
     <form @submit.prevent="handleSubmit">
       <!-- 이름 -->
       <div class="mb-3">
@@ -11,10 +10,10 @@
           class="form-control"
           v-model="store.name"
           placeholder="홍길동"
-          :class="{ 'is-invalid': nameError }"
+          :class="{ 'is-invalid': store.nameError }"
         />
-        <div class="invalid-feedback" v-if="nameError">
-          {{ nameError }}
+        <div class="invalid-feedback" v-if="store.nameError">
+          {{ store.nameError }}
         </div>
       </div>
 
@@ -27,63 +26,61 @@
           class="form-control"
           v-model="store.nickname"
           placeholder="동에 번쩍 서에 번쩍 홍길동"
-          :class="{ 'is-invalid': nameError }"
         />
       </div>
 
       <!-- 이메일 -->
-        <div class="mb-3">
+      <div class="mb-3">
         <label for="email" class="form-label">이메일</label>
         <div class="email-input">
-            <input
+          <input
             type="email"
             id="email"
             class="form-control"
             v-model="store.email"
-            @blur="checkEmail"
+            @blur="store.checkEmail"
             placeholder="example@example.com"
-            :class="{ 'is-invalid': emailHasError }"
-            />
-            <div class="invalid-feedback" v-if="emailHasError">
-            {{ emailError }}
-            </div>
-            <button
+            :class="{ 'is-invalid': store.emailHasError }"
+          />
+          <div class="invalid-feedback" v-if="store.emailHasError">
+            {{ store.emailError }}
+          </div>
+          <button
             type="button"
             class="btn-small-common btn-mint"
             @click="sendVerificationCode"
             v-if="!store.codeSent"
-            >
+          >
             인증번호 발송
-            </button>
-            <button
+          </button>
+          <button
             type="button"
             class="btn-small-common btn-mint"
             @click="resendVerificationCode"
             v-if="store.codeSent"
-            >
+          >
             인증번호 재발송
-            </button>
+          </button>
         </div>
 
         <!-- 인증 번호 입력 필드 -->
         <div v-if="store.codeSent" class="verification-code mt-3">
-            <input
+          <input
             type="text"
             id="verificationCode"
             class="form-control"
             v-model="store.verificationCode"
             placeholder="인증번호를 입력하세요"
-            />
-            <button
+          />
+          <button
             type="button"
             class="btn-small-common btn-mint"
             @click="checkVerificationCode"
-            >
+          >
             인증번호 확인
-            </button>
+          </button>
         </div>
-        </div>
-
+      </div>
 
       <!-- 비밀번호 -->
       <div class="mb-3">
@@ -93,12 +90,12 @@
           id="password"
           class="form-control"
           v-model="store.password"
-          @blur="checkPassword"
+          @blur="store.checkPassword"
           placeholder="비밀번호를 입력하세요"
-          :class="{ 'is-invalid': passwordHasError }"
+          :class="{ 'is-invalid': store.passwordHasError }"
         />
-        <div class="invalid-feedback" v-if="passwordHasError">
-          {{ passwordError }}
+        <div class="invalid-feedback" v-if="store.passwordHasError">
+          {{ store.passwordError }}
         </div>
       </div>
 
@@ -110,12 +107,12 @@
           id="confirmPassword"
           class="form-control"
           v-model="store.confirmPassword"
-          @blur="checkConfirmPassword"
+          @blur="store.checkConfirmPassword"
           placeholder="비밀번호를 다시 입력하세요"
-          :class="{ 'is-invalid': confirmPasswordError }"
+          :class="{ 'is-invalid': store.confirmPasswordError }"
         />
-        <div class="invalid-feedback" v-if="confirmPasswordError">
-          {{ confirmPasswordError }}
+        <div class="invalid-feedback" v-if="store.confirmPasswordError">
+          {{ store.confirmPasswordError }}
         </div>
       </div>
 
@@ -127,12 +124,12 @@
           id="phone"
           class="form-control"
           v-model="store.formattedPhone"
-          @input="formatPhoneNumber"
+          @input="store.formatPhoneNumber"
           placeholder="010-1234-5678"
-          :class="{ 'is-invalid': phoneHasError }"
+          :class="{ 'is-invalid': store.phoneHasError }"
         />
-        <div class="invalid-feedback" v-if="phoneHasError">
-          {{ phoneError }}
+        <div class="invalid-feedback" v-if="store.phoneHasError">
+          {{ store.phoneError }}
         </div>
       </div>
 
@@ -145,21 +142,21 @@
               type="text"
               class="form-control"
               v-model="store.birthYear"
-              placeholder="년(4자)"
+              placeholder="년 (예 : 2000)"
             />
           </div>
           <div class="col">
-            <select class="form-select" v-model="store.birthMonth">
-              <option disabled selected>월</option>
-              <option v-for="month in 12" :key="month" :value="month">{{ month }}</option>
-            </select>
+          <select class="form-select" v-model="store.birthMonth">
+            <option disabled value="">월을 선택하세요</option> <!-- Placeholder 역할 -->
+            <option v-for="month in 12" :key="month" :value="month">{{ month }}</option>
+          </select>
           </div>
           <div class="col">
             <input
               type="text"
               class="form-control"
               v-model="store.birthDay"
-              placeholder="일"
+              placeholder="일 (예 : 10)"
             />
           </div>
         </div>
@@ -169,20 +166,22 @@
       <div class="mb-3">
         <label class="form-label">성별</label>
         <div class="gender-radios">
-          <input
-            type="radio"
-            id="male"
-            value="남성"
-            v-model="store.gender"
-          />
-          <label for="male" class="form-check-label">남성</label>
-          <input
-            type="radio"
-            id="female"
-            value="여성"
-            v-model="store.gender"
-          />
-          <label for="female" class="form-check-label">여성</label>
+          <div class="radio-group">
+            <input
+              type="radio"
+              id="male"
+              value="남성"
+              v-model="store.gender"
+            />
+            <label for="male" class="form-check-label">남성</label>
+            <input
+              type="radio"
+              id="female"
+              value="여성"
+              v-model="store.gender"
+            />
+            <label for="female" class="form-check-label">여성</label>
+          </div>
         </div>
       </div>
 
@@ -197,7 +196,7 @@
           placeholder="예: 3000"
         />
       </div>
-      
+
       <!-- 제출 버튼 -->
       <button type="submit" class="btn-small-common btn-mint">가입하기</button>
     </form>
@@ -213,190 +212,91 @@ import { useUserStore } from "@/stores/user";
 const store = useUserStore()
 const router = useRouter()
 
-// Error states
-const nameError = ref("");
-const emailError = ref("");
-const emailHasError = ref(false);
-const passwordError = ref("");
-const passwordHasError = ref(false);
-const confirmPasswordError = ref("");
-const phoneError = ref("");
-const phoneHasError = ref(false);
-
-// Validation methods
-const checkName = () => {
-const specialCharRegex = /[~!@#$%^&*()_+|<>?:{}]/;
-if (!store.name) {
-    nameError.value = "이름을 입력해주세요.";
-} else if (specialCharRegex.test(store.name)) {
-    nameError.value = "이름에는 특수문자를 사용할 수 없습니다.";
-} else {
-    nameError.value = "";
-}
-};
-
-const checkEmail = () => {
-const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-if (!store.email) {
-    emailError.value = "이메일을 입력해주세요.";
-    emailHasError.value = true;
-} else if (!emailRegex.test(store.email)) {
-    emailError.value = "유효한 이메일 형식이 아닙니다.";
-    emailHasError.value = true;
-} else {
-    emailError.value = "";
-    emailHasError.value = false;
-}
-};
-
-const checkPassword = () => {
-const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
-if (!store.password) {
-    passwordError.value = "비밀번호를 입력해주세요.";
-    passwordHasError.value = true;
-} else if (!passwordRegex.test(store.password)) {
-    passwordError.value =
-    "비밀번호는 최소 8자, 영문, 숫자, 특수문자를 포함해야 합니다.";
-    passwordHasError.value = true;
-} else {
-    passwordError.value = "";
-    passwordHasError.value = false;
-}
-};
-
-const checkConfirmPassword = () => {
-if (!store.confirmPassword) {
-    confirmPasswordError.value = "비밀번호 확인을 입력해주세요.";
-} else if (password.value !== store.confirmPassword) {
-    confirmPasswordError.value = "비밀번호가 일치하지 않습니다.";
-} else {
-    confirmPasswordError.value = "";
-}
-};
-
-const checkPhone = () => {
-const phoneRegex = /^010-\d{4}-\d{4}$/;
-if (!store.formattedPhone) {
-    phoneError.value = "휴대폰 번호를 입력해주세요.";
-    phoneHasError.value = true;
-} else if (!phoneRegex.test(store.formattedPhone)) {
-    phoneError.value = "유효한 휴대폰 번호 형식이 아닙니다.";
-    phoneHasError.value = true;
-} else {
-    phoneError.value = "";
-    phoneHasError.value = false;
-}
-};
-
-// 휴대폰 번호 포맷팅
-const formatPhoneNumber = () => {
-let digits = store.formattedPhone.replace(/\D/g, ""); // 숫자만 추출
-if (digits.length <= 3) {
-    store.formattedPhone = digits;
-} else if (digits.length <= 7) {
-    store.formattedPhone = `${digits.slice(0, 3)}-${digits.slice(3)}`;
-} else {
-    store.formattedPhone = `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
-}
-};
-
-
-// Axios requests
 const sendVerificationCode = () => {
-checkEmail();
-if (emailHasError.value) return;
+  store.checkEmail(); // `store.` 추가
+  if (store.emailHasError) return; // `store.` 추가
 
-axios
+  axios
     .post("http://127.0.0.1:8000/accounts/signup/send-code-email/", {
-    email: store.email,
+      email: store.email, // `store.` 추가
     })
     .then(() => {
-    store.codeSent = true;
-    alert("인증번호가 전송되었습니다.");
+      store.codeSent = true; // `store.` 추가
+      alert("인증번호가 전송되었습니다.");
     })
     .catch(() => {
-    alert("인증번호 전송에 실패했습니다.");
+      alert("인증번호 전송에 실패했습니다.");
     });
 };
 
 const resendVerificationCode = () => {
-sendVerificationCode();
+  sendVerificationCode();
 };
 
-
 const checkVerificationCode = () => {
-    axios
+  axios
     .post("http://127.0.0.1:8000/accounts/signup/verify-email/", {
-    email: store.email,
-    code: store.verificationCode
+      email: store.email, // `store.` 추가
+      code: store.verificationCode, // `store.` 추가
     })
     .then(() => {
-    store.codeSent = true;
-    alert("이메일 인증에 성공하였습니다.");
+      store.codeSent = true; // `store.` 추가
+      alert("이메일 인증에 성공하였습니다.");
     })
     .catch(() => {
-    alert("이메일 인증에 실패했습니다.");
+      alert("이메일 인증에 실패했습니다.");
     });
-}
+};
 
 const handleSubmit = () => {
-checkName();
-checkEmail();
-checkPassword();
-checkConfirmPassword();
-checkPhone();
+  store.checkName(); // `store.` 추가
+  store.checkEmail(); // `store.` 추가
+  store.checkPassword(); // `store.` 추가
+  store.checkConfirmPassword(); // `store.` 추가
+  store.checkPhone(); // `store.` 추가
 
-if (
-    !nameError.value &&
-    !emailHasError.value &&
-    !passwordHasError.value &&
-    !confirmPasswordError.value &&
-    !phoneHasError.value
-) {
+  if (
+    !store.nameError && // `store.` 추가
+    !store.emailHasError && // `store.` 추가
+    !store.passwordHasError && // `store.` 추가
+    !store.confirmPasswordError && // `store.` 추가
+    !store.phoneHasError // `store.` 추가
+  ) {
     const payload = {
-    name: store.name,
-    email: store.email,
-    nickname: store.nickname,
-    password: store.password,
-    phone: store.formattedPhone,
-    birthdate: `${store.birthYear}-${store.birthMonth}-${store.birthDay}`,
-    gender: store.gender,
-    income: store.salary,
+      name: store.name, // `store.` 추가
+      email: store.email, // `store.` 추가
+      nickname: store.nickname, // `store.` 추가
+      password: store.password, // `store.` 추가
+      phone: store.formattedPhone, // `store.` 추가
+      birthdate: `${store.birthYear}-${store.birthMonth}-${store.birthDay}`, // `store.` 추가
+      gender: store.gender, // `store.` 추가
+      income: store.salary, // `store.` 추가
     };
 
     console.log("Payload data being sent:", payload);
 
     axios
-    .post("http://127.0.0.1:8000/accounts/signup/", payload)
-    .then(() => {
+      .post("http://127.0.0.1:8000/accounts/signup/", payload)
+      .then(() => {
+        
         alert("회원가입이 완료되었습니다!");
         return axios.post("http://127.0.0.1:8000/accounts/login/", {
-                    email: store.email,
-                    password: store.password,
-                });
-    })
-    .then((res) => {
-      // 로그인 성공 시 token 업데이트
-      console.log(res.data);
-      store.token = res.data.key; // API에서 반환된 토큰 저장
-      console.log('자동 로그인되었습니다!');
-      router.push({ name : 'home' })
-    })            
-    .catch((err) => {
+          email: store.email, // `store.` 추가
+          password: store.password, // `store.` 추가
+        });
+      })
+      .then((res) => {
+        console.log(res.data);
+        store.token = res.data.key; // `store.` 추가
+        console.log("자동 로그인되었습니다!");
+        router.push({ name: "home" });
+      })
+      .catch((err) => {
         console.error(err);
         alert("회원가입 중 오류가 발생했습니다.");
-    });
-} 
-
-//     alert("모든 항목을 작성해 주세요.");
-//   }
+      });
+  }
 };
-
-// const signUp = function () {
-//     router.push({ name : 'home' })
-//     store.isLogin = true
-// }
-
 </script>
 
 
@@ -428,8 +328,10 @@ if (
     gap: 10px; /* 입력 필드와 버튼 사이의 공백 */
 }
 
-.gender-radios {
-  gap: 10px;
+.radio-group {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* 라디오 버튼과 라벨 사이의 간격 */
 }
 
 button[type="submit"] {
