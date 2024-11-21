@@ -43,54 +43,9 @@
                 <div class="divider me-3"></div>
                 <button
                   class="btn-small-common"
-                  data-bs-toggle="modal"
-                  :data-bs-target="'#modal-' + product.id"
+                  @click="goDepositDetail(product.id)"
                 >
                   상세 보기
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-  
-        <!-- 상품 상세 모달 -->
-        <div
-          v-for="product in store.products"
-          :key="'modal-' + product.id"
-          class="modal fade"
-          :id="'modal-' + product.id"
-          tabindex="-1"
-          aria-labelledby="'modal-label-' + product.id"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" :id="'modal-label-' + product.id">
-                  {{ product.name }}
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <p><strong>은행:</strong> {{ product.kor_co_nm }}</p>
-                <p><strong>상품명:</strong> {{ product.fin_prdt_nm }}</p>
-                <p><strong>우대조건:</strong> {{ product.spcl_cnd }}</p>
-                <p><strong>저축기간:</strong> {{ product.save_trm }}개월</p>
-                <p><strong>기본금리:</strong> {{ product.int_rate }}%</p>
-                <p><strong>최고금리:</strong> {{ product.int_rate2 }}%</p>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  닫기
                 </button>
               </div>
             </div>
@@ -103,12 +58,18 @@
 <script setup>
 import { useDepositsStore } from "@/stores/deposits";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter()
 const store = useDepositsStore()
-// 상품 데이터
+
 
 onMounted(() => {
     store.getProducts()
 })
+
+const goDepositDetail = function(product_id) {
+  router.push({ name : 'depositdetail', params : { deposit_id: product_id } })
+}
 
 </script>
 
