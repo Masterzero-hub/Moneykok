@@ -10,6 +10,7 @@ import SignUp from '@/components/SignUp.vue'
 import Login from '@/components/Login.vue'
 import UserInfo from '@/components/UserInfo.vue'
 import PasswordChange from '@/components/PasswordChange.vue'
+import DepositDetail from '@/components/DepositDetail.vue'
 
 
 const router = createRouter({
@@ -19,11 +20,6 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-    },
-    {
-      path: '/deposits',
-      name: 'deposits',
-      component: DepositsView,
     },
     {
       path: '/savings',
@@ -69,6 +65,16 @@ const router = createRouter({
       path: '/passwordchange',
       name: 'passwordchange',
       component: PasswordChange
+    },
+    {
+      path: '/deposits',
+      name: 'deposits',
+      component: DepositsView,
+    },
+    {
+      path: '/deposits/:deposit_id',
+      name: 'depositdetail',
+      component: DepositDetail
     },
   ],
 })
