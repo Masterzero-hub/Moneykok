@@ -239,7 +239,7 @@ const { products, getProducts, productDetail, filters, filteredProducts } =
 const router = useRouter();
 
 onMounted(() => {
-  getProducts();
+  store.getProducts();
 });
 
 const goDepositDetail = function (product_id) {

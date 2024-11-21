@@ -23,9 +23,9 @@ export const useCommunityStore = defineStore('community', () => {
         },
         {
           id: 4,
-          name: "Alina Smith",
+          name: "최낙우",
           image: "https://via.placeholder.com/150",
-          description: "Exploring the intersection of art and technology.",
+          description: "Passionate about AI and innovative technologies.",
         },
       ]);
       
