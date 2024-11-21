@@ -5,6 +5,7 @@ from rest_framework import status
 from django.conf import settings
 import requests
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 
 
 
@@ -112,6 +113,19 @@ def save_products(request):
 #         serializers = DepositProductsGETSerializer(products, many=True)
 #         return Response(serializers.data)
 
+@api_view(['GET'])
+def deposit_detail(request, fin_prdt_cd):
+    try:
+        # 예금 상품 가져오기
+        deposit = get_object_or_404(DepositProducts, fin_prdt_cd=fin_prdt_cd)
+        
+        # 직렬화 후 반환
+        serializer = DepositProductsGETSerializer(deposit, context={'request': request})
+        return Response(serializer.data)
+    except Exception as e:
+        # 기타 예외 처리
+        return JsonResponse({'message': '예금 상품 정보를 가져오는 중 오류가 발생했습니다.', 'error': str(e)}, status=500)
+    
 from django.db.models import Q
 
 @api_view(['GET'])
