@@ -115,7 +115,7 @@ def save_products(request):
 from django.db.models import Q
 
 @api_view(['GET'])
-def products_list(request):
+def deposits_list(request):
     kor_co_nm = request.GET.get('kor_co_nm')  # 은행명 필터
     special_condition_category = request.GET.get('special_condition_category')  # 우대조건 카테고리 필터
     join_term = request.GET.get('join_term')  # 가입 기간 필터 (단위: 개월)
