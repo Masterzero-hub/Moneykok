@@ -175,7 +175,7 @@ def deposits_list(request):
         return JsonResponse({'message': '조건에 맞는 데이터가 없습니다.', 'data': []}, status=404)
 
     # 직렬화 후 응답
-    serializer = DepositProductsSerializer(products, many=True, context={'request': request})
+    serializer = DepositProductsGETSerializer(products, many=True, context={'request': request})
     return Response(serializer.data)
 
 from dotenv import load_dotenv
@@ -261,14 +261,14 @@ def parse_special_conditions(spcl_cnd_text):
         print(f"예기치 못한 오류: {e}")
         return []
 
-def save_special_conditions(request):
+def classify(request):
     """
     모든 예금 상품의 우대조건 데이터를 분석하고 저장합니다.
     """
     products = DepositProducts.objects.all()
     for product in products:
         spcl_cnd = product.spcl_cnd.strip()
-        if spcl_cnd and spcl_cnd != '해당사항 없음':
+        if spcl_cnd and spcl_cnd not in ['우대조건 없음', '해당사항 없음', '없음']:
 
             parsed_conditions = parse_special_conditions(spcl_cnd)
             for condition in parsed_conditions:
