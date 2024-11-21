@@ -23,6 +23,7 @@
                 <li><RouterLink :to="{ name: 'ai' }">AI 추천</RouterLink></li>
                 <li><RouterLink :to="{ name: 'bank' }">은행 찾기</RouterLink></li>
                 <li><RouterLink :to="{ name: 'exchangerate' }">환율 계산기</RouterLink></li>
+                <li><RouterLink :to="{ name: 'community' }">커뮤니티</RouterLink></li>
             </ul>
             </nav>
 

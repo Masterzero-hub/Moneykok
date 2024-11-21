@@ -9,6 +9,7 @@ import ExchangeRateView from '@/views/ExchangeRateView.vue'
 import SignUp from '@/components/SignUp.vue'
 import Login from '@/components/Login.vue'
 import UserInfo from '@/components/UserInfo.vue'
+import PasswordChange from '@/components/PasswordChange.vue'
 
 
 const router = createRouter({
@@ -63,6 +64,11 @@ const router = createRouter({
       path: '/userinfo',
       name: 'userinfo',
       component: UserInfo
+    },
+    {
+      path: '/passwordchange',
+      name: 'passwordchange',
+      component: PasswordChange
     },
   ],
 })
