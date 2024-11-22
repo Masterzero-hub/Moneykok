@@ -51,7 +51,7 @@
   import { storeToRefs } from 'pinia'
   import { useCommunityStore } from "@/stores/community";
   const store = useCommunityStore()
-  const { recommendedFriends, posts, articles, title, content } = storeToRefs(store)
+  const { recommendedFriends, posts, articles, title, content, createArticle } = storeToRefs(store)
   const router = useRouter();
 
   
@@ -66,21 +66,27 @@
     }
   
     // 게시글 데이터를 서버로 전송 (예: Axios 요청)
-    console.log("게시글 데이터:", title.value, content.value);
-  
+    const article = {
+    title: title.value,
+    content: content.value
+    }
+    store.createArticle(article)
+    title.value = ''
+    content.value = ''
+    
     // 게시 완료 후 메인 페이지로 이동
     router.push({ name: "community" });
-  };
+    };
   </script>
   
   <style scoped>
   .card {
     background-color: #fff; /* 배경색 */
-  border: 1px solid #cacaca; /* 테두리 */
-  border-radius: 8px; /* 둥근 모서리 */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-  transition: box-shadow 0.3s ease, transform 0.3s ease; /* 전환 효과 */
-  padding: 20px; /* 내부 여백 */
+    border: 1px solid #cacaca; /* 테두리 */
+    border-radius: 8px; /* 둥근 모서리 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* 전환 효과 */
+    padding: 20px; /* 내부 여백 */
   }
   
   .form-label {

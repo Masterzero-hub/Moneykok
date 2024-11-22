@@ -12,6 +12,7 @@ import UserInfo from '@/components/UserInfo.vue'
 import PasswordChange from '@/components/PasswordChange.vue'
 import DepositDetail from '@/components/DepositDetail.vue'
 import CreateArticle from '@/components/CreateArticle.vue'
+import ArticleDetail from '@/components/ArticleDetail.vue'
 
 
 const router = createRouter({
@@ -81,6 +82,11 @@ const router = createRouter({
       path: '/create-article',
       name: 'createarticle',
       component: CreateArticle
+    },
+    {
+      path: '/article/:article_id',
+      name: 'articledetail',
+      component: ArticleDetail
     },
   ],
 })
