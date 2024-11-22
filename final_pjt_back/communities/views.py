@@ -87,7 +87,7 @@ def comment_create(request, article_pk):
         serializer.save(user=request.user, article=article)  # Article 객체 전달
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['PATCH', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def comment_update_delete(request, article_pk, comment_pk):
     article = get_object_or_404(Article, pk=article_pk)
@@ -96,7 +96,7 @@ def comment_update_delete(request, article_pk, comment_pk):
     if request.user != comment.user:
         return Response({'error': '수정 또는 삭제 권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
 
-    if request.method == 'PUT':
+    if request.method == 'PATCH':
         serializer = CommentSerializer(comment, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
@@ -105,4 +105,4 @@ def comment_update_delete(request, article_pk, comment_pk):
 
     elif request.method == 'DELETE':
         comment.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({'message': '댓글이 삭제'},status=status.HTTP_204_NO_CONTENT)
