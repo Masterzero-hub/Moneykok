@@ -127,17 +127,42 @@ def deposit_detail(request, fin_prdt_cd):
         return JsonResponse({'message': '예금 상품 정보를 가져오는 중 오류가 발생했습니다.', 'error': str(e)}, status=500)
     
 from django.db.models import Q
+from django.db.models import Max, Subquery, OuterRef
 
 @api_view(['GET'])
 def deposits_list(request):
     data = request.GET  # GET 요청 데이터 가져오기
-    bank = data.get('bank', None)  # 은행명 필터 (JSON 문자열 형태)
-    conditions = data.get('conditions', None)  # 우대조건 필터 (JSON 문자열 형태)
-    join_term = data.get('join_term', None)  # 가입 기간 필터
-    amount = data.get('amount', None)  # 가입금액 필터
+    filters = {key: (None if value in ['', [], '0'] else value) for key, value in data.items()}
+    bank = filters.get('bank', None)  # 은행명 필터 (JSON 문자열 형태)
+    conditions = filters.get('conditions', None)  # 우대조건 필터 (JSON 문자열 형태)
+    join_term = filters.get('join_term', None)  # 가입 기간 필터
+    amount = filters.get('amount', None)  # 가입금액 필터
 
     # QuerySet 생성
     products = DepositProducts.objects.all()
+
+    # `save_trm=12` 조건의 최고 금리 가져오기
+    options_with_save_trm_12 = DepositOptions.objects.filter(
+        product=OuterRef('pk'), save_trm=12
+    ).order_by('-intr_rate2')
+
+    # fallback: 가장 마지막 `intr_rate2` 데이터 가져오기
+    fallback_option = DepositOptions.objects.filter(
+        product=OuterRef('pk')
+    ).order_by('-id')
+
+    # `save_trm=12`의 `intr_rate2`와 fallback 값을 결합하여 최종 금리 결정
+    products = products.annotate(
+        selected_intr_rate=Subquery(
+            options_with_save_trm_12.values('intr_rate2')[:1]  # `save_trm=12` 금리
+        )
+    ).annotate(
+        fallback_intr_rate=Subquery(
+            fallback_option.values('intr_rate2')[:1]  # fallback 금리
+        )
+    ).annotate(
+        final_intr_rate=Max('selected_intr_rate', 'fallback_intr_rate')  # 최종 금리
+    )
 
     # 은행명 필터
     if bank:
@@ -178,6 +203,8 @@ def deposits_list(request):
             )
         except ValueError:
             return JsonResponse({'message': '잘못된 가입금액 값입니다.'}, status=400)
+
+    products = products.order_by('-final_intr_rate')
 
     # 조건에 맞는 데이터가 없을 경우 처리
     if not products.exists():

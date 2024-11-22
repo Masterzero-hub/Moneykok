@@ -65,6 +65,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 INSTALLED_APPS = [
     'accounts',
     'deposits',
+    'communities',
     'dj_rest_auth',
     'rest_framework',
     'rest_framework.authtoken',
