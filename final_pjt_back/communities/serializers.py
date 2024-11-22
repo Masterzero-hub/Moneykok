@@ -24,7 +24,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     comment_count = serializers.IntegerField(read_only=True)  # 댓글 수
     user = UserSerializer(read_only=True)  # 게시글 작성자 정보
-    comments = CommentSerializer(many=True, read_only=True, source='comments')  # 댓글 목록
+    comments = CommentSerializer(many=True, read_only=True)  # 댓글 목록
     like_users = UserSerializer(many=True, read_only=True)  # 좋아요를 누른 사용자 목록
 
     class Meta:
