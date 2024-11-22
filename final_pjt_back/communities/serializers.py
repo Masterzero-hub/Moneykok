@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 # 댓글 정보
 class CommentSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
+    user = UserSerializer(read_only=True)  # UserSerializer를 중첩으로 사용
     article = serializers.ReadOnlyField(source='article.id') 
 
     class Meta:
