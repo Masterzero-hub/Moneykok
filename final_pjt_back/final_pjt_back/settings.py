@@ -52,6 +52,8 @@ API_KEY=env('API_KEY')
 GROQ_API_KEY = env("GROQ_API_KEY")
 OPENAI_API_KEY = env("OPENAI_API_KEY")
 
+# 환율 API_KEY
+EXCHANGE_API_KEY=env('EXCHANGE_API_KEY')
 
 # dj-rest-auth 설정
 REST_USE_TOKEN = True
@@ -66,6 +68,7 @@ INSTALLED_APPS = [
     'accounts',
     'deposits',
     'communities',
+    'exchange',
     'dj_rest_auth',
     'rest_framework',
     'rest_framework.authtoken',
