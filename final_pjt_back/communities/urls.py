@@ -9,5 +9,5 @@ urlpatterns = [
     path('<int:article_pk>/like/', views.like_article, name='like_article'),
     path('<int:article_pk>/comments/', views.comment_create, name='comment_create'),
     path('<int:article_pk>/comments/<int:comment_pk>/', views.comment_update_delete, name='comment_update_delete'),
-    path('profile/<int:user_id>/', views.profile, name='profile'),
+    path('profile/<str:user_id>/', views.profile, name='profile'),
 ]

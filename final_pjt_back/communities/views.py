@@ -1,12 +1,15 @@
 from django.http import JsonResponse
 from django.db.models import Count
 from .models import Article, Comment
-from .serializers import ArticleSerializer, CommentSerializer
+from .serializers import ArticleSerializer, CommentSerializer, ProfileSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
+from accounts.models import User
+from rest_framework.exceptions import PermissionDenied
+
 
 @api_view(['GET','POST',])
 @permission_classes([IsAuthenticated])  # 인증된 사용자만 접근 허용
@@ -107,7 +110,25 @@ def comment_update_delete(request, article_pk, comment_pk):
         comment.delete()
         return Response({'message': '댓글이 삭제'},status=status.HTTP_204_NO_CONTENT)
     
-@api_view(['GET'])
+
+@api_view(['GET','PATCH'])
 @permission_classes([IsAuthenticated])
 def profile(request, user_id):
-    pass
+    user = User.objects.get(email = user_id)  # 현재 요청한 유저 객체 가져오기
+    print(user_id)
+    print(user.email)
+    if request.method == 'GET':
+        # 유저 데이터를 직렬화하여 반환
+        serializer = ProfileSerializer(user)
+        return Response(serializer.data)
+
+    elif request.method == 'PATCH':
+        # POST 요청으로 받은 데이터 처리
+        if user_id != user.email:
+            raise PermissionDenied("다른 사용자의 데이터를 수정할 수 없습니다.")
+        
+        serializer = ProfileSerializer(user, data=request.data, partial=True) 
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
