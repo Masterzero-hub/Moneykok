@@ -53,7 +53,7 @@
     <section class="all-posts mt-5">
       <div class="table-header">
         <h2 class="section-title">전체 게시글</h2>
-        <button class="btn-common btn-mint">글쓰기</button>
+        <button class="btn-common btn-mint" @click="goCreateArticle">글쓰기</button>
       </div>
       <table class="table table-hover">
         <thead class="table-light">
@@ -62,18 +62,17 @@
             <th>제목</th>
             <th>글쓴이</th>
             <th>작성일</th>
-            <th>댓글</th>
-            <th>좋아요</th>
+            <th>조회수</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(post, index) in paginatedPosts" :key="post.id">
+          <!-- {{ paginatedArticles }} -->
+          <tr v-for="(article, index) in paginatedArticles" :key="article.id" @click="goArticleDetail(article.id)">
             <td>{{ currentStartIndex - index }}</td>
-            <td>{{ post.title }}</td>
-            <td>{{ post.nickname }}</td>
-            <td>{{ post.date }}</td>
-            <td>{{ post.comments }}</td>
-            <td>{{ post.likes }}</td>
+            <td>{{ article.title }} ({{ article.comment_count }})</td>
+            <td>{{ article.user.nickname }}</td>
+            <td>{{ article.created_at.slice(0,10) }}</td>
+            <td>{{ article.view_count }}</td>
           </tr>
         </tbody>
       </table>
@@ -113,27 +112,42 @@
 <script setup>
 import { useCommunityStore } from "@/stores/community";
 import { storeToRefs } from "pinia";
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter()
 const store = useCommunityStore();
-
-const { recommendedFriends, posts } = storeToRefs(store);
+const { recommendedFriends, articles, getArticles } = storeToRefs(store);
 
 const currentPage = ref(1);
-const postsPerPage = 5;
+const articlesPerPage = 5;
 
 // 총 페이지 계산
-const totalPages = computed(() => Math.ceil(posts.value.length / postsPerPage));
+const totalPages = computed(() => Math.ceil(articles.value.length / articlesPerPage));
+
+
+onMounted(() => {
+  store.getArticles()
+});
+
+
+const goArticleDetail = function(articleId) {
+  router.push({ name : 'articledetail', params : { article_id: articleId}})
+}
+
 
 // 현재 페이지에 표시할 게시글
-const paginatedPosts = computed(() => {
-  const start = (currentPage.value - 1) * postsPerPage;
-  const end = start + postsPerPage;
-  return posts.value.slice(start, end);
+const paginatedArticles = computed(() => {
+  const start = (currentPage.value - 1) * articlesPerPage;
+  const end = start + articlesPerPage;
+  console.log(articles.value);
+  
+  return store.articles.slice(start, end);
+  // return store.articles.value.slice(start, end);
 });
 
 // 현재 페이지 시작 인덱스 계산 (No 열에 표시)
 const currentStartIndex = computed(
-  () => posts.value.length - (currentPage.value - 1) * postsPerPage
+  () => articles.value.length - (currentPage.value - 1) * articlesPerPage
 );
 
 // 페이지 변경 함수
@@ -142,6 +156,10 @@ const changePage = (page) => {
     currentPage.value = page;
   }
 };
+
+const goCreateArticle = function() {
+  router.push({ name : 'createarticle' })
+}
 </script>
 
 <style scoped>
