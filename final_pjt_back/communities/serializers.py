@@ -34,3 +34,18 @@ class ArticleSerializer(serializers.ModelSerializer):
             'created_at', 'user', 'comments', 'like_users'
         ]
         read_only_fields = ['user', 'view_count', 'created_at', 'comment_count', 'comments', 'like_users']
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    article_set = ArticleSerializer(many=True)  # 유저가 작성한 글
+    liked_articles = ArticleSerializer(many=True)  # 유저가 좋아요 누른 글
+    comment_set = CommentSerializer(many=True)  # 유저가 작성한 댓글
+
+    class Meta:
+        model = User
+        fields = ['nickname', 'email', 'profile_description', 'article_set', 'liked_articles', 'comment_set']
+    
+    def validate_nickname(self, value):
+        if value == "":
+            raise serializers.ValidationError("닉네임은 빈 값일 수 없습니다.")
+        return value
