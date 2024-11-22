@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.db.models import Count
 from .models import Article, Comment
-from .serializers import ArticleSerializer
+from .serializers import ArticleSerializer, CommentSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -26,18 +26,18 @@ def communities(request):
     elif request.method == 'POST':
         # 게시글 생성
         serializer = ArticleSerializer(data=request.data)
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             serializer.save(user=request.user)  # 현재 로그인한 사용자 설정
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
-@api_view(['GET','PUT','DELETE'])
-def detail(request, pk):
+@api_view(['GET','PATCH','DELETE'])
+@permission_classes([IsAuthenticated])  # 인증된 사용자만 접근 허용
+def detail_update_delete(request, article_pk):
     try:
         # 게시글 가져오기
-        article = get_object_or_404(Article, pk=pk)
+        article = get_object_or_404(Article, pk=article_pk)
 
         if request.method == 'GET':
             # 조회수 증가
@@ -48,13 +48,12 @@ def detail(request, pk):
             serializer = ArticleSerializer(article)
             return Response(serializer.data)
 
-        elif request.method == 'PUT':
+        elif request.method == 'PATCH':
             # 게시글 수정
             serializer = ArticleSerializer(article, data=request.data, partial=True)  # partial=True로 부분 수정 허용
-            if serializer.is_valid():
+            if serializer.is_valid(raise_exception=True):
                 serializer.save()
                 return Response(serializer.data)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         elif request.method == 'DELETE':
             # 게시글 삭제
@@ -63,3 +62,47 @@ def detail(request, pk):
 
     except Article.DoesNotExist:
         return Response({'error': '게시글을 찾을 수 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])  # 인증된 사용자만 접근 허용
+def like_article(request, article_pk):
+    try:
+        article = Article.objects.get(pk=article_pk)
+    except Article.DoesNotExist:
+        return Response({'error': '게시글이 존재하지 않습니다.'}, status=404)
+
+    if request.user in article.like_users.all():
+        article.like_users.remove(request.user)
+        return Response({'message': '좋아요 취소'}, status=200)
+    else:
+        article.like_users.add(request.user)
+        return Response({'message': '좋아요 추가'}, status=200)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def comment_create(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(user=request.user, article=article)  # Article 객체 전달
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+@api_view(['PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def comment_update_delete(request, article_pk, comment_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    comment = get_object_or_404(Comment, pk=comment_pk, article=article)
+
+    if request.user != comment.user:
+        return Response({'error': '수정 또는 삭제 권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
+    if request.method == 'PUT':
+        serializer = CommentSerializer(comment, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
