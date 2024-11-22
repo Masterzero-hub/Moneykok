@@ -37,6 +37,7 @@ class DepositProductsGETSerializer(serializers.ModelSerializer):
     bank = BanksSerializer(read_only=True)  # 은행 정보를 포함
     options = DepositOptionsSerializer(many=True, read_only=True)  # 옵션 정보를 포함
     special_conditions = DepositSpecialConditionSerializer(many=True, read_only=True, source='depositspecialcondition_set')
+    final_intr_rate = serializers.FloatField(read_only=True)  # 최종 금리 필드 추가
 
     class Meta:
         model = DepositProducts
@@ -53,5 +54,6 @@ class DepositProductsGETSerializer(serializers.ModelSerializer):
             'deposit_min_amount',
             'deposit_max_amount',
             'options',     # 옵션 정보
-            'special_conditions' # 우대 조건 상세 정보
+            'final_intr_rate',   # 최종 금리 필드
+            'special_conditions', # 우대 조건 상세 정보
         ]
