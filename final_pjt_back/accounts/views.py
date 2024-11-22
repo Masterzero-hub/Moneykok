@@ -36,7 +36,7 @@ def signup(request):
     """회원가입 API"""
     serializer = SignupSerializer(data=request.data)
     
-    if serializer.is_valid():
+    if serializer.is_valid(raise_exception=True):
         user = serializer.save()
         token, created = Token.objects.get_or_create(user=user)
         return Response({
@@ -44,8 +44,6 @@ def signup(request):
             'user_id': user.id,
             'token': token.key
         }, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 @api_view(['POST'])
 @authentication_classes([])
