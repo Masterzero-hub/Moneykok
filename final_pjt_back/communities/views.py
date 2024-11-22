@@ -51,7 +51,10 @@ def detail_update_delete(request, article_pk):
             serializer = ArticleSerializer(article)
             return Response(serializer.data)
 
-        elif request.method == 'PATCH':
+        if request.user != article.user:
+            return Response({'error': '권한이 없습니다.'}, status=status.HTTP_403_FORBIDDEN)
+
+        if request.method == 'PATCH':
             # 게시글 수정
             serializer = ArticleSerializer(article, data=request.data, partial=True)  # partial=True로 부분 수정 허용
             if serializer.is_valid(raise_exception=True):
