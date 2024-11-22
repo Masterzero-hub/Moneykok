@@ -172,6 +172,28 @@ export const useCommunityStore = defineStore('community', () => {
           });
       };
 
+
+      // 댓글 수정 메서드
+      const updateComment = (articleId, commentId, content) => {
+        return axios
+          .patch(
+            `http://127.0.0.1:8000/communities/${articleId}/comments/${commentId}/`,
+            { content },
+            {
+              headers: {
+                Authorization: `Token ${token.value}`,
+              },
+            }
+          )
+          .then((res) => {
+            console.log("댓글 수정 완료:", res.data);
+            return res.data;
+          })
+          .catch((error) => {
+            console.error("댓글 수정 오류", error);
+          });
+      };
+
   return { recommendedFriends, articles, article, title, content, comment,
-    getArticles, createArticle, getArticleDetail, updateArticle, deleteArticle, addComment, deleteComment }
+    getArticles, createArticle, getArticleDetail, updateArticle, deleteArticle, addComment, deleteComment, updateComment }
 })

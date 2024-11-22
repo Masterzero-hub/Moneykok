@@ -63,35 +63,48 @@
 
 
     <!-- 댓글 목록 -->
-    <div class="card shadow-sm p-4 mt-4">
-    <h3 class="section-title mb-3">댓글</h3>
-    <div v-if="article.comments?.length > 0">
-        <ul class="list-group">
-        <li
-            v-for="comment in article.comments"
-            :key="comment.id"
-            class="list-group-item d-flex flex-column"
-        >
-            <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <strong>{{ comment.author }}</strong>
-                <small class="text-muted ms-2">{{ comment.created_at }}</small>
-            </div>
+<div class="card shadow-sm p-4 mt-4">
+  <h3 class="section-title mb-3">댓글</h3>
+  <div v-if="article.comments?.length > 0">
+    <ul class="list-group">
+      <li
+        v-for="comment in article.comments"
+        :key="comment.id"
+        class="list-group-item d-flex flex-column"
+      >
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div>
+            <strong>{{ comment.author }}</strong>
+            <small class="text-muted ms-2">{{ comment.created_at }}</small>
+          </div>
+          <div>
             <button
-                class="btn btn-sm btn-danger"
-                @click="removeComment(comment.id)"
+              class="btn btn-sm btn-outline-primary me-2"
+              @click="submitCommentEdit(comment.id, comment.content)"
             >
-                삭제
+              저장
             </button>
-            </div>
-            <p class="mb-0 mt-2 text-secondary">{{ comment.content }}</p>
-        </li>
-        </ul>
-    </div>
-    <div v-else>
-        <p class="text-muted text-center">아직 댓글이 없습니다.</p>
-    </div>
-    </div>
+            <button
+              class="btn btn-sm btn-danger"
+              @click="removeComment(comment.id)"
+            >
+              삭제
+            </button>
+          </div>
+        </div>
+        <textarea
+          class="form-control mb-2"
+          rows="2"
+          v-model="comment.content"
+          placeholder="내용을 입력하세요"
+        ></textarea>
+      </li>
+    </ul>
+  </div>
+  <div v-else>
+    <p class="text-muted text-center">아직 댓글이 없습니다.</p>
+  </div>
+</div>
 
     <!-- 댓글 작성 -->
     <div class="card shadow-sm p-4 mt-4">
@@ -125,7 +138,7 @@ const router = useRouter();
 const route = useRoute();
 const store = useCommunityStore();
 
-const { article, comment, getArticleDetail, addComment, deleteComment  } = storeToRefs(store); 
+const { article, comment, getArticleDetail, addComment, deleteComment, updateComment  } = storeToRefs(store); 
 
 console.log(article.value);
 
@@ -206,6 +219,19 @@ const removeComment = (commentId) => {
       alert("댓글이 삭제되었습니다.");
     });
   }
+};
+
+
+// 댓글 수정 저장
+const submitCommentEdit = (commentId, updatedContent) => {
+  if (!updatedContent.trim()) {
+    alert("내용을 입력해주세요.");
+    return;
+  }
+
+  store.updateComment(articleId, commentId, updatedContent).then(() => {
+    alert("댓글이 수정되었습니다.");
+  });
 };
 
 </script>
