@@ -58,7 +58,7 @@
         <div class="community-content">
           <h2>금융 초년생들의 저축 커뮤니티</h2>
           <p>나와 같은 상품을 선택한 사용자들과 정보도 공유하고, 함께 배울 수 있어요.</p>
-          <button class="btn-common">커뮤니티 바로가기</button>
+          <button class="btn-common" @click="goCommunity">커뮤니티 바로가기</button>
         </div>
         <img src="@/assets/main_image/5.png" alt="Community Illustration" />
     </section>
@@ -68,8 +68,12 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
-const isLogin = ref(false)
+const goCommunity = function() {
+  router.push({ name : 'community'})
+}
 
 </script>
 
