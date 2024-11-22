@@ -106,3 +106,8 @@ def comment_update_delete(request, article_pk, comment_pk):
     elif request.method == 'DELETE':
         comment.delete()
         return Response({'message': '댓글이 삭제'},status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def profile(request, user_id):
+    pass

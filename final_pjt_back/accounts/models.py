@@ -43,6 +43,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+    profile_description = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="프로필 설명"  # 유저가 자기소개를 입력할 수 있는 필드
+    )
+
 class EmailVerification(models.Model):
     email = models.EmailField(db_index=True)
     verification_code = models.CharField(max_length=6)
