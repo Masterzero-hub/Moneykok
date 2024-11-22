@@ -1,7 +1,12 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import axios from 'axios';
+import { useUserStore } from './user';
+
 
 export const useCommunityStore = defineStore('community', () => {
+    const articles = ref([])
+
     const recommendedFriends = ref([
         {
           id: 1,
@@ -45,8 +50,31 @@ export const useCommunityStore = defineStore('community', () => {
         { id: 13, title: "게시글 4", nickname: 'user', comments: 2, views: 23, date: "2024.05.07", likes: 0 },
       ]);
 
+      const userStore = useUserStore()
+      const token = computed(() => userStore.token);
 
+      const title = ref("");
+      const content = ref("");
 
-
-  return { recommendedFriends, posts }
+      const createArticle = function({title, content}) {
+          axios.post("http://127.0.0.1:8000/communities/",
+            { title: title.value ,
+              content: content.value },
+            {
+              headers: {
+                Authorization: `Token ${token.value}`
+              },
+            }
+          )
+            .then((res) => {
+              console.log(`게시글 생성 : ${title.value}`)
+            })
+            .catch((error) => {
+              console.error("게시글 생성 오류", error);
+            });
+        };
+    
+        
+    
+  return { recommendedFriends, posts, articles, title, content, createArticle }
 }, { persist: true })

@@ -53,7 +53,7 @@
     <section class="all-posts mt-5">
       <div class="table-header">
         <h2 class="section-title">전체 게시글</h2>
-        <button class="btn-common btn-mint">글쓰기</button>
+        <button class="btn-common btn-mint" @click="goCreateArticle">글쓰기</button>
       </div>
       <table class="table table-hover">
         <thead class="table-light">
@@ -114,8 +114,9 @@
 import { useCommunityStore } from "@/stores/community";
 import { storeToRefs } from "pinia";
 import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter()
 const store = useCommunityStore();
-
 const { recommendedFriends, posts } = storeToRefs(store);
 
 const currentPage = ref(1);
@@ -142,6 +143,10 @@ const changePage = (page) => {
     currentPage.value = page;
   }
 };
+
+const goCreateArticle = function() {
+  router.push({ name : 'createarticle' })
+}
 </script>
 
 <style scoped>

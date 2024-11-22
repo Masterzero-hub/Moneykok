@@ -1,4 +1,3 @@
-<은행 모달 구현 전 코드>
 <template>
   <div>
     <div class="container mt-5">
@@ -14,10 +13,14 @@
                 v-for="term in terms"
                 :key="term"
                 class="btn"
-                :class="filters.join_term === term ? 'btn-primary' : 'btn-outline-primary'"
-                @click="setTerm(term)"
+                :class="
+                  filters.join_term === term
+                    ? 'btn-primary'
+                    : 'btn-outline-primary'
+                "
+                @click="selectTerm(term)"
               >
-                {{ term }}
+                {{ term }}개월
               </button>
             </div>
           </div>
@@ -25,8 +28,8 @@
 
         <!-- 가입 금액 -->
         <div class="row mb-3 align-items-center">
-          <label class="col-md-2 col-form-label">가입 금액</label>
-          <div class="col-md-10">
+          <label class="col-md-2 col-form-label ">가입 금액</label>
+          <div class="col-md-10 d-flex align-items-center">
             <button
               class="btn-small-common btn-mint"
               data-bs-toggle="modal"
@@ -34,8 +37,8 @@
             >
               가입 금액 입력하기
             </button>
-            <p v-if="filters.amount" class="mt-2">
-              입력 금액: {{ filters.amount.toLocaleString() }}원
+            <p v-if="filters.amount" class="mt-2" style="margin-left: 10px; margin-bottom: 10px;">
+              입력 금액: {{ filters.amount.toLocaleString() }}만원
             </p>
           </div>
         </div>
@@ -52,7 +55,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="amountModalLabel">
-                  가입 금액 입력
+                  가입 금액 입력 (만원)
                 </h5>
                 <button
                   type="button"
@@ -85,7 +88,7 @@
         <!-- 은행 선택 -->
         <div class="row mb-3 align-items-center">
           <label class="col-md-2 col-form-label">은행 선택</label>
-          <div class="col-md-10">
+          <div class="col-md-10  d-flex align-items-center">
             <button
               class="btn-small-common btn-mint"
               data-bs-toggle="modal"
@@ -93,9 +96,14 @@
             >
               은행 선택하기
             </button>
-            <p v-if="filters.bank" class="mt-2">
-              선택된 은행: {{ filters.bank }}
-            </p>
+            <p v-if="filters.bank.length > 0" class="mt-2" style="margin-left: 10px; margin-bottom: 10px;">
+            선택된 은행: 
+            <span v-for="(bankCode, index) in filters.bank" :key="index">
+              {{
+                banks.find((bank) => bank.code === bankCode)?.name || "알 수 없는 은행"
+              }}<span v-if="index < filters.bank.length - 1">, </span>
+            </span>
+          </p>
           </div>
         </div>
 
@@ -127,11 +135,16 @@
                   >
                     <div
                       class="bank-item text-center p-3 shadow-sm rounded"
-                      @click="selectBank(bank.name)"
-                      data-bs-dismiss="modal"
+                      :class="{
+                        'selected-bank':
+                          filters.bank && filters.bank.includes(bank.code),
+                      }"
+                      @click="toggleBankSelection(bank.code)"
                     >
                       <img
-                        :src="bank.logo"
+                        :src="`/bank_image/${bank.code}.jpg`"
+                        width="100px"
+                        height="100px"
                         :alt="bank.name"
                         class="bank-logo mb-2"
                       />
@@ -147,7 +160,7 @@
         <!-- 우대 조건 -->
         <div>
           <div class="d-flex gap-2 flex-wrap" style="align-items: center">
-            <h6 class="mb-0" style="margin-right: 70px">우대 조건</h6>
+            <h6 class="mb-0" style="margin-right: 105px">우대 조건</h6>
             <div class="search-btn">
               <button
                 v-for="condition in conditions"
@@ -158,7 +171,7 @@
                     ? 'btn-primary'
                     : 'btn-outline-primary'
                 "
-                @click="toggleCondition(condition)"
+                @click="selectCondition(condition)"
               >
                 {{ condition }}
               </button>
@@ -166,6 +179,7 @@
           </div>
         </div>
       </div>
+
 
       <!-- 상품 목록 -->
       <div class="row">
@@ -176,6 +190,7 @@
         >
           <div
             class="card shadow-sm p-3 bg-white rounded d-flex flex-row align-items-center"
+            @click="goDepositDetail(product.fin_prdt_cd)"
           >
             <!-- 로고 -->
             <div class="logo-container me-3">
@@ -207,42 +222,35 @@
             </div>
 
             <!-- 금리 및 버튼 -->
-      <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center">
               <div class="text-center me-3">
                 <p class="mb-0">기본</p>
                 <strong>
                   {{
-                    product.options.length > 0
-                      ? product.options[product.options.length - 1].intr_rate
-                      : "N/A"
-                  }}%
+                    getInterestRate(product.options, "intr_rate") + "%"
+                  }}
+                <p><small>{{ `${getSaveTrm(product.options)}개월 기준` }}</small></p>
                 </strong>
               </div>
               <div class="text-center me-3">
                 <p class="mb-0">최고</p>
                 <strong>
                   {{
-                    product.options.length > 0
-                      ? product.options[product.options.length - 1].intr_rate2
-                      : "N/A"
-                  }}%
+                    getInterestRate(product.options, "intr_rate2") + "%"
+                  }}
                 </strong>
+                <p><small>{{ `${getSaveTrm(product.options)}개월 기준` }}</small></p>
               </div>
               <div class="divider me-3"></div>
               <button
                 class="btn-small-common"
-                @click="goDepositDetail(product.id)"
               >
                 비교하기 +
               </button>
-              </div>
-
+            </div>
           </div>
         </div>
       </div>
-
-      
-
 
       <!-- 페이지네이션 -->
       <nav class="mt-4">
@@ -272,8 +280,6 @@
           </li>
         </ul>
       </nav>
-
-
     </div>
   </div>
 </template>
@@ -285,77 +291,96 @@ import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 
 const store = useDepositsStore();
-const { products, getProducts, productDetail, filters, filteredProducts } =
+const { products, getProducts, productDetail, filters, filteredProducts, getFilteredProducts } =
   storeToRefs(store);
 const router = useRouter();
 
 onMounted(() => {
   store.getProducts();
-  console.log(products)
+  console.log(products);
 });
 
-const goDepositDetail = function (product_id) {
-  router.push({ name: "depositdetail", params: { deposit_id: product_id } });
+// 사용자가 선택한 필터에 따라 표시할 상품 계산
+const displayedProducts = computed(() => {
+  // 필터가 적용되지 않은 경우: 전체 상품 표시
+  if (
+    !filters.value.join_term &&
+    !filters.value.amount &&
+    filters.value.bank.length === 0 &&
+    filters.value.conditions.length === 0
+  ) {
+    return products.value;
+  }
+
+  // 필터가 적용된 경우: 필터링된 상품 표시
+  return filteredProducts.value;
+});
+
+
+
+const goDepositDetail = function (product_code) {
+  router.push({ name: "depositdetail", params: { deposit_code: product_code } });
 };
 
+
 // 가입 기간, 은행 목록, 우대 조건 목록 정의
-const terms = ["6개월", "12개월", "24개월", "36개월"];
+const terms = [6, 12, 24, 36];
 const banks = [
-  { name: "KDB산업은행", logo: "/bank_logo/kdb.png" },
-  { name: "SC제일은행", logo: "/bank_logo/sc.png" },
-  { name: "iM뱅크", logo: "/bank_logo/im.png" },
-  { name: "경남은행", logo: "/bank_logo/kyungnam.png" },
-  { name: "광주은행", logo: "/bank_logo/gwangju.png" },
-  { name: "국민은행", logo: "/bank_logo/kb.png" },
-  { name: "기업은행", logo: "/bank_logo/ibk.png" },
-  { name: "농협은행", logo: "/bank_logo/nh.png" },
-  { name: "부산은행", logo: "/bank_logo/busan.png" },
-  { name: "수협은행", logo: "/bank_logo/suhyup.png" },
-  { name: "신한은행", logo: "/bank_logo/shinhan.png" },
-  { name: "씨티은행", logo: "/bank_logo/citi.png" },
-  { name: "우리은행", logo: "/bank_logo/woori.png" },
-  { name: "우체국", logo: "/bank_logo/post.png" },
-  { name: "전북은행", logo: "/bank_logo/jeonbuk.png" },
-  { name: "제주은행", logo: "/bank_logo/jeju.png" },
-  { name: "카카오뱅크", logo: "/bank_logo/kakao.png" },
-  { name: "케이뱅크", logo: "/bank_logo/kbank.png" },
-  { name: "토스뱅크", logo: "/bank_logo/toss.png" },
-  { name: "하나은행", logo: "/bank_logo/hana.png" },
+  { name: "우리은행", code: "0010001" },
+  { name: "한국스탠다드차드은행", code: "0010002" },
+  { name: "아이엠뱅크", code: "0010016" },
+  { name: "부산은행", code: "0010017" },
+  { name: "광주은행", code: "0010019" },
+  { name: "제주은행", code: "0010020" },
+  { name: "전북은행", code: "0010022" },
+  { name: "경남은행", code: "0010024" },
+  { name: "중소기업은행", code: "0010026" },
+  { name: "한국산업은행", code: "0010030" },
+  { name: "국민은행", code: "0010927" },
+  { name: "신한은행", code: "0011625" },
+  { name: "농협은행주식회사", code: "0013175" },
+  { name: "하나은행", code: "0013909" },
+  { name: "주식회사 케이뱅크", code: "0014674" },
+  { name: "수협은행", code: "0014807" },
+  { name: "카카오뱅크", code: "0015130" },
+  { name: "토스뱅크 주식회사", code: "0017801" },
 ];
+
 const conditions = [
   "신규 가입",
   "거래 연동",
   "사용 실적",
-  "비대면/모바일",
-  "마케팅 동의",
+  "비대면/모바일 뱅킹",
+  "마케팅 및 기타 동의",
   "기타",
 ];
 
-
-
-const setTerm = (term) => {
+const selectTerm = (term) => {
   store.filters.join_term = store.filters.join_term === term ? null : term;
   console.log(filters.value);
 };
 
-const selectBank = (bankName) => {
-  if (!filters.bank) {
-    filters.bank = [];
-  }
+const selectBank = (bankCode) => {
+  // 이미 선택된 은행인지 확인
+  const index = filters.value.bank.indexOf(bankCode);
 
-  const index = filters.bank.indexOf(bankName);
-
-  // 이미 선택된 은행이면 제거
   if (index > -1) {
-    filters.bank.splice(index, 1);
+    // 선택된 은행이 이미 포함된 경우: 제거
+    filters.value.bank.splice(index, 1);
   } else {
-    // 선택되지 않은 은행이면 추가
-    filters.bank.push(bankName);
+    // 포함되지 않은 경우: 추가
+    filters.value.bank.push(bankCode);
   }
+
+  console.log("현재 선택된 은행:", filters.value.bank);
+};
+
+const toggleBankSelection = (bankCode) => {
+  selectBank(bankCode);
 };
 
 // 우대 조건 추가/제거 함수
-const toggleCondition = (condition) => {
+const selectCondition = (condition) => {
   const index = filters.value.conditions.indexOf(condition);
 
   // 조건이 이미 포함된 경우: 제거
@@ -370,38 +395,70 @@ const toggleCondition = (condition) => {
   }
 };
 
-// 필터 변경 사항 확인
-// watch(
-//   () => filters,
-//   (newFilters) => {
-//     console.log("현재 필터 상태:", newFilters);
-//   },
-//   { deep: true }
-// );
+const filteredFilters = computed(() => ({
+  join_term: filters.value.join_term,
+  amount: filters.value.amount,
+  bank: filters.value.bank,
+  conditions: filters.value.conditions,
+}));
+
+// 필터 변경 시 getFilteredProducts 호출
+watch(
+  filteredFilters,
+  (newFilters) => {
+    console.log("필터 변경 감지:", newFilters);
+    store.getFilteredProducts(); // getFilteredProducts 호출
+    console.log(filteredProducts)
+  },
+  { deep: true, immediate: true } // 깊은 감시 및 즉시 실행
+);
+
+const getInterestRate = (options, field) => {
+      if (!options || options.length === 0) {
+        return "N/A";
+      }
+
+      // save_trm이 12인 항목 찾기
+      const target = options.find((option) => option.save_trm === 12);
+
+      // save_trm이 12인 데이터가 있으면 해당 필드 반환, 없으면 마지막 항목 기준
+      return target ? target[field] : options[options.length - 1][field];
+    };
+
+    // save_trm 값을 계산하는 함수
+    const getSaveTrm = (options) => {
+      if (!options || options.length === 0) {
+        return null;
+      }
+
+      // save_trm이 12인 항목 찾기
+      const target = options.find((option) => option.save_trm === 12);
+
+      // save_trm이 12인 데이터가 있으면 해당 save_trm 반환, 없으면 마지막 항목 기준
+      return target ? target.save_trm : options[options.length - 1].save_trm;
+    };
 
 
 // 페이지네이션 로직
 const currentPage = ref(1);
 const itemsPerPage = 10;
 
-const totalPages = computed(() => Math.ceil(products.value.length / itemsPerPage));
 const paginatedProducts = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  return products.value.slice(start, end);
+  return displayedProducts.value.slice(start, end);
 });
+
+const totalPages = computed(() =>
+  Math.ceil(displayedProducts.value.length / itemsPerPage)
+);
 
 const changePage = (page) => {
   if (page > 0 && page <= totalPages.value) {
     currentPage.value = page;
   }
 };
-
-
 </script>
-
-
-
 
 <style scoped>
 .search-card {
@@ -484,6 +541,10 @@ const changePage = (page) => {
   pointer-events: none; /* 버튼 기능 제거 */
 }
 
+.bank-item.selected-bank {
+  background-color: var(--mint-color); /* 선택된 은행의 배경색 */
+  color: white; /* 선택된 텍스트 색상 */
+}
 
 /* 기본 페이지네이션 스타일 */
 .pagination .page-item .page-link {
