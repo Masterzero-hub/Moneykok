@@ -145,9 +145,10 @@ def user_info_update_delete(request, user_id):
         if request.user != user:
             return Response({'error': '본인의 정보만 수정할 수 있습니다.'}, status=status.HTTP_403_FORBIDDEN)
         serializer = UserInfoChangeSerializer(instance=user, data=request.data, partial=True)
-        if serializer.is_valid(raise_exception=True):
+        if serializer.is_valid():
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     # DELETE 요청: 사용자 정보 삭제
     elif request.method == 'DELETE':
