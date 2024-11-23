@@ -16,7 +16,7 @@ from dateutil.relativedelta import relativedelta
 from django.db.models import Count
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
-
+from accounts.models import User
 
 from datetime import date
 
@@ -509,3 +509,49 @@ def joined_products(request):
         return Response({'error': f'서버 오류: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
 
+@api_view(['GET'])
+def recommend_products(request):
+    user = request.user
+    if not user.is_authenticated:
+        return Response({'error': '로그인이 필요합니다.'}, status=401)
+
+    # Step 0: 현재 로그인된 사용자 정보 가져오기
+    income = user.income
+    birth_year = user.birthdate.year
+    gender = user.gender
+
+    # Step 1: 필터링된 상품 가져오기
+    filtered_products = DepositProducts.objects.all()  # 기본적으로 모든 상품
+    # 추가적인 필터 조건이 있다면 적용 가능:
+    # filtered_products = filtered_products.filter(min_income__lte=income)
+
+    # Step 2: 유사한 사용자 찾기
+    user_data = np.array([[income, birth_year, 1 if gender == 'M' else 0]])
+    all_users = User.objects.exclude(id=user.id)
+
+    similar_users = []
+    for other_user in all_users:
+        other_data = np.array([[other_user.income, other_user.birthdate.year, 1 if other_user.gender == 'M' else 0]])
+        similarity = cosine_similarity(user_data, other_data)
+        similar_users.append((other_user, similarity[0][0]))
+
+    similar_users = sorted(similar_users, key=lambda x: x[1], reverse=True)[:10]
+
+    # Step 3: 유사 사용자가 가입한 상품 가져오기
+    similar_user_ids = [u[0].id for u in similar_users]
+    joined_deposits = JoinedDeposits.objects.filter(user_id__in=similar_user_ids)
+
+    # 상품별 추천 점수 계산
+    product_scores = (
+        joined_deposits
+        .values('product_id')
+        .annotate(score=Count('product_id'))
+        .order_by('-score')
+    )
+
+    # 상위 3개 상품 추천
+    recommended_product_ids = [p['product_id'] for p in product_scores[:3]]
+    recommended_products = DepositProducts.objects.filter(id__in=recommended_product_ids)
+
+    serializer = DepositProductsGETSerializer(recommended_products, many=True)
+    return Response({'recommended_products': serializer.data})
