@@ -2,9 +2,10 @@
   <div>
     <div class="container mt-5">
       <h2 class="mb-4">예금 상품 조회</h2>
+
       <!-- 검색 조건 -->
       <div class="search-card p-4 mb-5 shadow-sm">
-        <!-- 가입 기간 -->
+        <!-- 1. 가입 기간 -->
         <div class="row mb-3 align-items-center">
           <label class="col-md-2 col-form-label">가입 기간</label>
           <div class="col-md-10">
@@ -26,7 +27,7 @@
           </div>
         </div>
 
-        <!-- 가입 금액 -->
+        <!-- 2. 가입 금액 -->
         <div class="row mb-3 align-items-center">
           <label class="col-md-2 col-form-label">가입 금액</label>
           <div class="col-md-10 d-flex align-items-center">
@@ -93,7 +94,7 @@
           </div>
         </div>
 
-        <!-- 은행 선택 -->
+        <!-- 3. 은행 선택 -->
         <div class="row mb-3 align-items-center">
           <label class="col-md-2 col-form-label">은행 선택</label>
           <div class="col-md-10 d-flex align-items-center">
@@ -174,7 +175,7 @@
           </div>
         </div>
 
-        <!-- 우대 조건 -->
+        <!-- 4. 우대 조건 -->
         <div class="row align-items-start mb-3">
           <label class="col-md-2 col-form-label mt-2">우대 조건</label>
           <div class="col-md-10">
@@ -196,6 +197,7 @@
           </div>
         </div>
       </div>
+
 
       <!-- 상품 목록 -->
       <div class="row">
@@ -219,8 +221,18 @@
 
             <!-- 상품 정보 -->
             <div class="flex-grow-1">
-              <h5 class="mb-1">{{ product.fin_prdt_nm }}</h5>
+              <!-- 상품 이름과 은행명 -->
               <div class="d-flex align-items-center">
+                <h5 class="mb-0" style="font-size: 30px">
+                  {{ product.fin_prdt_nm }}
+                </h5>
+                <div class="divider mx-3"></div>
+                <!-- 세로선 -->
+                <p class="mb-0 text-muted">{{ product.bank.kor_co_nm }}</p>
+              </div>
+
+              <!-- 우대조건 -->
+              <div class="d-flex align-items-center mt-2">
                 <div v-if="product.special_conditions">
                   <span
                     v-for="(category, index) in [
@@ -316,35 +328,16 @@ const {
 } = storeToRefs(store);
 const router = useRouter();
 
+
+// ----- 초기 렌더링 -----
 onMounted(() => {
   store.getProducts();
   console.log(products);
 });
 
-// 사용자가 선택한 필터에 따라 표시할 상품 계산
-const displayedProducts = computed(() => {
-  // 필터가 적용되지 않은 경우: 전체 상품 표시
-  if (
-    !filters.value.join_term &&
-    !filters.value.amount &&
-    filters.value.bank.length === 0 &&
-    filters.value.conditions.length === 0
-  ) {
-    return products.value;
-  }
 
-  // 필터가 적용된 경우: 필터링된 상품 표시
-  return filteredProducts.value;
-});
-
-const goDepositDetail = function (product_code) {
-  router.push({
-    name: "depositdetail",
-    params: { deposit_code: product_code },
-  });
-};
-
-// 가입 기간, 은행 목록, 우대 조건 목록 정의
+// ----- 검색 조건에 따른 필터링 -----
+// 검색조건 (가입 기간, 은행 목록, 우대 조건) 목록 정의
 const terms = [6, 12, 24, 36];
 const banks = [
   { name: "우리은행", code: "0010001" },
@@ -375,6 +368,7 @@ const conditions = [
   "기타",
 ];
 
+// 검색 조건 설정 로직
 const selectTerm = (term) => {
   store.filters.join_term = store.filters.join_term === term ? null : term;
   console.log(filters.value);
@@ -383,7 +377,6 @@ const selectTerm = (term) => {
 const selectBank = (bankCode) => {
   // 이미 선택된 은행인지 확인
   const index = filters.value.bank.indexOf(bankCode);
-
   if (index > -1) {
     // 선택된 은행이 이미 포함된 경우: 제거
     filters.value.bank.splice(index, 1);
@@ -391,7 +384,6 @@ const selectBank = (bankCode) => {
     // 포함되지 않은 경우: 추가
     filters.value.bank.push(bankCode);
   }
-
   console.log("현재 선택된 은행:", filters.value.bank);
 };
 
@@ -399,10 +391,9 @@ const toggleBankSelection = (bankCode) => {
   selectBank(bankCode);
 };
 
-// 우대 조건 추가/제거 함수
+
 const selectCondition = (condition) => {
   const index = filters.value.conditions.indexOf(condition);
-
   // 조건이 이미 포함된 경우: 제거
   if (index > -1) {
     filters.value.conditions.splice(index, 1);
@@ -415,6 +406,7 @@ const selectCondition = (condition) => {
   }
 };
 
+// 검색 조건 
 const filteredFilters = computed(() => ({
   join_term: filters.value.join_term,
   amount: filters.value.amount,
@@ -422,7 +414,7 @@ const filteredFilters = computed(() => ({
   conditions: filters.value.conditions,
 }));
 
-// 필터 변경 시 getFilteredProducts 호출
+// 검색 조건 변경 시 getFilteredProducts 호출
 watch(
   filteredFilters,
   (newFilters) => {
@@ -433,32 +425,55 @@ watch(
   { deep: true, immediate: true } // 깊은 감시 및 즉시 실행
 );
 
+// 사용자가 선택한 필터에 따라 표시할 상품 계산
+const displayedProducts = computed(() => {
+  // 필터가 적용되지 않은 경우: 전체 상품 표시
+  if (
+    !filters.value.join_term &&
+    !filters.value.amount &&
+    filters.value.bank.length === 0 &&
+    filters.value.conditions.length === 0
+  ) {
+    return products.value;
+  }
+  // 필터가 적용된 경우: 필터링된 상품 표시
+  return filteredProducts.value;
+});
+
+
+// ----- 개별 상품 관련 -----
+// 상세페이지 이동
+const goDepositDetail = function (product_code) {
+  router.push({
+    name: "depositdetail",
+    params: { deposit_code: product_code },
+  });
+};
+
+// 대표 금리 처리 (12개월 기준, 12개월 옵션 없으면 가장 긴 기간 금리 기준)
 const getInterestRate = (options, field) => {
   if (!options || options.length === 0) {
     return "N/A";
   }
-
   // save_trm이 12인 항목 찾기
   const target = options.find((option) => option.save_trm === 12);
-
   // save_trm이 12인 데이터가 있으면 해당 필드 반환, 없으면 마지막 항목 기준
   return target ? target[field] : options[options.length - 1][field];
 };
 
-// save_trm 값을 계산하는 함수
+// 대표 금리 기간 처리 
 const getSaveTrm = (options) => {
   if (!options || options.length === 0) {
     return null;
   }
-
   // save_trm이 12인 항목 찾기
   const target = options.find((option) => option.save_trm === 12);
-
   // save_trm이 12인 데이터가 있으면 해당 save_trm 반환, 없으면 마지막 항목 기준
   return target ? target.save_trm : options[options.length - 1].save_trm;
 };
 
-// 페이지네이션 로직
+
+// ---- 페이지네이션 -----
 const currentPage = ref(1);
 const itemsPerPage = 10;
 
@@ -478,6 +493,7 @@ const changePage = (page) => {
   }
 };
 </script>
+
 
 <style scoped>
 .highlight {
@@ -534,8 +550,8 @@ const changePage = (page) => {
 }
 
 .logo-container img {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 }
 
 .divider {
@@ -550,7 +566,7 @@ const changePage = (page) => {
 
 .special_conditions {
   /* display: inline-block; 블록 요소처럼 표시 */
-  background-color: var(--mint-color); /* 기본 배경색: Orange */
+  background-color: var(--orange-color); /* 기본 배경색: Orange */
   color: white; /* 텍스트 색상 */
   /* font-weight: bold; 굵은 글씨 */
   font-size: 17px; /* 폰트 크기 */
@@ -570,7 +586,7 @@ const changePage = (page) => {
 }
 
 .interest-info {
-  padding: 20px 0;
+  padding: 10px 0;
   /* border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd; */
   margin: 5px 0;
@@ -589,14 +605,16 @@ const changePage = (page) => {
 }
 
 .interest-rate {
-  font-size: 25px;
-  color: var(--orange-color);
+  font-size: 29px;
+  color: var(--dark-color);
+  font-weight: 900;
   margin-bottom: 5px;
 }
 
 .interest-term {
   font-size: 0.9rem;
   color: #666;
+  margin-bottom: 0px;
 }
 
 /* 기본 페이지네이션 스타일 */

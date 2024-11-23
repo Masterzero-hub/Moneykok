@@ -11,11 +11,13 @@ import Login from '@/components/Login.vue'
 import UserInfo from '@/components/UserInfo.vue'
 import PasswordChange from '@/components/PasswordChange.vue'
 import DepositDetail from '@/components/DepositDetail.vue'
+import SavingsDetail from '@/components/SavingsDetail.vue'
 import CreateArticle from '@/components/CreateArticle.vue'
 import ArticleDetail from '@/components/ArticleDetail.vue'
 import MyProduct from '@/components/MyProduct.vue'
 import PersonalInfo from '@/components/PersonalInfo.vue'
 import AiRecommendations from '@/components/AiRecommendations.vue'
+import CommunityProfile from '@/components/CommunityProfile.vue'
 
 
 const router = createRouter({
@@ -70,6 +72,7 @@ const router = createRouter({
       path: '/userinfo',
       name: 'userinfo',
       component: UserInfo,
+      redirect: { name: 'myproduct' },
       children: [
         {
           path: '', // 기본 경로
@@ -80,6 +83,11 @@ const router = createRouter({
           path: 'personal-info',
           name: 'personalinfo',
           component: PersonalInfo
+        },
+        {
+          path: 'community-profile',
+          name: 'communityprofile',
+          component: CommunityProfile
         },
       ],
     },
@@ -97,6 +105,16 @@ const router = createRouter({
       path: '/deposits/:deposit_code',
       name: 'depositdetail',
       component: DepositDetail
+    },
+    {
+      path: '/savings',
+      name: 'savings',
+      component: SavingsView,
+    },
+    {
+      path: '/savings/:savings_code',
+      name: 'savingsdetail',
+      component: SavingsDetail
     },
     {
       path: '/create-article',

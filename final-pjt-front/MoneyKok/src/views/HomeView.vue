@@ -6,7 +6,7 @@
       <div class="intro-content">
         <h1>필요한 예적금, 한번에 콕! <strong>머니콕</strong></h1>
         <p>최적의 금융 상품을 AI로 추천 받아보세요.</p>
-        <button class="btn-common">AI 추천 바로가기</button>
+        <button class="btn-common" @click="goAiRecommend">AI 추천 바로가기</button>
       </div>
       <img src="@/assets/main_image/1.png" width="880" alt="intro Illustration" class="intro-image" />
     </section>
@@ -22,7 +22,7 @@
         <div class="service-card-content">
           <h2>내 조건에 딱 맞는 예적금 상품을 찾을 수 있어요</h2>
           <p>은행 · 저축은행을 포함한 3,000여 금융 상품을 비교하고 신청할 수 있어요.</p>
-          <button class="btn-common">예적금 상품 조회하기</button>
+          <button class="btn-common" @click="goDeposits">예적금 상품 조회하기</button>
         </div>
       </div>
 
@@ -48,7 +48,7 @@
         <div class="service-card-content">
           <h2>현재 환율에 따른 환산 금액을 확인할 수 있어요</h2>
           <p>실시간 환율 정보를 확인하고 주요 세계 통화의 환산 금액을 손쉽게 계산해 보세요 .</p>
-          <button class="btn-common">AI 추천 받기</button>
+          <button class="btn-common" @click="goExchangeRate">환율 계산기</button>
         </div>
       </div>
     </section>
@@ -73,6 +73,18 @@ const router = useRouter()
 
 const goCommunity = function() {
   router.push({ name : 'community'})
+}
+
+const goAiRecommend = function() {
+  router.push({ name : 'ai'})
+}
+
+const goDeposits = function() {
+  router.push({ name : 'deposits'})
+}
+
+const goExchangeRate = function() {
+  router.push({ name : 'exchangerate'})
 }
 
 </script>

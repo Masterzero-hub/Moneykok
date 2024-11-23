@@ -7,8 +7,17 @@
         class="nav-link"
         :class="{ active: $route.name === 'myproduct' }"
       >
-        가입한 상품
+        가입상품
       </router-link>
+
+      <router-link
+        :to="{ name: 'communityprofile' }"
+        class="nav-link"
+        :class="{ active: $route.name === 'communityprofile' }"
+      >
+        커뮤니티
+      </router-link>
+
       <router-link
         :to="{ name: 'personalinfo' }"
         class="nav-link"
@@ -42,7 +51,7 @@
 
 .nav-link.active {
   font-weight: bold; /* 활성화된 탭은 볼드 */
-  color: var(--orange-color); /* 활성화된 탭의 글자 색 (오렌지) */
+  color: var(--orange-color)!important; /* 활성화된 탭의 글자 색 (오렌지) */
   border-bottom: 2px solid var(--mint-color); /* 활성화된 탭의 하단 보더 */
 }
 
