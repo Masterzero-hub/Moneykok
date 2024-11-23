@@ -15,6 +15,7 @@ import CreateArticle from '@/components/CreateArticle.vue'
 import ArticleDetail from '@/components/ArticleDetail.vue'
 import MyProduct from '@/components/MyProduct.vue'
 import PersonalInfo from '@/components/PersonalInfo.vue'
+import AiRecommendations from '@/components/AiRecommendations.vue'
 
 
 const router = createRouter({
@@ -34,6 +35,11 @@ const router = createRouter({
       path: '/ai',
       name: 'ai',
       component: AiView
+    },
+    {
+      path: '/ai-recommendations',
+      name: 'ai-recommendations',
+      component: AiRecommendations
     },
     {
       path: '/community',
@@ -67,12 +73,12 @@ const router = createRouter({
       children: [
         {
           path: '', // 기본 경로
-          name: 'subscribed-products',
+          name: 'myproduct',
           component: MyProduct
         },
         {
           path: 'personal-info',
-          name: 'personal-info',
+          name: 'personalinfo',
           component: PersonalInfo
         },
       ],

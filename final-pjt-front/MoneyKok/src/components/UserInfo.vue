@@ -3,16 +3,16 @@
     <!-- 상단 네비게이션 -->
     <nav class="nav nav-tabs">
       <router-link
-        to="/userinfo"
+        :to="{ name: 'myproduct' }"
         class="nav-link"
-        :class="{ active: $route.path === '/userinfo' }"
+        :class="{ active: $route.name === 'myproduct' }"
       >
         가입한 상품
       </router-link>
       <router-link
-        to="/userinfo/personal-info"
+        :to="{ name: 'personalinfo' }"
         class="nav-link"
-        :class="{ active: $route.path === '/userinfo/personal-info' }"
+        :class="{ active: $route.name === 'personalinfo' }"
       >
         개인정보
       </router-link>
@@ -22,7 +22,6 @@
     <div>
       <router-view style="margin-top: 0; padding: 0;"></router-view>
     </div>
-
   </div>
 </template>
 
