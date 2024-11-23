@@ -34,7 +34,7 @@
         </div>
 
         <!-- 버튼 섹션 -->
-        <div class="button-container">
+        <div class="button-container" v-if="isCurrentUserAuthor">
           <div v-if="!isEditing">
             <button
               class="btn-common btn-outline-primary"
@@ -61,50 +61,64 @@
       </div>
     </div>
 
-
     <!-- 댓글 목록 -->
-<div class="card shadow-sm p-4 mt-4">
-  <h3 class="section-title mb-3">댓글</h3>
-  <div v-if="article.comments?.length > 0">
-    <ul class="list-group">
-      <li
-        v-for="comment in article.comments"
-        :key="comment.id"
-        class="list-group-item d-flex flex-column"
-      >
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <div>
-            <strong>{{ comment.author }}</strong>
-            <small class="text-muted ms-2">{{ comment.created_at }}</small>
-          </div>
-          <div>
-            <button
-              class="btn btn-sm btn-outline-primary me-2"
-              @click="submitCommentEdit(comment.id, comment.content)"
-            >
-              저장
-            </button>
-            <button
-              class="btn btn-sm btn-danger"
-              @click="removeComment(comment.id)"
-            >
-              삭제
-            </button>
-          </div>
-        </div>
-        <textarea
-          class="form-control mb-2"
-          rows="2"
-          v-model="comment.content"
-          placeholder="내용을 입력하세요"
-        ></textarea>
-      </li>
-    </ul>
-  </div>
-  <div v-else>
-    <p class="text-muted text-center">아직 댓글이 없습니다.</p>
-  </div>
-</div>
+    <div class="card shadow-sm p-4 mt-4">
+      <h3 class="section-title mb-3">댓글</h3>
+      <div v-if="article.comments?.length > 0">
+        <ul class="list-group">
+          <li
+            v-for="comment in article.comments"
+            :key="comment.id"
+            class="list-group-item"
+          >
+            <div class="d-flex justify-content-between">
+              <div class="comment-meta">
+                <strong>{{ comment.user.nickname }}</strong>
+                <small class="text-muted ms-2">{{
+                  comment.created_at.slice(0, 19)
+                }}</small>
+              </div>
+              <div v-if="isCommentAuthor(comment)">
+                <button
+                  v-if="!comment.isEditing"
+                  class="btn btn-sm"
+                  @click="enableEditComment(comment)"
+                >
+                  수정
+                </button>
+                <button
+                  v-else
+                  class="btn btn-sm"
+                  @click="submitCommentEdit(comment)"
+                >
+                  저장
+                </button>
+                <button
+                  class="btn btn-sm"
+                  @click="removeComment(comment.id)"
+                >
+                  삭제
+                </button>
+              </div>
+            </div>
+            <div v-if="comment.isEditing">
+              <textarea
+                v-model="comment.editingContent"
+                class="form-control mt-2"
+                rows="2"
+                placeholder="댓글을 수정하세요"
+              ></textarea>
+            </div>
+            <p v-else class="comment-content mt-2 mb-0">
+              {{ comment.content }}
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div v-else>
+        <p class="text-muted text-center">아직 댓글이 없습니다.</p>
+      </div>
+    </div>
 
     <!-- 댓글 작성 -->
     <div class="card shadow-sm p-4 mt-4">
@@ -117,7 +131,7 @@
       ></textarea>
       <div class="text-end">
         <button
-          class="btn-common mt-3"
+          class="btn-common btn-mint mt-3"
           @click="submitComment"
           :disabled="comment.trim() === ''"
         >
@@ -129,26 +143,45 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { storeToRefs } from "pinia"; // storeToRefs 사용
 import { useCommunityStore } from "@/stores/community";
+import { useUserStore } from "@/stores/user";
 
 const router = useRouter();
 const route = useRoute();
 const store = useCommunityStore();
+const userStore = useUserStore();
 
-const { article, comment, getArticleDetail, addComment, deleteComment, updateComment  } = storeToRefs(store); 
+const {
+  article,
+  comment,
+  getArticleDetail,
+  addComment,
+  deleteComment,
+  updateComment,
+} = storeToRefs(store);
 
 console.log(article.value);
 
+// 게시글 작성자인지 확인 (닉네임)
+const { nickname } = storeToRefs(userStore);
+const isCurrentUserAuthor = computed(() => {
+  return article.value.user?.nickname === nickname.value;
+});
+
+
+// 댓글 작성자인지 확인 (닉네임)
+const isCommentAuthor = (comment) => {
+  return comment.user.nickname === nickname.value;
+};
 
 // 상태 변수
 const articleId = route.params.article_id;
 const editableTitle = ref("");
 const editableContent = ref("");
 const isEditing = ref(false);
-
 
 // 목록으로 돌아가기
 const goBack = () => {
@@ -215,25 +248,35 @@ const removeComment = (commentId) => {
   if (confirm("댓글을 삭제하시겠습니까?")) {
     store.deleteComment(articleId, commentId).then(() => {
       // 댓글 목록에서 삭제
-      article.value.comments = article.value.comments.filter((c) => c.id !== commentId);
+      article.value.comments = article.value.comments.filter(
+        (c) => c.id !== commentId
+      );
       alert("댓글이 삭제되었습니다.");
     });
   }
 };
 
+// 댓글 수정 활성화
+const enableEditComment = (comment) => {
+  comment.isEditing = true;
+  comment.editingContent = comment.content; // 기존 내용을 기본값으로 설정
+};
 
 // 댓글 수정 저장
-const submitCommentEdit = (commentId, updatedContent) => {
-  if (!updatedContent.trim()) {
+const submitCommentEdit = (comment) => {
+  if (!comment.editingContent.trim()) {
     alert("내용을 입력해주세요.");
     return;
   }
 
-  store.updateComment(articleId, commentId, updatedContent).then(() => {
-    alert("댓글이 수정되었습니다.");
-  });
+  store
+    .updateComment(articleId, comment.id, comment.editingContent)
+    .then(() => {
+      comment.content = comment.editingContent; // 수정된 내용 반영
+      comment.isEditing = false; // 수정 모드 종료
+      alert("댓글이 수정되었습니다.");
+    });
 };
-
 </script>
 
 <style scoped>
@@ -258,7 +301,6 @@ textarea.form-control {
   resize: none;
 }
 
-
 /* 버튼 컨테이너 스타일 */
 .button-container {
   display: flex;
@@ -279,12 +321,43 @@ textarea.form-control {
   transition: background-color 0.2s ease-in-out;
 }
 
-.btn-mint:hover {
-  background-color: #3cb371;
-}
 
 .section-title {
   font-size: 24px;
   font-weight: bold;
+}
+
+/* 댓글 목록 스타일 */
+.list-group-item {
+  border: none;
+  padding: 15px 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.comment-meta {
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.comment-content {
+  font-size: 1rem;
+  color: #212529;
+  line-height: 1.5;
+}
+
+.comment-meta strong {
+  font-weight: bold;
+}
+
+.comment-meta small {
+  color: #868e96;
+}
+
+.text-muted {
+  color: #adb5bd !important;
 }
 </style>

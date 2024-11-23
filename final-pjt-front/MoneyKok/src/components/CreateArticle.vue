@@ -114,9 +114,6 @@
     transition: background-color 0.2s ease-in-out;
   }
   
-  .btn-mint:hover {
-    background-color: #3cb371;
-  }
   
   .section-title {
     font-size: 24px;

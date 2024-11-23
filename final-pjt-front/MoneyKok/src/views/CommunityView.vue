@@ -16,7 +16,7 @@
             <p class="card-text friend-card-text">
               나의 간단한 소개 문구가 여기에 표시됩니다.
             </p>
-            <button class="btn-small-common btn-mint">프로필 페이지</button>
+            <button class="btn-small-common btn-mint" @click="goMyProfile">프로필 페이지</button>
           </div>
         </div>
       </div>
@@ -30,14 +30,14 @@
             :key="friend.id"
             class="col-md-3 d-flex align-items-stretch"
           >
-            <div class="card shadow friend-card">
+            <div class="friend-card shadow friend-card">
               <img
                 :src="friend.image"
                 class="card-img-top friend-card-img"
                 :alt="friend.name"
               />
-              <div class="card-body text-center">
-                <h5 class="card-title">{{ friend.name }}</h5>
+              <div class="card-body text-center" style="padding: 18px;">
+                <h5 class="card-title" style="margin-bottom: 9px;">{{ friend.name }}</h5>
                 <p class="card-text friend-card-text">
                   {{ friend.description }}
                 </p>
@@ -118,10 +118,12 @@ const router = useRouter()
 const store = useCommunityStore();
 const { recommendedFriends, articles, getArticles } = storeToRefs(store);
 
+const goMyProfile = function() {
+  router.push()
+}
+
 const currentPage = ref(1);
 const articlesPerPage = 5;
-
-// 총 페이지 계산
 const totalPages = computed(() => Math.ceil(articles.value.length / articlesPerPage));
 
 
@@ -164,7 +166,7 @@ const goCreateArticle = function() {
 
 <style scoped>
 .friend-card {
-  width: 100%;
+  width: 200px;
   height: 300px; /* 카드의 높이 고정 */
   display: flex;
   flex-direction: column;

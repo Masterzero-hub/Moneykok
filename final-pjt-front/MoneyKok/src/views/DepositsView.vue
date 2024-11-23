@@ -245,7 +245,7 @@
               <button
                 class="btn-small-common"
               >
-                비교하기 +
+                가입하기 +
               </button>
             </div>
           </div>

@@ -84,7 +84,7 @@ const login = function () {
       
     })
     .then((userInfoResponse) => {
-      // 3. 사용자 정보를 store에 저장
+      // 3. 사용자 정보를 store에 저장 
       console.log(userInfoResponse)
       const userInfo = userInfoResponse.data;
       store.name = userInfo.name;

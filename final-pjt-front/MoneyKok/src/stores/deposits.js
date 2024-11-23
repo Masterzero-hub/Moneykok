@@ -82,5 +82,5 @@ export const useDepositsStore = defineStore(
     return { products, productDetail, filters, filteredProducts,
       getProducts, getProductDetail, getFilteredProducts };
   },
-  { persist: true }
+  // { persist: true }
 );
