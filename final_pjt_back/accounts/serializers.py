@@ -39,12 +39,10 @@ class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'name', 'nickname', 'phone', 'gender', 'birthdate', 'income']
-        exclude = ('password',)  # 비밀번호는 제외
 
 class UserInfoChangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['nickname', 'phone', 'gender', 'birthdate', 'income']
-        exclude = ('email', 'password', 'name',)  # 수정할 수 없는 필드
-        read_only_fields = ('email', 'password', 'name',)  # 읽기 전용 필드
+        read_only_fields = ('email', 'password', 'name','profile_description')  # 읽기 전용 필드
 
