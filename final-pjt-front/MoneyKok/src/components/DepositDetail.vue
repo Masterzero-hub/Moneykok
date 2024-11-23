@@ -1,10 +1,10 @@
 <template>
   <div class="container mt-5">
     <div v-if="productDetail && productDetail.options">
-    <!-- 데이터 로드 완료 -->
-    <div class="card">
-      <!-- Header Section -->
-      <div class="card-header">
+      <!-- 데이터 로드 완료 -->
+      <div class="card">
+        <!-- Header Section -->
+        <div class="card-header">
           <!-- Left Section: 로고와 상품명 -->
           <div class="card-header-left">
             <img
@@ -28,106 +28,110 @@
         </div>
 
         <!-- 가입하기 모달 -->
-    <div
-      class="modal fade"
-      id="joinModal"
-      tabindex="-1"
-      aria-labelledby="joinModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="joinModalLabel">가입하기</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <!-- 가입 기간 선택 -->
-            <div class="mb-3">
-              <label for="termSelect" class="form-label">가입 기간</label>
-              <select
-                id="termSelect"
-                class="form-select"
-                v-model="joinTerm"
-              >
-                <option v-for="term in terms" :key="term" :value="term">
-                  {{ term }}개월
-                </option>
-              </select>
-            </div>
+        <div
+          class="modal fade"
+          id="joinModal"
+          tabindex="-1"
+          aria-labelledby="joinModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="joinModalLabel">가입하기</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <!-- 가입 기간 선택 -->
+                <div class="mb-3">
+                  <label for="termSelect" class="form-label">가입 기간</label>
+                  <select
+                    id="termSelect"
+                    class="form-select"
+                    v-model="joinTerm"
+                  >
+                    <option v-for="term in terms" :key="term" :value="term">
+                      {{ term }}개월
+                    </option>
+                  </select>
+                </div>
 
-            <!-- 가입 금액 입력 -->
-            <div class="mb-3">
-              <label for="amountInput" class="form-label">가입 금액 (만원)</label>
-              <input
-                type="number"
-                id="amountInput"
-                v-model="joinAmount"
-                class="form-control"
-                placeholder="가입 금액을 입력하세요"
-              />
+                <!-- 가입 금액 입력 -->
+                <div class="mb-3">
+                  <label for="amountInput" class="form-label"
+                    >가입 금액 (만원)</label
+                  >
+                  <input
+                    type="number"
+                    id="amountInput"
+                    v-model="joinAmount"
+                    class="form-control"
+                    placeholder="가입 금액을 입력하세요"
+                  />
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  취소
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  @click="submitJoin"
+                >
+                  입력하기
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              취소
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              @click="submitJoin"
-            >
-              입력하기
-            </button>
           </div>
         </div>
-      </div>
-    </div>
 
-
-
-      <div class="card-body">
-        <!-- 기본 정보 -->
-        <h4 class="card-title mt-3">기본 정보</h4>
-        <p><strong>상품 코드:</strong> {{ productDetail.fin_prdt_cd }}</p>
-        <p><strong>가입 대상:</strong> {{ productDetail.join_member }}</p>
-        <div v-if="productDetail.join_deny === 1">
+        <div class="card-body">
+          <!-- 기본 정보 -->
+          <h4 class="card-title mt-3">기본 정보</h4>
+          <p><strong>상품 코드:</strong> {{ productDetail.fin_prdt_cd }}</p>
+          <p><strong>가입 대상:</strong> {{ productDetail.join_member }}</p>
+          <div v-if="productDetail.join_deny === 1">
+            <p>
+              <strong>가입 제한:</strong>
+              {{ joinDenyContent(productDetail.join_deny) }}
+            </p>
+          </div>
+          <p><strong>가입 방법:</strong> {{ productDetail.join_way }}</p>
           <p>
-            <strong>가입 제한:</strong>
-            {{ joinDenyContent(productDetail.join_deny) }}
+            <strong>우대 조건: </strong>
+            <button
+              v-for="condition in [
+                ...new Set(
+                  productDetail.special_conditions.map((cond) => cond.category)
+                ),
+              ]"
+              :key="condition"
+              class="conditons-btn me-3"
+            >
+              {{ condition }}
+            </button>
           </p>
-        </div>
-        <p><strong>가입 방법:</strong> {{ productDetail.join_way }}</p>
-        <p>
-          <strong>우대 조건:   </strong>
-          <button
-                v-for="condition in productDetail.special_conditions"
-                :key="condition"
-                class="conditons-btn me-3"
-              >
-                {{ condition.category }}
-              </button>
-        </p>
-        <p><strong>기타 안내: </strong>{{ productDetail.etc_note }}</p>
-        <!-- <pre>{{ productDetail.etc_note }}</pre> -->
+          <p><strong>기타 안내: </strong>{{ productDetail.etc_note }}</p>
+          <!-- <pre>{{ productDetail.etc_note }}</pre> -->
 
-        <!-- 가입 불가 여부 -->
-        <!-- <div v-if="productDetail.join_deny === 1" class="alert alert-danger" role="alert">
+          <!-- 가입 불가 여부 -->
+          <!-- <div v-if="productDetail.join_deny === 1" class="alert alert-danger" role="alert">
               <strong>주의:</strong> 이 상품은 가입이 제한되어 있습니다.
             </div> -->
 
-        <!-- 옵션 테이블 -->
-        <!-- <h5 class="mt-4">이자율 정보</h5>
+          <!-- 옵션 테이블 -->
+          <!-- <h5 class="mt-4">이자율 정보</h5>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -146,73 +150,75 @@
               </tr>
             </tbody>
           </table> -->
-        <div class="container mt-5">
-          <hr />
-          <h2 class="text-center mb-4 mt-5">이자 계산기</h2>
+          <!-- 이자 계산기 -->
+          <div class="calculator-container">
+            <h2 class="text-center mb-4 mt-4">이자 계산기</h2>
 
-          <!-- 선택된 금리 정보 -->
-          <div class="text-center mb-4">
-            <h3 class="cal-rate">
-              {{ calculatedInterestRate.toFixed(2) }}%
-            </h3>
-            <p class="text-muted">
-              <span>기본 {{ baseInterestRate }}%</span>
-              <span v-if="selectedConditions.length > 0">
-                + 우대 {{ additionalRate.toFixed(2) }}%
-              </span>
-            </p>
-          </div>
-          <!-- 개월 수 선택 -->
-          <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
-            <button
-              v-for="option in productDetail.options"
-              :key="option.id"
-              class="option-btn btn-outline-primary"
-              :class="{ active: selectedTerm === option.save_trm }"
-              @click="selectTerm(option.save_trm)"
-            >
-              <p class="mb-1">{{ option.save_trm }}개월</p>
-              <p class="mb-0">기본 {{ option.intr_rate }}%</p>
-            </button>
-          </div>
+            <!-- 디스플레이 -->
+            <div class="calculator-display">
+              <h3 class="display-rate">
+                {{ calculatedInterestRate.toFixed(2) }}%
+              </h3>
+              <p class="display-label">
+                <span>기본 {{ baseInterestRate }}%</span>
+                <span v-if="selectedConditions.length > 0">
+                  + 우대 {{ additionalRate.toFixed(2) }}%
+                </span>
+              </p>
+            </div>
 
-          <!-- 우대 조건 체크 -->
-          <div class="mb-4">
-            <h4>우대 조건</h4>
-            <div
-              v-for="condition in productDetail.special_conditions"
-              :key="condition.condition_title"
-              class="d-flex align-items-center justify-content-between mb-2"
-            >
-              <p class="mb-0">{{ condition.condition_title }}</p>
-              <div>
-                <span class="me-2"
-                  >+{{ condition.prime_rate }}%</span
+            <!-- 저축 기간 선택 -->
+            <div class="calculator-section">
+              <h4 class="section-title">저축 기간 선택</h4>
+              <div class="button-grid">
+                <button
+                  v-for="option in productDetail.options"
+                  :key="option.id"
+                  class="calculator-button"
+                  :class="{ active: selectedTerm === option.save_trm }"
+                  @click="selectTerm(option.save_trm)"
                 >
-                <input
-                  type="checkbox"
-                  :value="condition"
-                  v-model="selectedConditions"
-                />
+                  <span>{{ option.save_trm }}개월</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 우대 조건 선택 -->
+            <div class="calculator-section">
+              <h4 class="section-title">우대 조건 선택</h4>
+              <div class="checkbox-list">
+                <label
+                  v-for="condition in productDetail.special_conditions"
+                  :key="condition.condition_title"
+                  class="checkbox-item"
+                >
+                  <input
+                    type="checkbox"
+                    :value="condition"
+                    v-model="selectedConditions"
+                  />
+                  {{ condition.condition_title }}
+                  <span class="bonus-rate" style="font-size: 23px"
+                    >+{{ condition.prime_rate }}%</span
+                  >
+                </label>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- 총 이자율 계산 결과 -->
-        <!-- <div class="text-center">
+          <!-- 총 이자율 계산 결과 -->
+          <!-- <div class="text-center">
         <h5 class="text-secondary">
           총 이자율: {{ calculatedRate.toFixed(2) }}%
         </h5>
       </div> -->
+        </div>
       </div>
-    </div>
     </div>
 
     <div v-else>
       <p>Loading...</p>
     </div>
-
   </div>
 </template>
 
@@ -221,7 +227,7 @@ import { useDepositsStore } from "@/stores/deposits";
 import { onMounted, ref, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
-const router = useRouter()
+const router = useRouter();
 const route = useRoute();
 const depositCode = route.params.deposit_code;
 const store = useDepositsStore();
@@ -238,11 +244,9 @@ const {
   // submitJoin
 } = storeToRefs(store);
 
-
 // 가입 가능 기간 목록
 const terms = [6, 12, 24, 36];
 // 가입 상태 변수
-
 
 onMounted(() => {
   store.getProductDetail(depositCode);
@@ -281,28 +285,121 @@ const selectTerm = (term) => {
   selectedConditions.value = []; // 조건 초기화
 };
 
-
 const submitJoin = function () {
-      if (!joinTerm.value || !joinAmount.value) {
-        console.error("가입 기간 또는 가입 금액이 설정되지 않았습니다.");
-        alert("가입 기간과 가입 금액을 입력해주세요.");
-        return;
-      }
-    
-      console.log(`가입 완료: 기간=${joinTerm.value}개월, 금액=${joinAmount.value}만원`);
-      
-      // myproduct 경로로 이동
-      router.push({ name: 'myproduct' });
-    };
+  if (!joinTerm.value || !joinAmount.value) {
+    console.error("가입 기간 또는 가입 금액이 설정되지 않았습니다.");
+    alert("가입 기간과 가입 금액을 입력해주세요.");
+    return;
+  }
+
+  console.log(
+    `가입 완료: 기간=${joinTerm.value}개월, 금액=${joinAmount.value}만원`
+  );
+
+  // myproduct 경로로 이동
+  router.push({ name: "myproduct" });
+};
 </script>
 
-
-
-
 <style scoped>
+/* 계산기 컨테이너 */
+.calculator-container {
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 30px;
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 디스플레이 */
+.calculator-display {
+  background-color: #d8d8d8;
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+  box-shadow: inset 0px 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.display-rate {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 5px;
+}
+
+.display-label {
+  color: #818181;
+  font-size: 1rem;
+}
+
+/* 계산기 버튼 */
+.calculator-section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 15px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* 계산기 버튼 스타일 */
+.calculator-button {
+  padding: 10px;
+  background-color: transparent; /* 투명 배경 */
+  border: 2px solid var(--mint-color); /* 아웃라인 스타일 */
+  color: var(--mint-color); /* 텍스트 색상 */
+  border-radius: 8px; /* 둥근 모서리 */
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.calculator-button.active {
+  background-color: var(--mint-color); /* 활성화 상태에서 배경색 */
+  color: white; /* 활성화 상태에서 텍스트 색상 */
+}
+
+.calculator-button:hover {
+  background-color: var(--mint-color); /* 호버 시 배경색 */
+  color: white; /* 호버 시 텍스트 색상 */
+}
+
+/* 체크박스 스타일 */
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+.bonus-rate {
+  color: var(--mint-color);
+  font-weight: bold;
+  margin-left: auto;
+}
+
 p {
-  font-size: 20px!important; /* 글자 크기 설정 (단위: px, em, rem, %) */
-  line-height: 2.0!important; /* 줄 간격 */
+  font-size: 20px !important; /* 글자 크기 설정 (단위: px, em, rem, %) */
+  line-height: 2 !important; /* 줄 간격 */
 }
 
 /* 카드 스타일 */
@@ -364,30 +461,33 @@ p {
 .cal-rate {
   color: var(--orange-color);
   font-weight: bolder;
-}  
+}
 
 /* 버튼 스타일 */
 .option-btn {
   border-color: var(--mint-color) !important; /* 새로운 테두리 색상 */
   margin-right: 15px;
-  color: var(--mint-color)!important;
+  color: var(--mint-color) !important;
+  background-color: inherit;
 }
 
 .option-btn.active {
-  background-color: var(--mint-color) !important; /* 활성화된 상태에서 배경색 유지 */
-  color: white  !important; /* 활성화된 상태에서 텍스트 색상 */
+  background-color: var(
+    --mint-color
+  ) !important; /* 활성화된 상태에서 배경색 유지 */
+  color: white !important; /* 활성화된 상태에서 텍스트 색상 */
 }
 
 /* 호버 시 버튼 스타일 */
 .option-btn:hover {
-  background-color: var(--mint-color)!important; /* 호버 시 배경색 변경 */
-  color: white!important; /* 호버 시 글자색 변경 */
+  background-color: var(--mint-color) !important; /* 호버 시 배경색 변경 */
+  color: white !important; /* 호버 시 글자색 변경 */
   border-color: var(--mint-color); /* 호버 시 테두리 색상 변경 */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
 .btn-primary {
-  background-color: var(--mint-color)!important;;
+  background-color: var(--mint-color) !important;
   color: white;
   border-color: var(--mint-color) !important; /* 활성화 상태 테두리 색상 */
 }
@@ -397,7 +497,7 @@ p {
 }
 
 .conditons-btn {
-  background-color: var(--mint-color)!important; /* 기본 배경색: Orange */
+  background-color: var(--orange-color) !important; /* 기본 배경색: Orange */
   color: white; /* 텍스트 색상 */
   font-size: 18px; /* 폰트 크기 */
   padding: 1px 10px; /* 내부 여백 */
@@ -405,7 +505,6 @@ p {
   border-radius: 10px; /* 둥근 모서리 */
   white-space: nowrap;
 }
-
 
 input[type="checkbox"] {
   transform: scale(1.8); /* 체크박스 크기를 1.5배로 확대 */
@@ -415,5 +514,4 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
   accent-color: var(--mint-color); /* 원하는 활성화 색상으로 변경 */
 }
-
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>프로필</h1>
+<h1>적금 상세페이지</h1>
     </div>
 </template>
 
