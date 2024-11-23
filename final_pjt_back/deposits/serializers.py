@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from .models import DepositOptions, DepositProducts, DepositSpecialCondition, Banks
-
+from .models import DepositOptions, DepositProducts, DepositSpecialCondition, Banks, JoinedDeposits
 
 class BanksSerializer(serializers.ModelSerializer):
     class Meta:
@@ -56,4 +55,34 @@ class DepositProductsGETSerializer(serializers.ModelSerializer):
             'options',     # 옵션 정보
             'final_intr_rate',   # 최종 금리 필드
             'special_conditions', # 우대 조건 상세 정보
+        ]
+
+class JoinedDepositsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JoinedDeposits
+        fields = ['save_amount', 'save_trm', 'joined_date', 'expired_date', 'intr_rate']
+
+class DepositJoinSerializer(serializers.ModelSerializer):
+    product = DepositProductsGETSerializer(read_only=True)  # DepositProductsGETSerializer로 확장
+
+    class Meta:
+        model = JoinedDeposits
+        fields = ('user', 'product', 'save_trm', 'save_amount', 'joined_date','expired_date', 'intr_rate')
+        read_only_fields = ('user', 'product')
+        
+class JoinedDepositSerializer(serializers.ModelSerializer):
+    bank = BanksSerializer(source='product.bank', read_only=True)
+    product = DepositProductsSaveSerializer(read_only=True)
+
+    class Meta:
+        model = JoinedDeposits
+        fields = [
+            'user',
+            'bank',
+            'product',
+            'save_amount',
+            'save_trm',
+            'joined_date',
+            'expired_date',  # 추가
+            'intr_rate'
         ]
