@@ -13,6 +13,8 @@ import PasswordChange from '@/components/PasswordChange.vue'
 import DepositDetail from '@/components/DepositDetail.vue'
 import CreateArticle from '@/components/CreateArticle.vue'
 import ArticleDetail from '@/components/ArticleDetail.vue'
+import MyProduct from '@/components/MyProduct.vue'
+import PersonalInfo from '@/components/PersonalInfo.vue'
 
 
 const router = createRouter({
@@ -61,7 +63,19 @@ const router = createRouter({
     {
       path: '/userinfo',
       name: 'userinfo',
-      component: UserInfo
+      component: UserInfo,
+      children: [
+        {
+          path: '', // 기본 경로
+          name: 'subscribed-products',
+          component: MyProduct
+        },
+        {
+          path: 'personal-info',
+          name: 'personal-info',
+          component: PersonalInfo
+        },
+      ],
     },
     {
       path: '/passwordchange',

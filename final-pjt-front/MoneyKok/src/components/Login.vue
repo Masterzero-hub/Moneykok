@@ -84,10 +84,10 @@ const login = function () {
       
     })
     .then((userInfoResponse) => {
-      // 3. 사용자 정보를 store에 저장 (작동 안되는 듯)
+      // 3. 사용자 정보를 store에 저장 
       console.log(userInfoResponse)
       const userInfo = userInfoResponse.data;
-      store.name = userInfoResponse.name;
+      store.name = userInfo.name;
       store.formattedPhone = userInfo.phone;
       store.phone = userInfo.phone;
       store.nickname = userInfo.nickname;

@@ -78,7 +78,7 @@
                   comment.created_at.slice(0, 19)
                 }}</small>
               </div>
-              <div>
+              <div v-if="isCommentAuthor(comment)">
                 <button
                   v-if="!comment.isEditing"
                   class="btn btn-sm"
@@ -165,11 +165,17 @@ const {
 
 console.log(article.value);
 
-// 로그인 유저의 닉네임 변수
+// 게시글 작성자인지 확인 (닉네임)
 const { nickname } = storeToRefs(userStore);
 const isCurrentUserAuthor = computed(() => {
   return article.value.user?.nickname === nickname.value;
 });
+
+
+// 댓글 작성자인지 확인 (닉네임)
+const isCommentAuthor = (comment) => {
+  return comment.user.nickname === nickname.value;
+};
 
 // 상태 변수
 const articleId = route.params.article_id;
@@ -315,9 +321,6 @@ textarea.form-control {
   transition: background-color 0.2s ease-in-out;
 }
 
-.btn-mint:hover {
-  background-color: #3cb371;
-}
 
 .section-title {
   font-size: 24px;
