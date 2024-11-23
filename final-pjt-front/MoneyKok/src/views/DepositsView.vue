@@ -28,7 +28,7 @@
 
         <!-- 가입 금액 -->
         <div class="row mb-3 align-items-center">
-          <label class="col-md-2 col-form-label ">가입 금액</label>
+          <label class="col-md-2 col-form-label">가입 금액</label>
           <div class="col-md-10 d-flex align-items-center">
             <button
               class="btn-small-common btn-mint"
@@ -37,9 +37,16 @@
             >
               가입 금액 입력하기
             </button>
-            <p v-if="filters.amount" class="mt-2" style="margin-left: 10px; margin-bottom: 10px;">
-              입력 금액: 
-              <span class="highlight">{{ filters.amount.toLocaleString() }}</span> 만원
+            <p
+              v-if="filters.amount"
+              class="mt-2"
+              style="margin-left: 10px; margin-bottom: 10px"
+            >
+              입력 금액:
+              <span class="highlight">{{
+                filters.amount.toLocaleString()
+              }}</span>
+              만원
             </p>
           </div>
         </div>
@@ -89,7 +96,7 @@
         <!-- 은행 선택 -->
         <div class="row mb-3 align-items-center">
           <label class="col-md-2 col-form-label">은행 선택</label>
-          <div class="col-md-10  d-flex align-items-center">
+          <div class="col-md-10 d-flex align-items-center">
             <button
               class="btn-small-common btn-mint"
               data-bs-toggle="modal"
@@ -97,14 +104,23 @@
             >
               은행 선택하기
             </button>
-            <p v-if="filters.bank.length > 0" class="mt-2" style="margin-left: 10px; margin-bottom: 10px;">
-            선택된 은행: 
-            <span v-for="(bankCode, index) in filters.bank" :key="index" class="highlight">
-              {{
-                banks.find((bank) => bank.code === bankCode)?.name || "알 수 없는 은행"
-              }}<span v-if="index < filters.bank.length - 1">, </span>
-            </span>
-          </p>
+            <p
+              v-if="filters.bank.length > 0"
+              class="mt-2"
+              style="margin-left: 10px; margin-bottom: 10px"
+            >
+              선택된 은행:
+              <span
+                v-for="(bankCode, index) in filters.bank"
+                :key="index"
+                class="highlight"
+              >
+                {{
+                  banks.find((bank) => bank.code === bankCode)?.name ||
+                  "알 수 없는 은행"
+                }}<span v-if="index < filters.bank.length - 1">, </span>
+              </span>
+            </p>
           </div>
         </div>
 
@@ -159,9 +175,9 @@
         </div>
 
         <!-- 우대 조건 -->
-        <div>
-          <div class="d-flex gap-2 flex-wrap" style="align-items: center">
-            <h6 class="mb-0" style="margin-right: 105px">우대 조건</h6>
+        <div class="row align-items-start mb-3">
+          <label class="col-md-2 col-form-label mt-2">우대 조건</label>
+          <div class="col-md-10">
             <div class="search-btn">
               <button
                 v-for="condition in conditions"
@@ -179,11 +195,7 @@
             </div>
           </div>
         </div>
-
-
-        
       </div>
-
 
       <!-- 상품 목록 -->
       <div class="row">
@@ -225,33 +237,31 @@
               </div>
             </div>
 
-            <!-- 금리 및 버튼 -->
-            <div class="d-flex align-items-center">
-              <div class="text-center me-3">
-                <p class="mb-0">기본</p>
-                <strong>
-                  {{
-                    getInterestRate(product.options, "intr_rate") + "%"
-                  }}
-                <p><small>{{ `${getSaveTrm(product.options)}개월 기준` }}</small></p>
+            <!-- 금리 -->
+            <div
+              class="interest-info d-flex justify-content-around align-items-center"
+            >
+              <!-- 기본 금리 -->
+              <div class="interest-item text-center">
+                <p class="interest-title">기본 금리</p>
+                <strong class="interest-rate">
+                  {{ getInterestRate(product.options, "intr_rate") }}%
                 </strong>
+                <p class="interest-term">
+                  <small>{{ `${getSaveTrm(product.options)}개월 기준` }}</small>
+                </p>
               </div>
-              <div class="text-center me-3">
-                <p class="mb-0">최고</p>
-                <strong>
-                  {{
-                    getInterestRate(product.options, "intr_rate2") + "%"
-                  }}
+
+              <!-- 최고 금리 -->
+              <div class="interest-item text-center">
+                <p class="interest-title">최고 금리</p>
+                <strong class="interest-rate">
+                  {{ getInterestRate(product.options, "intr_rate2") }}%
                 </strong>
-                <p><small>{{ `${getSaveTrm(product.options)}개월 기준` }}</small></p>
+                <p class="interest-term">
+                  <small>{{ `${getSaveTrm(product.options)}개월 기준` }}</small>
+                </p>
               </div>
-              <div class="divider me-3"></div>
-              <button
-                class="btn-small-common"
-                @click=""
-              >
-                가입하기 +
-              </button>
             </div>
           </div>
         </div>
@@ -296,8 +306,14 @@ import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 
 const store = useDepositsStore();
-const { products, getProducts, productDetail, filters, filteredProducts, getFilteredProducts } =
-  storeToRefs(store);
+const {
+  products,
+  getProducts,
+  productDetail,
+  filters,
+  filteredProducts,
+  getFilteredProducts,
+} = storeToRefs(store);
 const router = useRouter();
 
 onMounted(() => {
@@ -321,12 +337,12 @@ const displayedProducts = computed(() => {
   return filteredProducts.value;
 });
 
-
-
 const goDepositDetail = function (product_code) {
-  router.push({ name: "depositdetail", params: { deposit_code: product_code } });
+  router.push({
+    name: "depositdetail",
+    params: { deposit_code: product_code },
+  });
 };
-
 
 // 가입 기간, 은행 목록, 우대 조건 목록 정의
 const terms = [6, 12, 24, 36];
@@ -412,36 +428,35 @@ watch(
   (newFilters) => {
     console.log("필터 변경 감지:", newFilters);
     store.getFilteredProducts(); // getFilteredProducts 호출
-    console.log(filteredProducts)
+    console.log(filteredProducts);
   },
   { deep: true, immediate: true } // 깊은 감시 및 즉시 실행
 );
 
 const getInterestRate = (options, field) => {
-      if (!options || options.length === 0) {
-        return "N/A";
-      }
+  if (!options || options.length === 0) {
+    return "N/A";
+  }
 
-      // save_trm이 12인 항목 찾기
-      const target = options.find((option) => option.save_trm === 12);
+  // save_trm이 12인 항목 찾기
+  const target = options.find((option) => option.save_trm === 12);
 
-      // save_trm이 12인 데이터가 있으면 해당 필드 반환, 없으면 마지막 항목 기준
-      return target ? target[field] : options[options.length - 1][field];
-    };
+  // save_trm이 12인 데이터가 있으면 해당 필드 반환, 없으면 마지막 항목 기준
+  return target ? target[field] : options[options.length - 1][field];
+};
 
-    // save_trm 값을 계산하는 함수
-    const getSaveTrm = (options) => {
-      if (!options || options.length === 0) {
-        return null;
-      }
+// save_trm 값을 계산하는 함수
+const getSaveTrm = (options) => {
+  if (!options || options.length === 0) {
+    return null;
+  }
 
-      // save_trm이 12인 항목 찾기
-      const target = options.find((option) => option.save_trm === 12);
+  // save_trm이 12인 항목 찾기
+  const target = options.find((option) => option.save_trm === 12);
 
-      // save_trm이 12인 데이터가 있으면 해당 save_trm 반환, 없으면 마지막 항목 기준
-      return target ? target.save_trm : options[options.length - 1].save_trm;
-    };
-
+  // save_trm이 12인 데이터가 있으면 해당 save_trm 반환, 없으면 마지막 항목 기준
+  return target ? target.save_trm : options[options.length - 1].save_trm;
+};
 
 // 페이지네이션 로직
 const currentPage = ref(1);
@@ -552,6 +567,36 @@ const changePage = (page) => {
 .bank-item.selected-bank {
   background-color: var(--mint-color); /* 선택된 은행의 배경색 */
   color: white; /* 선택된 텍스트 색상 */
+}
+
+.interest-info {
+  padding: 20px 0;
+  /* border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd; */
+  margin: 5px 0;
+}
+
+.interest-item {
+  flex: 1; /* 동일한 크기로 분배 */
+  margin: 0 10px;
+}
+
+.interest-title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.interest-rate {
+  font-size: 25px;
+  color: var(--orange-color);
+  margin-bottom: 5px;
+}
+
+.interest-term {
+  font-size: 0.9rem;
+  color: #666;
 }
 
 /* 기본 페이지네이션 스타일 */
