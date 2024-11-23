@@ -5,19 +5,96 @@
     <div class="card">
       <!-- Header Section -->
       <div class="card-header">
-        <!-- Left Section: 로고와 상품명 -->
-        <div class="card-header-left">
-          <img
-            :src="`/bank_image/${productDetail.bank.fin_co_no}.jpg`"
-            alt="Bank Logo"
-            class="logo-img rounded-circle"
-          />
-          <h2 class="mb-0">{{ productDetail.fin_prdt_nm }}</h2>
+          <!-- Left Section: 로고와 상품명 -->
+          <div class="card-header-left">
+            <img
+              :src="`/bank_image/${productDetail.bank.fin_co_no}.jpg`"
+              alt="Bank Logo"
+              class="logo-img rounded-circle"
+            />
+            <h2 class="mb-0">{{ productDetail.fin_prdt_nm }}</h2>
+          </div>
+
+          <!-- Right Section: 가입하기 버튼 -->
+          <div>
+            <button
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#joinModal"
+            >
+              가입하기
+            </button>
+          </div>
         </div>
 
-        <!-- Right Section: 은행 이름 -->
-        <!-- <p class="bank mb-0 text-muted">{{ productDetail.bank.kor_co_nm }}</p> -->
+        <!-- 가입하기 모달 -->
+    <div
+      class="modal fade"
+      id="joinModal"
+      tabindex="-1"
+      aria-labelledby="joinModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="joinModalLabel">가입하기</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <!-- 가입 기간 선택 -->
+            <div class="mb-3">
+              <label for="termSelect" class="form-label">가입 기간</label>
+              <select
+                id="termSelect"
+                class="form-select"
+                v-model="joinTerm"
+              >
+                <option v-for="term in terms" :key="term" :value="term">
+                  {{ term }}개월
+                </option>
+              </select>
+            </div>
+
+            <!-- 가입 금액 입력 -->
+            <div class="mb-3">
+              <label for="amountInput" class="form-label">가입 금액 (만원)</label>
+              <input
+                type="number"
+                id="amountInput"
+                v-model="joinAmount"
+                class="form-control"
+                placeholder="가입 금액을 입력하세요"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              취소
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              @click="submitJoin"
+            >
+              입력하기
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
+
+
 
       <div class="card-body">
         <!-- 기본 정보 -->
@@ -160,13 +237,19 @@ const {
   getProducts,
   getProductDetail,
   getFilteredProducts,
+  joinTerm,
+  joinAmount
 } = storeToRefs(store);
+
+
+// 가입 가능 기간 목록
+const terms = [6, 12, 24, 36];
+// 가입 상태 변수
 
 
 onMounted(() => {
   store.getProductDetail(depositCode);
   console.log(productDetail.value);
-  console.log(productDetail.value.special_conditions);
 });
 
 const joinDenyContent = function (num) {
@@ -201,6 +284,9 @@ const selectTerm = (term) => {
   selectedConditions.value = []; // 조건 초기화
 };
 </script>
+
+
+
 
 <style scoped>
 /* 카드 스타일 */

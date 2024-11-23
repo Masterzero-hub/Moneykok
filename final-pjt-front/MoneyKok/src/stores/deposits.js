@@ -17,6 +17,9 @@ export const useDepositsStore = defineStore(
 
     const filteredProducts = ref([]);
 
+    const joinTerm = ref(null); // 선택된 가입 기간
+    const joinAmount = ref(null); // 입력된 가입 금액
+
 
     // const saveProducts
     const getProducts = () => {
@@ -79,7 +82,7 @@ export const useDepositsStore = defineStore(
         });
     };
 
-    return { products, productDetail, filters, filteredProducts,
+    return { products, productDetail, filters, filteredProducts, joinTerm, joinAmount,
       getProducts, getProductDetail, getFilteredProducts };
   },
   // { persist: true }

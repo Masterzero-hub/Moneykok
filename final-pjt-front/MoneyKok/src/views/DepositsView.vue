@@ -38,7 +38,8 @@
               가입 금액 입력하기
             </button>
             <p v-if="filters.amount" class="mt-2" style="margin-left: 10px; margin-bottom: 10px;">
-              입력 금액: {{ filters.amount.toLocaleString() }}만원
+              입력 금액: 
+              <span class="highlight">{{ filters.amount.toLocaleString() }}</span> 만원
             </p>
           </div>
         </div>
@@ -98,7 +99,7 @@
             </button>
             <p v-if="filters.bank.length > 0" class="mt-2" style="margin-left: 10px; margin-bottom: 10px;">
             선택된 은행: 
-            <span v-for="(bankCode, index) in filters.bank" :key="index">
+            <span v-for="(bankCode, index) in filters.bank" :key="index" class="highlight">
               {{
                 banks.find((bank) => bank.code === bankCode)?.name || "알 수 없는 은행"
               }}<span v-if="index < filters.bank.length - 1">, </span>
@@ -178,6 +179,9 @@
             </div>
           </div>
         </div>
+
+
+        
       </div>
 
 
@@ -244,6 +248,7 @@
               <div class="divider me-3"></div>
               <button
                 class="btn-small-common"
+                @click=""
               >
                 가입하기 +
               </button>
@@ -345,7 +350,6 @@ const banks = [
   { name: "카카오뱅크", code: "0015130" },
   { name: "토스뱅크 주식회사", code: "0017801" },
 ];
-
 const conditions = [
   "신규 가입",
   "거래 연동",
@@ -461,6 +465,10 @@ const changePage = (page) => {
 </script>
 
 <style scoped>
+.highlight {
+  color: var(--orange-color);
+  font-weight: bold;
+}
 .search-card {
   background-color: #fff; /* 배경색 */
   border: 1px solid #cacaca; /* 테두리 */

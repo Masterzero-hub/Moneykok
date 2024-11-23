@@ -73,12 +73,12 @@ const router = createRouter({
       children: [
         {
           path: '', // 기본 경로
-          name: 'subscribed-products',
+          name: 'myproduct',
           component: MyProduct
         },
         {
           path: 'personal-info',
-          name: 'personal-info',
+          name: 'personalinfo',
           component: PersonalInfo
         },
       ],
