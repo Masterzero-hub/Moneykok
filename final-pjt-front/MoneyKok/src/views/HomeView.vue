@@ -57,7 +57,7 @@
     <section class="community">
         <div class="community-content">
           <h2>금융 초년생들의 저축 커뮤니티</h2>
-          <p>나와 같은 상품을 선택한 사용자들과 정보도 공유하고, 함께 배울 수 있어요.</p>
+          <p>나와 같은 상품을 선택한 사용자들과 정보를 공유하며 함께 성장할 수 있어요.</p>
           <button class="btn-common" @click="goCommunity">커뮤니티 바로가기</button>
         </div>
         <img src="@/assets/main_image/5.png" alt="Community Illustration" />

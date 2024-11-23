@@ -1,7 +1,5 @@
 <template>
     <div class="container mt-5">
-      <h2 class="section-title mb-4">가입한 상품</h2>
-  
       <!-- 가입한 상품 목록 -->
       <div v-if="subscribedProducts.length > 0">
         <div

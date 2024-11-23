@@ -29,7 +29,7 @@
 
             <!-- Copyright Section -->
             <div class="copyright">
-              © Copyright 2024 - Choi HyeonJeong, Jang Inyoung
+              © Copyright 2024 - MoneyKok
             </div>
         </footer>
     </div>

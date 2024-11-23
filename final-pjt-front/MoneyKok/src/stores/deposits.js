@@ -1,7 +1,7 @@
 import { ref, computed, reactive } from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 export const useDepositsStore = defineStore(
   "deposits",
@@ -16,6 +16,9 @@ export const useDepositsStore = defineStore(
     });
 
     const filteredProducts = ref([]);
+
+    const joinTerm = ref(null); // 선택된 가입 기간
+    const joinAmount = ref(null); // 입력된 가입 금액
 
 
     // const saveProducts
@@ -79,8 +82,22 @@ export const useDepositsStore = defineStore(
         });
     };
 
-    return { products, productDetail, filters, filteredProducts,
-      getProducts, getProductDetail, getFilteredProducts };
+
+    const submitJoin = function () {
+      const router = useRouter()
+      if (!joinTerm.value || !joinAmount.value) {
+        console.error("가입 기간 또는 가입 금액이 설정되지 않았습니다.");
+        alert("가입 기간과 가입 금액을 입력해주세요.");
+        return;
+      }
+    
+      console.log(`가입 완료: 기간=${joinTerm.value}개월, 금액=${joinAmount.value}만원`);
+      
+      // myproduct 경로로 이동
+      router.push({ name: 'myproduct' });
+    };
+
+    return { products, productDetail, filters, filteredProducts, joinTerm, joinAmount,
+      getProducts, getProductDetail, getFilteredProducts, submitJoin };
   },
-  // { persist: true }
 );
