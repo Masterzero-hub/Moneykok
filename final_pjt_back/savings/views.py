@@ -1,22 +1,22 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from rest_framework.response import Response
-from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework import status
 from django.utils.timezone import now
 from django.conf import settings
+from datetime import timedelta, date
 from dateutil.relativedelta import relativedelta
-from datetime import date
 
 from django.db.models import Q, Count, Max, Subquery, OuterRef
 
-from .models import DepositOptions, DepositProducts, JoinedDeposits
+from .models import SavingsOptions, SavingsProducts, JoinedSavings
 from .serializers import (
-    DepositProductsGETSerializer,
-    DepositJoinSerializer,
-    JoinedDepositSerializer
+    SavingsProductsGETSerializer,
+    SavingsJoinSerializer,
+    JoinedSavingsDetailedSerializer,
 )
-from .utils import filter_deposit_products
+from .utils import filter_savings_products
 
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
@@ -25,42 +25,41 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 # Create your views here.
-##### 예금 상품 조회 #####
-# 예금상품 상세조회
+# 적금상품 상세조회
 @api_view(['GET'])
 @authentication_classes([])
 @permission_classes([])
-def deposit_detail(request, fin_prdt_cd):
+def savings_detail(request, fin_prdt_cd):
     try:
-        # 예금 상품 가져오기
-        deposit = get_object_or_404(DepositProducts, fin_prdt_cd=fin_prdt_cd)
+        # 적금 상품 가져오기
+        savings = get_object_or_404(SavingsProducts, fin_prdt_cd=fin_prdt_cd)
         
         # 직렬화 후 반환
-        serializer = DepositProductsGETSerializer(deposit, context={'request': request})
+        serializer = SavingsProductsGETSerializer(savings, context={'request': request})
         return Response(serializer.data)
     except Exception as e:
         # 기타 예외 처리
-        return JsonResponse({'message': '예금 상품 정보를 가져오는 중 오류가 발생했습니다.', 'error': str(e)}, status=500)
+        return JsonResponse({'message': '적금 상품 정보를 가져오는 중 오류가 발생했습니다.', 'error': str(e)}, status=500)
 
-# 예금 상품 조회
+# 적금 상품 조회
 @api_view(['GET'])
 @authentication_classes([])
 @permission_classes([])
-def deposits_list(request):
+def savings_list(request):
     try:
         # GET 요청 데이터를 필터로 전달
         filters = {key: (None if value in ['', [], '0'] else value) for key, value in request.GET.items()}
-        products = filter_deposit_products(filters)  # 필터링 함수 호출
+        products = filter_savings_products(filters)  # 필터링 함수 호출
     except ValueError as e:
-        return JsonResponse({'message': '조건에 맞는 데이터가 없습니다.','error': str(e)}, status=400)
+        return JsonResponse({'message': '조건에 맞는 데이터가 없습니다.', 'error': str(e)}, status=400)
     
     # `save_trm=12` 조건의 최고 금리 가져오기
-    options_with_save_trm_12 = DepositOptions.objects.filter(
+    options_with_save_trm_12 = SavingsOptions.objects.filter(
         product=OuterRef('pk'), save_trm=12
     ).order_by('-intr_rate2')
 
     # fallback: 가장 마지막 `intr_rate2` 데이터 가져오기
-    fallback_option = DepositOptions.objects.filter(
+    fallback_option = SavingsOptions.objects.filter(
         product=OuterRef('pk')
     ).order_by('-id')
 
@@ -84,20 +83,20 @@ def deposits_list(request):
         return JsonResponse({'message': '조건에 맞는 데이터가 없습니다.', 'data': []}, status=404)
 
     # 직렬화 후 응답
-    serializer = DepositProductsGETSerializer(products, many=True, context={'request': request})
+    serializer = SavingsProductsGETSerializer(products, many=True, context={'request': request})
     return Response(serializer.data)
 
 ##### 상품 가입하기 #####
 @api_view(['POST'])
-def deposit_join(request, fin_prdt_cd):
+def savings_join(request, fin_prdt_cd):
     try:
         # 로그인된 사용자
         user = request.user
 
-        # 예금 상품 정보 가져오기
+        # 적금 상품 정보 가져오기
         try:
-            product = DepositProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
-        except DepositProducts.DoesNotExist:
+            product = SavingsProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
+        except SavingsProducts.DoesNotExist:
             return Response({'error': '해당 상품이 존재하지 않습니다.'}, status=status.HTTP_404_NOT_FOUND)
 
         # 요청 데이터 가져오기
@@ -117,14 +116,14 @@ def deposit_join(request, fin_prdt_cd):
             return Response({'error': '입력 값은 숫자 형식이어야 합니다.'}, status=status.HTTP_400_BAD_REQUEST)
 
         # 최소 및 최대 가입 금액 확인
-        deposit_min_amount = product.deposit_min_amount or 0
-        deposit_max_amount = product.deposit_max_amount
+        savings_min_amount = product.savings_min_amount or 0
+        savings_max_amount = product.savings_max_amount
 
-        if save_amount < deposit_min_amount:
-            return Response({'error': f'가입 금액은 최소 {deposit_min_amount}원 이상이어야 합니다.'}, status=status.HTTP_400_BAD_REQUEST)
+        if save_amount < savings_min_amount:
+            return Response({'error': f'가입 금액은 최소 {savings_min_amount}원 이상이어야 합니다.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        if deposit_max_amount and save_amount > deposit_max_amount:
-            return Response({'error': f'가입 금액은 최대 {deposit_max_amount}원을 초과할 수 없습니다.'}, status=status.HTTP_400_BAD_REQUEST)
+        if savings_max_amount and save_amount > savings_max_amount:
+            return Response({'error': f'가입 금액은 최대 {savings_max_amount}원을 초과할 수 없습니다.'}, status=status.HTTP_400_BAD_REQUEST)
 
         # 적합한 옵션 필터링 (기간만 확인)
         valid_options = [
@@ -142,7 +141,7 @@ def deposit_join(request, fin_prdt_cd):
             return Response({'error': f'만기일 계산 중 오류가 발생했습니다: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         # 데이터 저장
-        joined_deposit = JoinedDeposits.objects.create(
+        joined_savings = JoinedSavings.objects.create(
             user=user,
             product=product,
             save_trm=save_trm,
@@ -152,22 +151,19 @@ def deposit_join(request, fin_prdt_cd):
         )
 
         # 결과 반환
-        serializer = DepositJoinSerializer(joined_deposit)
+        serializer = SavingsJoinSerializer(joined_savings)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    except Exception as e:
-        return Response({'error': f'서버 오류: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     except Exception as e:
         return Response({'error': f'서버 오류: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # 가입한 상품 목록 보여주기
 @api_view(["GET"])
-def joined_products(request):
+def joined_savings(request):
     try:
         user = request.user
         # 특정 사용자의 가입 데이터를 가져옴
-        joined_products = JoinedDeposits.objects.filter(user=user)
+        joined_products = JoinedSavings.objects.filter(user=user)
 
         if not joined_products.exists():
             return Response({"message": "No subscriptions found for this user."}, status=status.HTTP_404_NOT_FOUND)
@@ -176,11 +172,11 @@ def joined_products(request):
         joined_products = sorted(joined_products, key=lambda x: x.expired_date)
 
         # 직렬화
-        serializer = JoinedDepositSerializer(joined_products, many=True)
+        serializer = JoinedSavingsDetailedSerializer(joined_products, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     except Exception as e:
         return Response({'error': f'서버 오류: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
+
 
 @api_view(['GET'])
 def recommend_products(request):
@@ -191,7 +187,7 @@ def recommend_products(request):
     # Step 0: 필터링된 상품 가져오기
     try:
         filters = {key: (None if value in ['', [], '0'] else value) for key, value in request.GET.items()}
-        filtered_products = filter_deposit_products(filters)  # 필터링 함수 호출
+        filtered_products = filter_savings_products(filters)  # 필터링 함수 호출
     except ValueError as e:
         return Response({'error': str(e)}, status=400)
 
@@ -209,11 +205,11 @@ def recommend_products(request):
     similar_user_ids = [u[0].id for u in similar_users]
 
     # Step 2: 유사 사용자가 가입한 상품 가져오기
-    joined_deposits = JoinedDeposits.objects.filter(user_id__in=similar_user_ids)
+    joined_savings = JoinedSavings.objects.filter(user_id__in=similar_user_ids)
 
     # 상품별 점수 계산
     product_scores = (
-        joined_deposits
+        joined_savings
         .values('product_id')
         .annotate(score=Count('product_id'))
         .order_by('-score')
@@ -223,5 +219,6 @@ def recommend_products(request):
     recommended_product_ids = [p['product_id'] for p in product_scores[:3]]
     recommended_products = filtered_products.filter(id__in=recommended_product_ids)
 
-    serializer = DepositProductsGETSerializer(recommended_products, many=True)
+    # Step 3: 직렬화 및 응답 반환
+    serializer = SavingsProductsGETSerializer(recommended_products, many=True)
     return Response({'recommended_products': serializer.data})
