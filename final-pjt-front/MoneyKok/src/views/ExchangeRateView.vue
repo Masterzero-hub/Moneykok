@@ -34,28 +34,27 @@
 
             </div>
 
-            <!-- 금액 입력 -->
-            <div class="row mb-3 align-items-center">
-                <label class="col-md-2 col-form-label">금액 입력</label>
-                <div class="col-md-10">
-                    <input type="number" v-model="exchangeBefore" class="form-control"
-                        placeholder="금액을 입력하세요 (해당 통화)" />
-                </div>
-            </div>
 
-            <!-- 계산 결과 -->
+            <!-- 환전 결과 -->
             <div class="result-card p-4 mb-5 shadow-sm">
-                <h5 class="mb-3">계산 결과</h5>
-                <div>
-                    <p v-if="exchangeAfter !== '조건을 입력해주세요.'">
-                        계산 결과는
-                        <strong>
-                            {{ exchangeBefore }} ({{ country }}) ->
-                            {{ exchangeAfter }}
-                        </strong>
-                        입니다.
-                    </p>
-                    <p v-else>결과를 보기 위해 상태, 통화, 금액을 모두 입력하세요.</p>
+                <h5 class="mb-3">환전 결과</h5>
+
+                <!-- 금액 입력 -->
+                <div class="row mb-3 align-items-center">
+                    <label class="col-md-2 col-form-label">금액 입력</label>
+                    <div class="col-md-10 input-group">
+                        <input type="number" v-model="exchangeBefore" class="form-control" placeholder="금액 입력" />
+                        <span class="input-group-text">{{ exchangeDetail.cur_unit || country }}</span>
+                    </div>
+                </div>
+
+                <!-- 계산 결과 -->
+                <div class="row mb-3 align-items-center">
+                    <label class="col-md-2 col-form-label">환전 결과</label>
+                    <div class="col-md-10 input-group">
+                        <input type="text" :value="formattedExchangeAfter" class="form-control" readonly />
+                        <span class="input-group-text">대한민국 (KRW)</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,7 +63,7 @@
 
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted,computed  } from "vue";
 import { useExchangeStore } from "@/stores/exchangerate"; // 환율 정보를 가져올 Store 사용
 
 const store = useExchangeStore();
@@ -111,65 +110,55 @@ onMounted(() => {
     store.getExchangeInfo();
 });
 
-// 상태 선택
+// 상태 설정
 const setState = (item) => {
-    state.value = state.value === item ? "" : item; // 상태 토글
-    console.log("현재 상태:", state.value); // 상태 저장 확인
-    updateExchangeDetail();
+    state.value = state.value === item ? "" : item;
 };
 
-
-// 선택된 통화 및 상태 변경 시 환율 정보 업데이트
+// 통화 변경 시 환율 데이터 업데이트
 const updateExchangeDetail = () => {
-    // 선택된 통화의 상세 정보 검색
     exchangeDetail.value =
-        store.exchangeInfo.find((item) => item.cur_nm.includes(country.value)) ||
-        {};
+        store.exchangeInfo.find((item) => item.cur_nm.includes(country.value)) || {};
+    calculateExchange();
 };
 
-// 환율 계산
+// 환율 계산 로직
 const calculateExchange = () => {
-    console.log("계산 전 상태:", state.value, country.value, exchangeBefore.value);
-    if (!(state.value && country.value && exchangeBefore.value)) {
+    if (!state.value || !country.value || !exchangeBefore.value) {
         exchangeAfter.value = "조건을 입력해주세요.";
         return;
     }
 
-    if (state.value == "송금 받을 때" && exchangeDetail.value.ttb) {
-        exchangeDetail.value.ttb = exchangeDetail.value.ttb.replace(",", "");
-        exchangeAfter.value =
-            Number(exchangeBefore.value) * Number(exchangeDetail.value.ttb);
-    } else if (state.value == "송금 보낼 때" && exchangeDetail.value.tts) {
-        exchangeDetail.value.tts = exchangeDetail.value.tts.replace(",", "");
-        exchangeAfter.value =
-            Number(exchangeBefore.value) * Number(exchangeDetail.value.tts);
-    } else if (state.value == "매매 기준율" && exchangeDetail.value.deal_bas_r) {
-        exchangeDetail.value.deal_bas_r = exchangeDetail.value.deal_bas_r.replace(
-            ",",
-            ""
-        );
-        exchangeAfter.value =
-            Number(exchangeBefore.value) * Number(exchangeDetail.value.deal_bas_r);
-    } else if (!(state.value && country.value && exchangeBefore.value)) {
-        exchangeAfter.value = "조건을 입력해주세요.";
-    };
-}
+    const rateKey =
+        state.value === "송금 받을 때"
+            ? "ttb"
+            : state.value === "송금 보낼 때"
+                ? "tts"
+                : "deal_bas_r";
+
+    const rate = exchangeDetail.value[rateKey]?.replace(",", "");
+
+    if (rate) {
+        exchangeAfter.value = Number(exchangeBefore.value) * Number(rate);
+    } else {
+        exchangeAfter.value = "환율 정보를 찾을 수 없습니다.";
+    }
+};
+
+// 환율 결과 포맷팅
+const formattedExchangeAfter = computed(() =>
+    typeof exchangeAfter.value === "number"
+        ? new Intl.NumberFormat("ko-KR", { style: "currency", currency: "KRW" }).format(exchangeAfter.value)
+        : exchangeAfter.value
+);
+
+// 데이터 초기화
 onMounted(() => {
     store.getExchangeInfo();
-    console.log("가져온 환율 정보:", store.exchangeInfo); // Store 데이터 확인
 });
 
-// 조건이 충족될 때 자동으로 `calculateExchange` 실행
-watch(
-    [state, country, exchangeBefore],
-    ([newState, newCountry, newBefore]) => {
-        if (newState && newCountry && newBefore) {
-            calculateExchange();
-        } else {
-            exchangeAfter.value = "조건을 입력해주세요.";
-        }
-    }
-);
+// 상태 또는 통화 변경 시 계산 수행
+watch([state, country, exchangeBefore], updateExchangeDetail);
 </script>
 
 <style scoped>
