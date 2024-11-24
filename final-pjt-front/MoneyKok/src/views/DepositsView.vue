@@ -338,7 +338,7 @@ onMounted(() => {
 
 // ----- 검색 조건에 따른 필터링 -----
 // 검색조건 (가입 기간, 은행 목록, 우대 조건) 목록 정의
-const terms = [6, 12, 24, 36];
+const terms = [1, 3, 6, 12, 24, 36];
 const banks = [
   { name: "우리은행", code: "0010001" },
   { name: "한국스탠다드차드은행", code: "0010002" },
@@ -605,8 +605,8 @@ const changePage = (page) => {
 }
 
 .interest-rate {
-  font-size: 29px;
-  color: var(--dark-color);
+  font-size: 25px;
+  color: var(--orange-color);
   font-weight: 900;
   margin-bottom: 5px;
 }

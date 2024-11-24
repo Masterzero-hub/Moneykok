@@ -52,7 +52,10 @@
 .nav-link.active {
   font-weight: bold; /* 활성화된 탭은 볼드 */
   color: var(--orange-color)!important; /* 활성화된 탭의 글자 색 (오렌지) */
-  border-bottom: 2px solid var(--mint-color); /* 활성화된 탭의 하단 보더 */
+  border-bottom: none; /* 하단 테두리 제거 */
+  border-left: 1px solid transparent; /* 다른 테두리 유지 (필요 시 추가) */
+  border-right: 1px solid transparent;
+  border-top: 1px solid transparent;
 }
 
 .nav-link:hover {
