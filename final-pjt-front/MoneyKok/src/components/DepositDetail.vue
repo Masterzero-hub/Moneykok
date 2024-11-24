@@ -224,6 +224,7 @@ const handleJoin = () => {
   console.log(
     `가입 완료: 기간=${joinTerm.value}개월, 금액=${joinAmount.value}만원, 이자율=${finalJoinRate.value}%`
   );
+  alert('상품 가입이 완료되었습니다.')
 
   // 페이지 이동
   router.push({ name: "myproduct" });

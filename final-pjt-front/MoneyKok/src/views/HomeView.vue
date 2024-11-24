@@ -35,7 +35,7 @@
         <div class="service-card-content">
           <h2>내 근처 은행을 찾을 수 있어요</h2>
           <p>지도와 함께 내 근처에 있는 모든 은행 정보를 찾아보세요.</p>
-          <button class="btn-common">내 근처 은행 찾기</button>
+          <button class="btn-common" @click="goBank">내 근처 은행 찾기</button>
         </div>
       </div>
 
@@ -85,6 +85,10 @@ const goDeposits = function() {
 
 const goExchangeRate = function() {
   router.push({ name : 'exchangerate'})
+
+}
+const goBank = function() {
+  router.push({ name : 'bank'})
 }
 
 </script>

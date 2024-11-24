@@ -100,11 +100,11 @@ export const useDepositsStore = defineStore("deposits", () => {
   const joinProduct = function(depositCode) {
     axios
       .post(
-        `http://127.0.0.1:8000/deposit-detail/${depositCode}/join/`,
+        `http://127.0.0.1:8000/deposits/deposit-detail/${depositCode}/join/`,
         {
           save_trm: joinTerm.value,
-          joinAmount: joinAmount.value,
-          finalJoinRate: finalJoinRate.value,
+          save_amount: joinAmount.value,
+          final_intr_rate: finalJoinRate.value,
         },
         {
           headers: {
@@ -114,10 +114,29 @@ export const useDepositsStore = defineStore("deposits", () => {
       )
       .then((res) => {
         console.log("예금 상품 가입 완료:", res.data);
-
       })
       .catch((error) => {
         console.error("예금 상품 가입 오류:", error.response?.data || error);
+      });
+  };
+
+  // 가입 상품 조회
+  const joinedProducts = ref([]);
+
+  const getJoinedProducts = () => {
+    axios
+      .get("http://127.0.0.1:8000/joined-products/", 
+        {
+          headers: {
+            Authorization: `Token ${token.value}`,
+          },
+        }
+      )
+      .then((res) => {
+        joinedProducts.value = res.data;
+      })
+      .catch((error) => {
+        console.error("가입 상품 데이터를 불러오는 중 오류가 발생했습니다:", error);
       });
   };
 
@@ -131,10 +150,12 @@ export const useDepositsStore = defineStore("deposits", () => {
     joinAmount,
     finalJoinRate,
     joinConditions,
+    joinedProducts,
     getProducts,
     getProductDetail,
     getFilteredProducts,
     resetState,
-    joinProduct
+    joinProduct,
+    getJoinedProducts
   };
 });
