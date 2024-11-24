@@ -1,0 +1,512 @@
+[
+    {
+        "model": "accounts.User",
+        "pk": 1,
+        "fields": {
+            "email": "user1@example.com",
+            "name": "황경수",
+            "nickname": "황경수",
+            "phone": "010-3567-6080",
+            "gender": "남성",
+            "birthdate": "1959-06-26",
+            "income": 7596000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$TCZ4YbB4a75QmhUMpj3E9U$c6RvaLVJz0RdCjKiFZ+L4xhKzfmkLUvDgFCgn4S/m+k=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:33.326061+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 2,
+        "fields": {
+            "email": "user2@example.com",
+            "name": "서서서",
+            "nickname": "서서서",
+            "phone": "010-1452-1761",
+            "gender": "남성",
+            "birthdate": "1984-08-09",
+            "income": 7098000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$6ah3j013oy7lEj0dNPr01l$4zVoXt4yggH9UdP/4mRVOmWa2YAJA/GiFGwtQmTVbuw=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:33.808798+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 3,
+        "fields": {
+            "email": "user3@example.com",
+            "name": "오지호",
+            "nickname": "오지호",
+            "phone": "010-3260-8685",
+            "gender": "여성",
+            "birthdate": "1988-04-24",
+            "income": 2764000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$6pY1zGfShXcTnocFBpAeak$rju6B85h66225m3yu6UE2jtYZGfmfWY2AYQrQ8BldFk=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:34.256505+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 4,
+        "fields": {
+            "email": "user4@example.com",
+            "name": "김지준",
+            "nickname": "김지준",
+            "phone": "010-4214-7591",
+            "gender": "남성",
+            "birthdate": "1967-07-05",
+            "income": 6383000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$S6WwUh6yVjiADonSJ89BDR$cxyzSmX6Iz/M57sl0l89Cy9TKu6DN0U0+MH4YrbjQvU=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:34.714758+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 5,
+        "fields": {
+            "email": "user5@example.com",
+            "name": "장경진",
+            "nickname": "장경진",
+            "phone": "010-6601-5522",
+            "gender": "여성",
+            "birthdate": "1965-02-01",
+            "income": 6478000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$ckGj6EShaaQ2yC1EF9gtgM$c5BkjEPdSnhvyEBsD4C4YJFI1mW4+8HR6pfgR2KO3nM=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:35.142861+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 6,
+        "fields": {
+            "email": "user6@example.com",
+            "name": "이서인",
+            "nickname": "이서인",
+            "phone": "010-8057-3863",
+            "gender": "남성",
+            "birthdate": "1989-04-18",
+            "income": 4024000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$FD4DX68xPLeZgiqJzy3o8B$/j5vwUKrsVqaNg7uiSNRMOX22hCiQC9GkpjS6Uq4Qao=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:35.553017+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 7,
+        "fields": {
+            "email": "user7@example.com",
+            "name": "한도수",
+            "nickname": "한도수",
+            "phone": "010-8709-2720",
+            "gender": "남성",
+            "birthdate": "1966-05-06",
+            "income": 6874000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$9dTZ6vVAz8m0U5PNi0hBMw$sxZSw93zDZdHM28a6itUpT7HjpB/qHuTh6RywEMZHnA=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:36.020724+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 8,
+        "fields": {
+            "email": "user8@example.com",
+            "name": "손예혁",
+            "nickname": "손예혁",
+            "phone": "010-3981-4554",
+            "gender": "남성",
+            "birthdate": "1977-09-04",
+            "income": 5081000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$yKWemWtxmgudJXLF8vi41n$srtVz08a8FBAzNtyTxRSokGa/qml+Gl6No4XV+mNZrw=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:36.563082+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 9,
+        "fields": {
+            "email": "user9@example.com",
+            "name": "오주준",
+            "nickname": "오주준",
+            "phone": "010-7678-4391",
+            "gender": "여성",
+            "birthdate": "1972-10-20",
+            "income": 9992000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$7wAVC35g3C5tMvnILmXRmT$vZQwEatL0Bd4+aT2lVYkUNJ2DIoaTN2R6QCZcG5yHgQ=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:36.956418+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 10,
+        "fields": {
+            "email": "user10@example.com",
+            "name": "신진윤",
+            "nickname": "신진윤",
+            "phone": "010-2662-6541",
+            "gender": "여성",
+            "birthdate": "1963-11-18",
+            "income": 5503000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$GD6f0XiIaTaWgNFLqGY3qC$MLIFn0Ptkzlx1rx01lCCJwG8gYhPm8zoz0Tu1olv5yA=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:37.409043+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 11,
+        "fields": {
+            "email": "user11@example.com",
+            "name": "전하진",
+            "nickname": "전하진",
+            "phone": "010-1566-9503",
+            "gender": "남성",
+            "birthdate": "1972-01-12",
+            "income": 4682000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$RMuO7RmZKt9uiMO3bdaWoi$CsFkoRg9y94HfwUnE742NmwXJgJulC1haUrU6cBa/40=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:37.853005+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 12,
+        "fields": {
+            "email": "user12@example.com",
+            "name": "한윤경",
+            "nickname": "한윤경",
+            "phone": "010-5266-8847",
+            "gender": "여성",
+            "birthdate": "1982-02-19",
+            "income": 8550000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$BfSpFX6fWPxM7eondQwFix$UFKT8ik49FdLSC3NPne9ryYGgYV3zEXIrGLH1pO8WeA=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:38.279767+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 13,
+        "fields": {
+            "email": "user13@example.com",
+            "name": "이현진",
+            "nickname": "이현진",
+            "phone": "010-2827-4484",
+            "gender": "남성",
+            "birthdate": "1966-11-19",
+            "income": 5416000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$u4SMrCw5hP2GcPeh79YYN5$oviOwU/l27yFwaM6IGXJDq/czp1fKQOW01RRfRcc0wU=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:38.692073+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 14,
+        "fields": {
+            "email": "user14@example.com",
+            "name": "윤민서",
+            "nickname": "윤민서",
+            "phone": "010-1868-5507",
+            "gender": "남성",
+            "birthdate": "1979-01-04",
+            "income": 4156000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$MkH2YlN1J7ITA0FGa2zUAi$HEiXhVmGsYqMSMOxm7fQQkHe+12QwXmsWCo7xm6ufXo=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:39.093405+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 15,
+        "fields": {
+            "email": "user15@example.com",
+            "name": "이서윤",
+            "nickname": "이서윤",
+            "phone": "010-6987-2894",
+            "gender": "여성",
+            "birthdate": "1997-05-01",
+            "income": 6120000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$5gNI7yYeJ6ndOph1Q5nCZV$cp3MT2CdQZDf0MdqadO1OuKYTRat9FzNXL0hsg/iDCo=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:39.499444+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 16,
+        "fields": {
+            "email": "user16@example.com",
+            "name": "양윤인",
+            "nickname": "양윤인",
+            "phone": "010-7751-2928",
+            "gender": "여성",
+            "birthdate": "1992-02-05",
+            "income": 6405000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$dh89QU8jaBx1v49BwLn5tF$VmbVv+hLE6Hgfd9GvdFO2/RlDZjY2w88m89QttP6Si8=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:40.074800+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 17,
+        "fields": {
+            "email": "user17@example.com",
+            "name": "황세환",
+            "nickname": "황세환",
+            "phone": "010-1540-4993",
+            "gender": "여성",
+            "birthdate": "1999-06-08",
+            "income": 2653000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$f16VlUB0uwDOiOWEcfybAZ$h5DJIx2cKS1uKF8nPmU6n6mjF/WMvnv7TC5jCdcwWWw=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:40.491305+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 18,
+        "fields": {
+            "email": "user18@example.com",
+            "name": "강하우",
+            "nickname": "강하우",
+            "phone": "010-7901-5142",
+            "gender": "여성",
+            "birthdate": "1998-12-20",
+            "income": 7482000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$HI22nrh7SGxzdUMaJTj4ji$QiRSJVGlJcL1D4+51jfnmL5wzqHtGVshTzV+V2EzBB4=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:40.878272+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 19,
+        "fields": {
+            "email": "user19@example.com",
+            "name": "강승후",
+            "nickname": "강승후",
+            "phone": "010-6819-3630",
+            "gender": "남성",
+            "birthdate": "1953-01-14",
+            "income": 9158000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$1sBbC925BftqEy4XNtXZXu$vGMl/JdaLd3d5uoZtv6sAk75fbqJSlv1PnFDVuypa8o=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:41.303611+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 20,
+        "fields": {
+            "email": "user20@example.com",
+            "name": "신승진",
+            "nickname": "신승진",
+            "phone": "010-3716-1637",
+            "gender": "남성",
+            "birthdate": "1988-11-19",
+            "income": 3150000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$GHRX6yFrvLAWJQ9m7v0AGm$oyXA9o5MQNRFZjRn3izcxegi6o65o0q7Y+o6pwD7L+A=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:41.733282+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 21,
+        "fields": {
+            "email": "user21@example.com",
+            "name": "이서연",
+            "nickname": "이서연",
+            "phone": "010-7411-8936",
+            "gender": "여성",
+            "birthdate": "1962-07-16",
+            "income": 8926000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$qiYDNAhlXveIjYaEp99xdD$+hU0kBS+h2pYTjlwEJsb9wHmzrKK34GtRjltbuj+f3c=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:42.180550+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 22,
+        "fields": {
+            "email": "user22@example.com",
+            "name": "신경서",
+            "nickname": "신경서",
+            "phone": "010-6206-7663",
+            "gender": "남성",
+            "birthdate": "1957-08-22",
+            "income": 6805000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$UrjWY9axQPOQlooiIA4y2j$WhHF6Y2PwTSBfwf13gD25HyCWZtoCTw7l9rQnGBxl1s=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:42.585723+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 23,
+        "fields": {
+            "email": "user23@example.com",
+            "name": "신승경",
+            "nickname": "신승경",
+            "phone": "010-7826-4033",
+            "gender": "여성",
+            "birthdate": "2001-05-02",
+            "income": 2694000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$SZ3nsClE0oIaKi03PyTjH1$2H9g2CraOPU2cSY5yoP2rfMcNyeM0ZfuRAQOhAB2WbY=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:42.994041+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 24,
+        "fields": {
+            "email": "user24@example.com",
+            "name": "장도인",
+            "nickname": "장도인",
+            "phone": "010-1540-5872",
+            "gender": "남성",
+            "birthdate": "2000-11-26",
+            "income": 9133000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$k26km0cgQvCwJgr3CvCHPP$GeNXBiyzq6KclH3/0e/LzEu4PAzGfx0e7U1LmEHsq2g=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:43.496555+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 25,
+        "fields": {
+            "email": "user25@example.com",
+            "name": "양지혁",
+            "nickname": "양지혁",
+            "phone": "010-1842-3561",
+            "gender": "여성",
+            "birthdate": "1981-12-01",
+            "income": 3790000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$k9N45zm5X1g5zs4Jfl9CrO$tzDerfOxHBIOvy1SK1ns+R/9FDM+RXjxZDtRlVauGYk=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:43.946581+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 26,
+        "fields": {
+            "email": "user26@example.com",
+            "name": "강진환",
+            "nickname": "강진환",
+            "phone": "010-2329-3558",
+            "gender": "여성",
+            "birthdate": "1957-04-14",
+            "income": 4435000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$SAgeCA6D7PfUExgT4dRcFk$uZvpxg6VDGn9mbT4924ILLVwnwmrsl0F/Xc9XDlC3Kw=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:44.479373+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 27,
+        "fields": {
+            "email": "user27@example.com",
+            "name": "한윤환",
+            "nickname": "한윤환",
+            "phone": "010-8997-2245",
+            "gender": "여성",
+            "birthdate": "1970-11-07",
+            "income": 7987000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$t35NO8snvMyrhZ02QbdPXR$yBqZb3LdqsTnM2JBBfSrhUkkDu/AkhPjnuHNQUZ+1Io=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:44.914957+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 28,
+        "fields": {
+            "email": "user28@example.com",
+            "name": "이도아",
+            "nickname": "이도아",
+            "phone": "010-9077-4211",
+            "gender": "남성",
+            "birthdate": "2001-12-25",
+            "income": 9820000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$KrGN8s6AlLPQl9na5uF6n4$FQDxZm4/a4wvFV9JePtcI2ICXef+ZrwValqOvY/bbq4=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:45.358770+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 29,
+        "fields": {
+            "email": "user29@example.com",
+            "name": "박경윤",
+            "nickname": "박경윤",
+            "phone": "010-9554-6124",
+            "gender": "여성",
+            "birthdate": "1983-05-06",
+            "income": 3362000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$kaqYdpfDY2MMifCeV6SBHU$hl/H/QtU2MVR+qSbeqAS03nokw84Ud6LhqNxronIM8o=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:45.816385+00:00"
+        }
+    },
+    {
+        "model": "accounts.User",
+        "pk": 30,
+        "fields": {
+            "email": "user30@example.com",
+            "name": "윤지연",
+            "nickname": "윤지연",
+            "phone": "010-7743-2875",
+            "gender": "여성",
+            "birthdate": "1954-04-08",
+            "income": 9486000,
+            "profile_description": "이 사용자에 대한 설명입니다.",
+            "password": "pbkdf2_sha256$600000$U1CpW3WggpC1xa11SqyVnp$IQLg8K7feVNQoPwh7hq4qQPy4JT/npqcifM0F1FbPZg=",
+            "is_active": true,
+            "date_joined": "2024-11-24T11:49:46.245976+00:00"
+        }
+    }
+]
