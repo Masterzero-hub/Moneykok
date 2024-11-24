@@ -1,0 +1,652 @@
+[
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 1,
+        "fields": {
+            "user": 12,
+            "product": 38,
+            "save_trm": 12,
+            "save_amount": 7656624,
+            "joined_date": "2023-03-07",
+            "expired_date": "2024-03-01",
+            "final_intr_rate": 1.74
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 2,
+        "fields": {
+            "user": 18,
+            "product": 39,
+            "save_trm": 36,
+            "save_amount": 43262192,
+            "joined_date": "2023-03-14",
+            "expired_date": "2026-02-26",
+            "final_intr_rate": 2.05
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 3,
+        "fields": {
+            "user": 19,
+            "product": 16,
+            "save_trm": 6,
+            "save_amount": 9070100,
+            "joined_date": "2022-02-15",
+            "expired_date": "2022-08-14",
+            "final_intr_rate": 4.27
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 4,
+        "fields": {
+            "user": 18,
+            "product": 17,
+            "save_trm": 6,
+            "save_amount": 33817772,
+            "joined_date": "2022-10-20",
+            "expired_date": "2023-04-18",
+            "final_intr_rate": 1.32
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 5,
+        "fields": {
+            "user": 5,
+            "product": 38,
+            "save_trm": 3,
+            "save_amount": 4714456,
+            "joined_date": "2024-06-24",
+            "expired_date": "2024-09-22",
+            "final_intr_rate": 4.64
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 6,
+        "fields": {
+            "user": 14,
+            "product": 9,
+            "save_trm": 1,
+            "save_amount": 29948195,
+            "joined_date": "2023-02-25",
+            "expired_date": "2023-03-27",
+            "final_intr_rate": 4.2
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 7,
+        "fields": {
+            "user": 9,
+            "product": 11,
+            "save_trm": 12,
+            "save_amount": 44627394,
+            "joined_date": "2023-12-17",
+            "expired_date": "2024-12-11",
+            "final_intr_rate": 4.24
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 8,
+        "fields": {
+            "user": 15,
+            "product": 32,
+            "save_trm": 3,
+            "save_amount": 3704704,
+            "joined_date": "2023-11-06",
+            "expired_date": "2024-02-04",
+            "final_intr_rate": 2.64
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 9,
+        "fields": {
+            "user": 4,
+            "product": 20,
+            "save_trm": 6,
+            "save_amount": 29555947,
+            "joined_date": "2023-05-21",
+            "expired_date": "2023-11-17",
+            "final_intr_rate": 4.05
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 10,
+        "fields": {
+            "user": 20,
+            "product": 20,
+            "save_trm": 6,
+            "save_amount": 47109595,
+            "joined_date": "2022-04-03",
+            "expired_date": "2022-09-30",
+            "final_intr_rate": 4.15
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 11,
+        "fields": {
+            "user": 19,
+            "product": 6,
+            "save_trm": 24,
+            "save_amount": 21594060,
+            "joined_date": "2023-10-14",
+            "expired_date": "2025-10-03",
+            "final_intr_rate": 3.29
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 12,
+        "fields": {
+            "user": 13,
+            "product": 9,
+            "save_trm": 36,
+            "save_amount": 36455920,
+            "joined_date": "2023-08-14",
+            "expired_date": "2026-07-29",
+            "final_intr_rate": 3.75
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 13,
+        "fields": {
+            "user": 16,
+            "product": 39,
+            "save_trm": 24,
+            "save_amount": 23781041,
+            "joined_date": "2022-11-21",
+            "expired_date": "2024-11-10",
+            "final_intr_rate": 3.67
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 14,
+        "fields": {
+            "user": 6,
+            "product": 15,
+            "save_trm": 24,
+            "save_amount": 38697386,
+            "joined_date": "2024-05-09",
+            "expired_date": "2026-04-29",
+            "final_intr_rate": 2.66
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 15,
+        "fields": {
+            "user": 15,
+            "product": 19,
+            "save_trm": 24,
+            "save_amount": 13162730,
+            "joined_date": "2022-08-11",
+            "expired_date": "2024-07-31",
+            "final_intr_rate": 4.45
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 16,
+        "fields": {
+            "user": 4,
+            "product": 17,
+            "save_trm": 24,
+            "save_amount": 19003488,
+            "joined_date": "2021-11-28",
+            "expired_date": "2023-11-18",
+            "final_intr_rate": 3.8
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 17,
+        "fields": {
+            "user": 20,
+            "product": 31,
+            "save_trm": 36,
+            "save_amount": 20145778,
+            "joined_date": "2022-11-04",
+            "expired_date": "2025-10-19",
+            "final_intr_rate": 4.13
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 18,
+        "fields": {
+            "user": 13,
+            "product": 8,
+            "save_trm": 24,
+            "save_amount": 13861303,
+            "joined_date": "2024-07-02",
+            "expired_date": "2026-06-22",
+            "final_intr_rate": 3.59
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 19,
+        "fields": {
+            "user": 3,
+            "product": 29,
+            "save_trm": 6,
+            "save_amount": 36978763,
+            "joined_date": "2024-01-24",
+            "expired_date": "2024-07-22",
+            "final_intr_rate": 1.03
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 20,
+        "fields": {
+            "user": 20,
+            "product": 2,
+            "save_trm": 6,
+            "save_amount": 30815336,
+            "joined_date": "2024-07-09",
+            "expired_date": "2025-01-05",
+            "final_intr_rate": 4.49
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 21,
+        "fields": {
+            "user": 13,
+            "product": 36,
+            "save_trm": 36,
+            "save_amount": 25135537,
+            "joined_date": "2022-12-27",
+            "expired_date": "2025-12-11",
+            "final_intr_rate": 1.3
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 22,
+        "fields": {
+            "user": 19,
+            "product": 32,
+            "save_trm": 6,
+            "save_amount": 17211882,
+            "joined_date": "2022-11-26",
+            "expired_date": "2023-05-25",
+            "final_intr_rate": 1.15
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 23,
+        "fields": {
+            "user": 4,
+            "product": 25,
+            "save_trm": 1,
+            "save_amount": 37918900,
+            "joined_date": "2024-03-11",
+            "expired_date": "2024-04-10",
+            "final_intr_rate": 3.04
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 24,
+        "fields": {
+            "user": 15,
+            "product": 28,
+            "save_trm": 12,
+            "save_amount": 45347326,
+            "joined_date": "2022-04-22",
+            "expired_date": "2023-04-17",
+            "final_intr_rate": 3.56
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 25,
+        "fields": {
+            "user": 6,
+            "product": 20,
+            "save_trm": 1,
+            "save_amount": 14133301,
+            "joined_date": "2022-08-19",
+            "expired_date": "2022-09-18",
+            "final_intr_rate": 4.43
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 26,
+        "fields": {
+            "user": 4,
+            "product": 31,
+            "save_trm": 6,
+            "save_amount": 44829474,
+            "joined_date": "2023-12-29",
+            "expired_date": "2024-06-26",
+            "final_intr_rate": 1.26
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 27,
+        "fields": {
+            "user": 19,
+            "product": 19,
+            "save_trm": 3,
+            "save_amount": 15863643,
+            "joined_date": "2024-03-11",
+            "expired_date": "2024-06-09",
+            "final_intr_rate": 1.18
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 28,
+        "fields": {
+            "user": 16,
+            "product": 7,
+            "save_trm": 36,
+            "save_amount": 22849667,
+            "joined_date": "2022-08-06",
+            "expired_date": "2025-07-21",
+            "final_intr_rate": 3.86
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 29,
+        "fields": {
+            "user": 17,
+            "product": 25,
+            "save_trm": 3,
+            "save_amount": 43643870,
+            "joined_date": "2024-07-21",
+            "expired_date": "2024-10-19",
+            "final_intr_rate": 3.89
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 30,
+        "fields": {
+            "user": 18,
+            "product": 25,
+            "save_trm": 1,
+            "save_amount": 13545741,
+            "joined_date": "2024-06-01",
+            "expired_date": "2024-07-01",
+            "final_intr_rate": 1.86
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 31,
+        "fields": {
+            "user": 4,
+            "product": 11,
+            "save_trm": 1,
+            "save_amount": 4457938,
+            "joined_date": "2023-05-04",
+            "expired_date": "2023-06-03",
+            "final_intr_rate": 2.27
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 32,
+        "fields": {
+            "user": 4,
+            "product": 22,
+            "save_trm": 6,
+            "save_amount": 26346543,
+            "joined_date": "2023-05-21",
+            "expired_date": "2023-11-17",
+            "final_intr_rate": 3.13
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 33,
+        "fields": {
+            "user": 4,
+            "product": 39,
+            "save_trm": 12,
+            "save_amount": 7984072,
+            "joined_date": "2022-05-04",
+            "expired_date": "2023-04-29",
+            "final_intr_rate": 3.87
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 34,
+        "fields": {
+            "user": 16,
+            "product": 21,
+            "save_trm": 6,
+            "save_amount": 27738806,
+            "joined_date": "2022-01-20",
+            "expired_date": "2022-07-19",
+            "final_intr_rate": 2.67
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 35,
+        "fields": {
+            "user": 11,
+            "product": 34,
+            "save_trm": 36,
+            "save_amount": 43928868,
+            "joined_date": "2024-10-21",
+            "expired_date": "2027-10-06",
+            "final_intr_rate": 1.04
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 36,
+        "fields": {
+            "user": 5,
+            "product": 13,
+            "save_trm": 6,
+            "save_amount": 44687306,
+            "joined_date": "2022-08-14",
+            "expired_date": "2023-02-10",
+            "final_intr_rate": 4.37
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 37,
+        "fields": {
+            "user": 11,
+            "product": 18,
+            "save_trm": 3,
+            "save_amount": 12123337,
+            "joined_date": "2023-11-15",
+            "expired_date": "2024-02-13",
+            "final_intr_rate": 1.42
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 38,
+        "fields": {
+            "user": 18,
+            "product": 36,
+            "save_trm": 1,
+            "save_amount": 49146629,
+            "joined_date": "2023-05-08",
+            "expired_date": "2023-06-07",
+            "final_intr_rate": 2.54
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 39,
+        "fields": {
+            "user": 20,
+            "product": 13,
+            "save_trm": 12,
+            "save_amount": 5923646,
+            "joined_date": "2022-11-04",
+            "expired_date": "2023-10-30",
+            "final_intr_rate": 1.68
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 40,
+        "fields": {
+            "user": 4,
+            "product": 25,
+            "save_trm": 24,
+            "save_amount": 1654267,
+            "joined_date": "2023-06-11",
+            "expired_date": "2025-05-31",
+            "final_intr_rate": 2.93
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 41,
+        "fields": {
+            "user": 10,
+            "product": 25,
+            "save_trm": 1,
+            "save_amount": 49487899,
+            "joined_date": "2022-10-08",
+            "expired_date": "2022-11-07",
+            "final_intr_rate": 4.48
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 42,
+        "fields": {
+            "user": 14,
+            "product": 27,
+            "save_trm": 6,
+            "save_amount": 10266769,
+            "joined_date": "2022-10-19",
+            "expired_date": "2023-04-17",
+            "final_intr_rate": 4.02
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 43,
+        "fields": {
+            "user": 11,
+            "product": 36,
+            "save_trm": 3,
+            "save_amount": 45203091,
+            "joined_date": "2023-01-13",
+            "expired_date": "2023-04-13",
+            "final_intr_rate": 4.73
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 44,
+        "fields": {
+            "user": 15,
+            "product": 9,
+            "save_trm": 1,
+            "save_amount": 9431078,
+            "joined_date": "2024-05-13",
+            "expired_date": "2024-06-12",
+            "final_intr_rate": 1.86
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 45,
+        "fields": {
+            "user": 18,
+            "product": 29,
+            "save_trm": 1,
+            "save_amount": 35654879,
+            "joined_date": "2022-11-04",
+            "expired_date": "2022-12-04",
+            "final_intr_rate": 2.91
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 46,
+        "fields": {
+            "user": 6,
+            "product": 34,
+            "save_trm": 1,
+            "save_amount": 33387592,
+            "joined_date": "2023-06-21",
+            "expired_date": "2023-07-21",
+            "final_intr_rate": 1.54
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 47,
+        "fields": {
+            "user": 13,
+            "product": 1,
+            "save_trm": 36,
+            "save_amount": 20586970,
+            "joined_date": "2022-05-03",
+            "expired_date": "2025-04-17",
+            "final_intr_rate": 2.59
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 48,
+        "fields": {
+            "user": 11,
+            "product": 29,
+            "save_trm": 3,
+            "save_amount": 29743091,
+            "joined_date": "2022-11-04",
+            "expired_date": "2023-02-02",
+            "final_intr_rate": 4.74
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 49,
+        "fields": {
+            "user": 15,
+            "product": 14,
+            "save_trm": 24,
+            "save_amount": 9732096,
+            "joined_date": "2023-12-13",
+            "expired_date": "2025-12-02",
+            "final_intr_rate": 1.29
+        }
+    },
+    {
+        "model": "deposits.JoinedDeposits",
+        "pk": 50,
+        "fields": {
+            "user": 3,
+            "product": 14,
+            "save_trm": 6,
+            "save_amount": 23102009,
+            "joined_date": "2024-04-23",
+            "expired_date": "2024-10-20",
+            "final_intr_rate": 4.12
+        }
+    }
+]
