@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes , permission_classes
 from rest_framework.response import Response
 import requests
 from rest_framework import status
@@ -10,11 +10,14 @@ from .serializers import ExchangeSerializer
 
 # Create your views here.
 @api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def exchange(request):
     EXCHANGE_URL = 'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON'
     params = {
         'authkey': settings.EXCHANGE_API_KEY,
-        'searchdate': timezone.now().strftime('%Y%m%d'),
+        # 'searchdate': timezone.now().strftime('%Y%m%d'),
+        'searchdate': '20241122',
         'data': 'AP01'
     }
 

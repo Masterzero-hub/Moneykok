@@ -50,4 +50,4 @@ class JoinedDeposits(models.Model):
     save_amount = models.IntegerField() #가입 금액
     joined_date = models.DateField(auto_now=True) # 가입한날짜
     expired_date = models.DateField() # 만기일
-    intr_rate = models.FloatField()  # 저축금리
+    final_intr_rate = models.FloatField()  # 저축금리

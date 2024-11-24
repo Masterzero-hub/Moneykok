@@ -14,10 +14,6 @@ from django.contrib.auth import logout
 # 인증 설정
 from rest_framework.decorators import api_view, authentication_classes , permission_classes
 
-# 권한 설정
-from rest_framework.permissions import AllowAny
-
-
 User = get_user_model()
 
 def get_verification(email):
@@ -31,7 +27,7 @@ def get_verification(email):
 
 @api_view(['POST'])
 @authentication_classes([])
-# @permission_classes([])
+@permission_classes([])
 def signup(request):
     """회원가입 API"""
     serializer = SignupSerializer(data=request.data)
@@ -47,7 +43,7 @@ def signup(request):
 
 @api_view(['POST'])
 @authentication_classes([])
-# @permission_classes([])
+@permission_classes([])
 def send_code_email(request):
     """이메일 인증 코드 발송"""
     email = request.data.get('email')
@@ -98,7 +94,7 @@ def send_code_email(request):
 
 @api_view(['POST'])
 @authentication_classes([])
-# @permission_classes([])
+@permission_classes([])
 def verify_email(request):
     """인증 코드 확인 및 이메일 인증 처리"""
     email = request.data.get('email')
