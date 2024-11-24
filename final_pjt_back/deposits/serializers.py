@@ -60,14 +60,14 @@ class DepositProductsGETSerializer(serializers.ModelSerializer):
 class JoinedDepositsSerializer(serializers.ModelSerializer):
     class Meta:
         model = JoinedDeposits
-        fields = ['save_amount', 'save_trm', 'joined_date', 'expired_date', 'intr_rate']
+        fields = ['save_amount', 'save_trm', 'joined_date', 'expired_date', 'final_intr_rate']
 
 class DepositJoinSerializer(serializers.ModelSerializer):
-    product = DepositProductsGETSerializer(read_only=True)  # DepositProductsGETSerializer로 확장
+    product = DepositProductsGETSerializer(read_only=True)  # 예금 상품 상세 정보
 
     class Meta:
         model = JoinedDeposits
-        fields = ('user', 'product', 'save_trm', 'save_amount', 'joined_date','expired_date', 'intr_rate')
+        fields = ('user', 'product', 'save_trm', 'save_amount', 'joined_date', 'expired_date', 'final_intr_rate')
         read_only_fields = ('user', 'product')
         
 class JoinedDepositSerializer(serializers.ModelSerializer):
@@ -84,5 +84,5 @@ class JoinedDepositSerializer(serializers.ModelSerializer):
             'save_trm',
             'joined_date',
             'expired_date',  # 추가
-            'intr_rate'
+            'final_intr_rate'
         ]

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from rest_framework.decorators import api_view
 from rest_framework import status
 from django.conf import settings
 import requests
@@ -16,14 +15,20 @@ from dateutil.relativedelta import relativedelta
 from django.db.models import Count
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
-from accounts.models import User
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 from datetime import date
+from rest_framework.decorators import api_view, authentication_classes , permission_classes
+
 
 # Create your views here.
 ##### 예금 상품 조회 #####
 # 예금 상품 API를 통해 저장
 @api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def save_products(request):
     URL = settings.DEPOSIT_URL +'depositProductsSearch.json'
     params ={
@@ -116,6 +121,8 @@ def save_products(request):
 
 # 예금상품 상세조회
 @api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def deposit_detail(request, fin_prdt_cd):
     try:
         # 예금 상품 가져오기
@@ -133,6 +140,8 @@ from django.db.models import Max, Subquery, OuterRef
 
 # 예금 상품 조회
 @api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def deposits_list(request):
     data = request.GET  # GET 요청 데이터 가져오기
     filters = {key: (None if value in ['', [], '0'] else value) for key, value in data.items()}
@@ -218,13 +227,14 @@ def deposits_list(request):
     return Response(serializer.data)
 
 
-from dotenv import load_dotenv
-from django.http import JsonResponse
-from .models import DepositProducts, DepositSpecialCondition
-from django.conf import settings
-from groq import Groq
 import json
 import re
+from dotenv import load_dotenv
+from django.http import JsonResponse
+from django.conf import settings
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from .models import DepositProducts, DepositSpecialCondition
+from groq import Groq
 
 # .env 파일 로드
 load_dotenv()
@@ -302,58 +312,6 @@ def parse_special_conditions(spcl_cnd_text):
         print(f"예기치 못한 오류: {e}")
         return []
 
-def classify(request):
-    """
-    모든 예금 상품의 우대조건 데이터를 분석하고 저장합니다.
-    """
-    products = DepositProducts.objects.all()
-    for product in products:
-        spcl_cnd = product.spcl_cnd.strip()
-        if spcl_cnd and spcl_cnd not in ['우대조건 없음', '해당사항 없음', '없음']:
-
-            parsed_conditions = parse_special_conditions(spcl_cnd)
-            for condition in parsed_conditions:
-                category = condition.get('category')
-                condition_title = condition.get('condition_title')
-                condition_content = condition.get('condition_content')
-                prime_rate = condition.get('prime_rate')
-
-                # 이미 동일한 우대조건이 존재하는지 확인
-                if DepositSpecialCondition.objects.filter(
-                    product=product,
-                    category=category,
-                    condition_title=condition_title,
-                    condition_content=condition_content,
-                    prime_rate=prime_rate,
-                ).exists():
-                    continue
-
-                # 우대조건 정보를 저장
-                DepositSpecialCondition.objects.create(
-                    product=product,
-                    category=category,
-                    condition_title=condition_title,
-                    condition_content=condition_content,
-                    prime_rate=prime_rate,
-                )
-
-    """
-    DepositProducts의 가입금액 데이터를 분석하여 (만원) 단위로 저장합니다.
-    """
-    products = DepositProducts.objects.all()
-    for product in products:
-        etc_note = product.etc_note.strip()
-        if etc_note:
-            # 가입금액 분석
-            min_amount, max_amount = parse_deposit_amount(etc_note)
-
-            # 분석된 데이터를 모델 필드에 저장
-            product.deposit_min_amount = min_amount
-            product.deposit_max_amount = max_amount
-            product.save()
-
-    return JsonResponse({'message': '우대조건 및 가입금액 정보 저장 완료'})
-
 def categorize_condition(condition_name):
     """
     우대조건 이름을 기반으로 6가지 카테고리 중 하나로 분류합니다.
@@ -373,44 +331,101 @@ def categorize_condition(condition_name):
                 return category
     return "기타"  # 기본값으로 기타 반환
 
-def parse_deposit_amount(etc_note):
+def parse_deposit_amount_ai(etc_note, ai_client):
     """
-    가입금액 텍스트를 분석하여 최소 및 최대 금액을 숫자(만원 단위)로 반환합니다.
+    AI를 사용해 가입금액 텍스트에서 최소 및 최대 금액을 분석합니다.
     """
     if not etc_note:
         return None, None
+    # 프롬프트 작성
+    prompt = f"""다음 텍스트에서 가입금액과 관련된 최소 및 최대 금액을 분석하세요. 텍스트에서 금액이 명시되어 있다면 '최소 금액'과 '최대 금액'을 정확히 추출하고, 금액 단위는 반드시 **만원 단위의 숫자**로 반환하세요.
 
-    # 금액을 숫자(만원)로 변환
-    def convert_to_number(text):
-        text = text.replace(',', '').replace(' ', '')  # 쉼표와 공백 제거
-        if '억원' in text:
-            return int(float(text.replace('억원', '')) * 10000)  # 1억 = 10,000만원
-        elif '천만원' in text:
-            return int(float(text.replace('천만원', '')) * 1000)  # 1천만 = 1,000만원
-        elif '백만원' in text:
-            return int(float(text.replace('백만원', '')) * 100)  # 1백만 = 100만원
-        elif '만원' in text:
-            return int(text.replace('만원', ''))  # 1만원 단위 그대로
-        else:
-            # 숫자만 주어진 경우 (만원 단위로 판단)
-            return int(re.sub(r'\D', '', text))  # 숫자 외 제거 후 숫자로 변환
+    #### 규칙
+    1. "최소", "최저", "이상", "초과" 키워드와 연결된 금액을 '최소 금액'으로 설정하세요.
+    2. "최대", "최고", "이내", "이하", "미만" 키워드와 연결된 금액을 '최대 금액'으로 설정하세요.
+    3. 금액 단위는 '원', '만원', '백만원', '천만원', '억원' 등을 포함할 수 있으며, 이를 **만원 단위**로 변환해야 합니다.
+    4. 숫자만 명시된 경우 이를 만원 단위로 판단합니다.
 
-    # 최소/최대 금액 초기화
-    min_amount, max_amount = None, None
+    #### 텍스트 예시
+    1. "1인당 최소 100만원 이상, 최대 10억원 이하"
+    결과 :
+    2. "가입금액: 1백만원 이상, 1억원 이내"
+    3. "가입금액은 최소 50만원 이상입니다."
 
-    # "이상", "초과" 조건에서 최소 금액 파싱
-    if '이상' in etc_note or '초과' in etc_note:
-        match = re.search(r'\d+[백|천|억]?만원?', etc_note)
-        if match:
-            min_amount = convert_to_number(match.group())
+    #### 응답 형식
+    결과를 JSON 형식으로 반환하세요:
+    {{
+        "min_amount": 최소 금액 (만원 단위),
+        "max_amount": 최대 금액 (만원 단위)
+    }}
 
-    # "이하", "미만" 조건에서 최대 금액 파싱
-    if '이하' in etc_note or '미만' in etc_note:
-        match = re.search(r'\d+[백|천|억]?만원?', etc_note)
-        if match:
-            max_amount = convert_to_number(match.group())
+    #### 텍스트:
+    {etc_note}
+    """
 
-    return min_amount, max_amount
+    try:
+        response = ai_client.chat.completions.create(
+            messages=[
+                {"role": "system", "content": "당신은 금융 텍스트 분석 전문가입니다."},
+                {"role": "user", "content": prompt},
+            ],
+            model="llama-3.1-70b-versatile",
+            temperature=0,
+            max_tokens=256,
+        )
+
+        if not response.choices or not response.choices[0].message:
+            print("API 응답에 메시지가 없습니다.")
+            return None, None
+
+        assistant_message = response.choices[0].message.content.strip()
+        try:
+            amount_data = json.loads(assistant_message)
+            return amount_data.get("min_amount"), amount_data.get("max_amount")
+        except json.JSONDecodeError as e:
+            print(f"JSON 디코딩 오류: {e}, 응답 내용: {assistant_message}")
+            return None, None
+
+    except Exception as e:
+        print(f"예기치 못한 오류: {e}")
+        return None, None
+
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
+def classify(request):
+    """
+    예금 상품의 우대조건 및 가입금액 데이터를 분석하고 저장.
+    """
+    products = DepositProducts.objects.all()
+
+    # 우대조건 분석 및 저장
+    for product in products:
+        spcl_cnd = product.spcl_cnd.strip()
+        if spcl_cnd and spcl_cnd not in ['우대조건 없음', '해당사항 없음', '없음']:
+            parsed_conditions = parse_special_conditions(spcl_cnd)
+            for condition in parsed_conditions:
+                if not DepositSpecialCondition.objects.filter(
+                    product=product,
+                    **condition
+                ).exists():
+                    DepositSpecialCondition.objects.create(product=product, **condition)
+
+        # 가입금액 분석 및 저장
+        etc_note = product.etc_note.strip()
+        if etc_note:
+            min_amount, max_amount = parse_deposit_amount_ai(etc_note, client)
+            print(f"가입금액 파싱 결과: {etc_note} -> 최소: {min_amount}, 최대: {max_amount}")  # 로그 추가
+            if min_amount is not None and max_amount is not None:
+                product.deposit_min_amount = min_amount
+                product.deposit_max_amount = max_amount
+                product.save()
+            else:
+                print(f"가입금액 파싱 실패: {etc_note}")
+
+    return JsonResponse({'message': '우대조건 및 가입금액 정보 저장 완료'})
+
+
 
 
 ##### 상품 가입하기 #####
@@ -419,8 +434,6 @@ def deposit_join(request, fin_prdt_cd):
     try:
         # 로그인된 사용자
         user = request.user
-        if not user.is_authenticated:
-            return Response({'error': '로그인이 필요합니다.'}, status=status.HTTP_401_UNAUTHORIZED)
 
         # 예금 상품 정보 가져오기
         try:
@@ -429,23 +442,24 @@ def deposit_join(request, fin_prdt_cd):
             return Response({'error': '해당 상품이 존재하지 않습니다.'}, status=status.HTTP_404_NOT_FOUND)
 
         # 요청 데이터 가져오기
-        save_trm = request.data.get('save_trm')  # 개월 수 (예: '7')
-        save_amount = request.data.get('save_amount')  # 만 원 단위 (예: '100')
+        save_trm = request.data.get('save_trm')  # 가입 기간 (개월)
+        save_amount = request.data.get('save_amount')  # 가입 금액 (만 원 단위)
+        final_intr_rate = request.data.get('final_intr_rate')  # 사용자 요청 금리
 
-        if not save_trm or not save_amount:
-            return Response({'error': '가입 기간(save_trm)과 금액(save_amount)을 입력하세요.'}, status=status.HTTP_400_BAD_REQUEST)
+        if not save_trm or not save_amount or final_intr_rate is None:
+            return Response({'error': '가입 기간(save_trm), 금액(save_amount), 금리(final_intr_rate)를 입력하세요.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # save_trm과 save_amount를 정수로 변환
+        # 입력 값 검증
         try:
-            save_trm = int(save_trm)  # 개월 단위
-            save_amount = int(save_amount) * 10000  # 만 원 -> 원 단위 변환
+            save_trm = int(save_trm)
+            save_amount = int(save_amount) * 10000
+            final_intr_rate = float(final_intr_rate)
         except ValueError:
-            return Response({'error': '가입 기간 및 금액은 숫자로 입력해야 합니다.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': '입력 값은 숫자 형식이어야 합니다.'}, status=status.HTTP_400_BAD_REQUEST)
 
-
-         # 최소 및 최대 가입 금액 확인
-        deposit_min_amount = product.deposit_min_amount or 0  # 최소 금액이 없으면 0
-        deposit_max_amount = product.deposit_max_amount  # 최대 금액이 없을 수도 있음
+        # 최소 및 최대 가입 금액 확인
+        deposit_min_amount = product.deposit_min_amount or 0
+        deposit_max_amount = product.deposit_max_amount
 
         if save_amount < deposit_min_amount:
             return Response({'error': f'가입 금액은 최소 {deposit_min_amount}원 이상이어야 합니다.'}, status=status.HTTP_400_BAD_REQUEST)
@@ -453,22 +467,18 @@ def deposit_join(request, fin_prdt_cd):
         if deposit_max_amount and save_amount > deposit_max_amount:
             return Response({'error': f'가입 금액은 최대 {deposit_max_amount}원을 초과할 수 없습니다.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # 적합한 금리 옵션 필터링
+        # 적합한 옵션 필터링 (기간만 확인)
         valid_options = [
             option for option in product.options.all()
-            if option.save_trm <= save_trm
+            if option.save_trm == save_trm
         ]
 
         if not valid_options:
-            return Response({'error': f'{save_trm}개월 이하에 해당하는 금리 옵션이 없습니다.'}, status=status.HTTP_400_BAD_REQUEST)
-
-        # 가장 긴 save_trm 옵션 선택
-        selected_option = max(valid_options, key=lambda opt: opt.save_trm)
-        intr_rate = selected_option.intr_rate
+            return Response({'error': f'{save_trm}개월에 해당하는 옵션이 존재하지 않습니다.'}, status=status.HTTP_400_BAD_REQUEST)
 
         # 만기일 계산
         try:
-            expired_date = now().date() + relativedelta(months=save_trm)  # datetime.date 객체
+            expired_date = now().date() + relativedelta(months=save_trm)
         except Exception as e:
             return Response({'error': f'만기일 계산 중 오류가 발생했습니다: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -478,8 +488,8 @@ def deposit_join(request, fin_prdt_cd):
             product=product,
             save_trm=save_trm,
             save_amount=save_amount,
-            expired_date=expired_date,  # date 객체 그대로 전달
-            intr_rate=intr_rate
+            expired_date=expired_date,
+            final_intr_rate=final_intr_rate
         )
 
         # 결과 반환
@@ -489,6 +499,10 @@ def deposit_join(request, fin_prdt_cd):
     except Exception as e:
         return Response({'error': f'서버 오류: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+    except Exception as e:
+        return Response({'error': f'서버 오류: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# 가입한 상품 목록 보여주기
 @api_view(["GET"])
 def joined_products(request):
     try:
@@ -512,8 +526,6 @@ def joined_products(request):
 @api_view(['GET'])
 def recommend_products(request):
     user = request.user
-    if not user.is_authenticated:
-        return Response({'error': '로그인이 필요합니다.'}, status=401)
 
     # Step 0: 현재 로그인된 사용자 정보 가져오기
     income = user.income
@@ -526,12 +538,12 @@ def recommend_products(request):
     # filtered_products = filtered_products.filter(min_income__lte=income)
 
     # Step 2: 유사한 사용자 찾기
-    user_data = np.array([[income, birth_year, 1 if gender == 'M' else 0]])
+    user_data = np.array([[income, birth_year, 1 if gender == '남성' else 0]])
     all_users = User.objects.exclude(id=user.id)
 
     similar_users = []
     for other_user in all_users:
-        other_data = np.array([[other_user.income, other_user.birthdate.year, 1 if other_user.gender == 'M' else 0]])
+        other_data = np.array([[other_user.income, other_user.birthdate.year, 1 if other_user.gender == '남성' else 0]])
         similarity = cosine_similarity(user_data, other_data)
         similar_users.append((other_user, similarity[0][0]))
 
