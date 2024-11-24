@@ -605,7 +605,7 @@ const changePage = (page) => {
 }
 
 .interest-rate {
-  font-size: 25px;
+  font-size: 26px;
   color: var(--orange-color);
   font-weight: 900;
   margin-bottom: 5px;
