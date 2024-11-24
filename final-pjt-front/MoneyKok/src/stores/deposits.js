@@ -2,6 +2,7 @@ import { ref, computed, reactive } from "vue";
 import { defineStore } from "pinia";
 import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
+import { useUserStore } from './user';
 
 export const useDepositsStore = defineStore("deposits", () => {
   // 전체 예금 상품 정보
@@ -35,11 +36,8 @@ export const useDepositsStore = defineStore("deposits", () => {
       });
   };
 
-  // 개별 상품 가입 기간 및 금액 (모달로 입력 받음)
-  const joinTerm = ref(null);
-  const joinAmount = ref(null);
-
-
+  
+  
   // 사용자가 입력한 검색 조건
   const filters = ref({
     join_term: null,
@@ -47,7 +45,7 @@ export const useDepositsStore = defineStore("deposits", () => {
     bank: [],
     conditions: [],
   });
-
+  
   // 검색 조건에 따라 필터링된 상품들
   const filteredProducts = ref([]);
 
@@ -58,42 +56,72 @@ export const useDepositsStore = defineStore("deposits", () => {
       join_term: filters.value.join_term || null, // 단일 값 (가입 기간)
       amount: filters.value.amount || null, // 단일 값 (가입 금액)
       bank:
-        filters.value.bank.length > 0
-          ? JSON.stringify(filters.value.bank)
-          : null, // JSON 문자열 (은행 필터)
+      filters.value.bank.length > 0
+      ? JSON.stringify(filters.value.bank)
+      : null, // JSON 문자열 (은행 필터)
       conditions:
-        filters.value.conditions.length > 0
-          ? JSON.stringify(filters.value.conditions)
-          : null, // JSON 문자열 (우대 조건)
+      filters.value.conditions.length > 0
+      ? JSON.stringify(filters.value.conditions)
+      : null, // JSON 문자열 (우대 조건)
     };
-
+    
     axios
-      .get("http://127.0.0.1:8000/deposits/deposits-list/", { params })
+    .get("http://127.0.0.1:8000/deposits/deposits-list/", { params })
+    .then((res) => {
+      filteredProducts.value = res.data;
+      console.log("필터링 결과:", filteredProducts.value);
+    })
+    .catch((error) => {
+      console.error("필터링 요청 중 오류:", error.response?.data || error);
+    });
+  };
+  
+
+  // 개별 상품 가입 기간 및 금액 
+  const joinTerm = ref(null);
+  const joinAmount = ref(null);
+  const finalJoinRate = ref(null);
+  // 선택한 우대조건 담을 변수 (axios로 넘겨주진 않음)
+  const joinConditions = ref([]);
+  
+  // 가입 조건 상태 초기화 함수
+  const resetState = () => {
+    joinTerm.value = null;
+    joinAmount.value = null;
+    finalJoinRate.value = null;
+    joinConditions.value = [];
+  };
+
+  // 로그인 한 사용자 토큰 가져오기
+  const userStore = useUserStore()
+  const token = computed(() => userStore.token);
+
+  // 예금 상품 가입 처리 함수
+  const joinProduct = function(depositCode) {
+    axios
+      .post(
+        `http://127.0.0.1:8000/deposit-detail/${depositCode}/join/`,
+        {
+          save_trm: joinTerm.value,
+          joinAmount: joinAmount.value,
+          finalJoinRate: finalJoinRate.value,
+        },
+        {
+          headers: {
+            Authorization: `Token ${token.value}`,
+          },
+        }
+      )
       .then((res) => {
-        filteredProducts.value = res.data;
-        console.log("필터링 결과:", filteredProducts.value);
+        console.log("예금 상품 가입 완료:", res.data);
+
       })
       .catch((error) => {
-        console.error("필터링 요청 중 오류:", error.response?.data || error);
+        console.error("예금 상품 가입 오류:", error.response?.data || error);
       });
   };
 
 
-  // 예금 상품 가입 처리 함수
-  const submitJoin = function () {
-    const router = useRouter();
-    if (!joinTerm.value || !joinAmount.value) {
-      console.error("가입 기간 또는 가입 금액이 설정되지 않았습니다.");
-      alert("가입 기간과 가입 금액을 입력해주세요.");
-      return;
-    }
-    console.log(
-      `가입 완료: 기간=${joinTerm.value}개월, 금액=${joinAmount.value}만원`
-    );
-    router.push({ name: "myproduct" });
-  };
-
-  
   return {
     products,
     productDetail,
@@ -101,9 +129,12 @@ export const useDepositsStore = defineStore("deposits", () => {
     filteredProducts,
     joinTerm,
     joinAmount,
+    finalJoinRate,
+    joinConditions,
     getProducts,
     getProductDetail,
     getFilteredProducts,
-    submitJoin,
+    resetState,
+    joinProduct
   };
 });

@@ -65,7 +65,7 @@
       return;
     }
   
-    // 게시글 데이터를 서버로 전송 (예: Axios 요청)
+    // 게시글 데이터를 서버로 전송 
     const article = {
     title: title.value,
     content: content.value

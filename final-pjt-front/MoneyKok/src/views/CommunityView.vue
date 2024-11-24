@@ -119,7 +119,7 @@ const store = useCommunityStore();
 const { recommendedFriends, articles, getArticles } = storeToRefs(store);
 
 const goMyProfile = function() {
-  router.push()
+  router.push({ name : 'communityprofile'})
 }
 
 const currentPage = ref(1);

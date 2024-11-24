@@ -227,5 +227,31 @@ export const useAiStore = defineStore("ai", () => {
     // 추가 상품 데이터 생략
   ]);
 
-  return { filters, recommendedProducts };
+  
+  // ai 상품 추천 요청 함수
+  const getRecommendtaion = function(depositCode) {
+    axios
+      .post(
+        `http://127.0.0.1:8000/deposits/join/${depositCode}/`,
+        {
+          joinTerm: joinTerm.value,
+          joinAmount: joinAmount.value,
+          finalJoinRate: finalJoinRate.value,
+        },
+        {
+          headers: {
+            Authorization: `Token ${token.value}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log("예금 상품 가입 완료:", res.data);
+
+      })
+      .catch((error) => {
+        console.error("예금 상품 가입 오류:", error.response?.data || error);
+      });
+  };
+
+  return { filters, recommendedProducts, getRecommendtaion };
 });
