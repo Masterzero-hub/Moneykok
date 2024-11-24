@@ -74,15 +74,22 @@
   </template>
   
   <script setup>
-  import { ref } from "vue";
+  import { ref, onMounted } from "vue";
   import { useRouter } from "vue-router";
   import { storeToRefs } from "pinia";
   import { useAiStore } from "@/stores/ai";
   
   const store = useAiStore();
-  const { filters, recommendedProducts } = storeToRefs(store);
+  const { filters, recommendedProducts, getRecommendtaion } = storeToRefs(store);
   const router = useRouter();
   
+// ----- 초기 렌더링 -----
+onMounted(() => {
+  store.getRecommendtaion();
+  console.log('ai 추천 완료 :' , recommendedProducts)
+});
+
+
   const goDetail = function (depositCode) {
     router.push({ name : 'depositdetail', params: { deposit_code : depositCode }})
   }

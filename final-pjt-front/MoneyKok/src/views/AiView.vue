@@ -231,7 +231,7 @@ const router = useRouter();
 const username = "김사피";
 
 const productTypes = [
-  { label: "예금", value: "deposit" },
+  { label: "예금", value: "deposits" },
   { label: "적금", value: "savings" },
 ];
 const terms = [6, 12, 24, 36];

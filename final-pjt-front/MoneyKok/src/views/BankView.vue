@@ -1,32 +1,24 @@
 <template>
-    <div class="box-container">
-        <div class="box">
-            <BankSearch/>
-        </div>
-
-    </div>
+  <div class="container mt-0 p-0">
+    <BankSearch />
+  </div>
 </template>
 
 <script>
-import BankSearch from '@/components/BankSearch.vue'
+import BankSearch from "@/components/BankSearch.vue";
 
 export default {
-name: 'MapView',
-components: {
-    BankSearch
-}
-}
+  name: "MapView",
+  components: {
+    BankSearch,
+  },
+};
 </script>
 
-
 <style>
-  .box-container {
-    display: flex;
-    justify-content: center;
-  }
-  .box {
-    width: 800px;
-    width:800px;
-    border: 1px solid black;
-  }
+.box-container {
+  display: flex;
+  justify-content: center;
+}
+
 </style>

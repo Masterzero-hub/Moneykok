@@ -1,42 +1,65 @@
 <template>
-    <div class="container">
+    <div class="container mt-5">
+      <!-- 헤더 -->
       <div class="row justify-content-center">
-        <div class="col-md-8">
-          <br />
-          <h4 class="text-center">현재 위치 주변의 은행을 검색해보세요</h4>
-          <div class="d-flex justify-content-center mt-3">
-            <button type="button" class="btn btn-outline-success" @click="searchNearbyBanks">
-              주변 은행 조회
-            </button>
-          </div>
+        <div class="col-md-8 text-center">
+          <h2 class="section-title mb-4">현재 위치 주변의 은행을 찾아보세요</h2>
+          <p class="text-muted mb-4">
+            주변에 있는 은행을 쉽게 검색하고 필요한 정보를 확인하세요.
+          </p>
+          <button class="btn-common btn-mint" @click="searchNearbyBanks">
+            주변 은행 조회
+          </button>
         </div>
       </div>
   
-      <div class="row justify-content-center mt-4">
-        <div>
+      <!-- 지도 -->
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
           <div id="map" class="map-container"></div>
         </div>
       </div>
   
-      <div class="row justify-content-center mt-4" v-if="bankList.length">
-        <div>
-          <p>근처에 총 {{ bankList.length }} 개의 은행이 있습니다.</p>
-          <hr />
-          <div v-for="(bank, index) in bankList" :key="bank.id">
-            <ul class="list-unstyled">
-              <li>
-                <strong>{{ index + 1 }}번째 은행</strong>
-              </li>
-              <li>{{ bank.place_name }}</li>
-              <li>{{ bank.category_name }}</li>
-              <li v-if="bank.phone">{{ bank.phone }}</li>
-              <li v-if="bank.road_address_name">{{ bank.road_address_name }}</li>
-              <li>
-                <a :href="bank.place_url" target="_blank">{{ bank.place_url }}</a>
-              </li>
-            </ul>
-            <hr />
+      <!-- 결과 목록 -->
+      <div class="row justify-content-center mt-5" v-if="bankList.length">
+        <div class="col-md-10">
+          <h4 class="section-subtitle mb-3">
+            근처에 총 {{ bankList.length }} 개의 은행이 있습니다.
+          </h4>
+          <div
+            v-for="(bank, index) in bankList"
+            :key="bank.id"
+            class="bank-card shadow-sm p-3 mb-4"
+          >
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h5 class="bank-title mb-1">{{ index + 1 }}. {{ bank.place_name }}</h5>
+                <p class="text-muted mb-1">{{ bank.category_name }}</p>
+                <p class="bank-address mb-1" v-if="bank.road_address_name">
+                  <strong>주소:</strong> {{ bank.road_address_name }}
+                </p>
+                <p class="bank-phone mb-1" v-if="bank.phone">
+                  <strong>전화:</strong> {{ bank.phone }}
+                </p>
+              </div>
+              <div>
+                <a
+                  :href="bank.place_url"
+                  class="btn-small-common btn-mint"
+                  target="_blank"
+                >
+                  상세 보기
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+  
+      <!-- 검색 결과가 없을 경우 -->
+      <div class="row justify-content-center mt-5" v-else>
+        <div class="col-md-8 text-center">
+          <p class="text-muted">검색 결과가 없습니다. 버튼을 눌러 다시 시도하세요.</p>
         </div>
       </div>
     </div>
@@ -54,7 +77,7 @@
         infowindow: null,
         ps: null,
         bankList: [],
-        searchRadius: 1000, // 고정 검색 반경 (1000미터)
+        searchRadius: 1000, // 고정 검색 반경 (미터)
       };
     },
     mounted() {
@@ -167,24 +190,50 @@
   </script>
   
   <style scoped>
-  #map {
-    width: 100%;
-    height: 500px;
+  .section-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .section-subtitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
   }
   
   .map-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
   }
   
-  .input-group {
-    display: flex;
-    align-items: center;
+  .bank-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   
-  .input-group .form-control {
-    flex: 1;
+  .bank-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
+  
+  .bank-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  .bank-address,
+  .bank-phone {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  
   </style>
   
