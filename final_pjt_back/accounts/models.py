@@ -38,17 +38,17 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True, verbose_name="활성 상태")
     date_joined = models.DateTimeField(default=timezone.now, verbose_name="가입일")
     
-    objects = UserManager()
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-
     profile_description = models.TextField(
         default="자기소개를 입력해주세요.",
         blank=True,
         null=True,
         verbose_name="프로필 설명"  # 유저가 자기소개를 입력할 수 있는 필드
     )
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
 
 class EmailVerification(models.Model):
     email = models.EmailField(db_index=True)
