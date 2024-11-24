@@ -62,7 +62,7 @@ def parse_special_conditions(spcl_cnd_text):
                 {"role": "system", "content": "당신은 우대조건 정보를 분석하는 전문가입니다."},
                 {"role": "user", "content": prompt},
             ],
-            model="llama-3.1-70b-versatile",
+            model="llama-3.1-8b-instant",
             temperature=0,
             max_tokens=4096,
         )
@@ -71,9 +71,17 @@ def parse_special_conditions(spcl_cnd_text):
         # JSON 데이터만 추출
         json_data_match = re.search(r'\[.*\]', assistant_message, re.DOTALL)
         if json_data_match:
-            json_data = json_data_match.group()
-            parsed_conditions = json.loads(json_data)
-            return parsed_conditions
+            parsed_conditions = json.loads(json_data_match.group())
+
+            # 모델에 정의되지 않은 필드 제거 및 prime_rate 검증
+            valid_conditions = [
+                {key: value for key, value in condition.items()
+                if key in ['category', 'condition_title', 'condition_content', 'prime_rate']}
+                for condition in parsed_conditions
+                if isinstance(condition.get("prime_rate"), (int, float))  # prime_rate가 숫자인 경우만 포함
+            ]
+            return valid_conditions
+            
         else:
             print("JSON 데이터를 찾을 수 없습니다.")
             return []
@@ -94,6 +102,10 @@ def analyze_conditions(products, product_type):
             parsed_conditions = parse_special_conditions(spcl_cnd)
             for condition in parsed_conditions:
                 # 공통 저장 로직
+                if condition.get('prime_rate') is None:
+                    print(f"prime_rate가 없어 저장하지 않음: {condition}")
+                    continue
+                
                 if product_type == "deposits":
                     if not DepositSpecialCondition.objects.filter(
                         product=product,
