@@ -1,51 +1,106 @@
 <template>
   <div class="container mt-5">
     <!-- 가입한 상품 목록 -->
-    <div v-if="joinedProducts.deposits.length > 0">
-      <div
-        v-for="product in joinedProducts.deposits"
-        :key="product.id"
-        class="card shadow-sm mb-3"
-      >
-        <div class="card-body d-flex align-items-center">
-          <!-- 상품 로고 -->
-          <img
-            :src="`/bank_image/${product.bank.fin_co_no}.jpg`"
-            alt="Bank Logo"
-            class="product-logo me-3"
-          />
+    <div v-if="(joinedDeposits && joinedDeposits.length > 0) || (joinedSavings && joinedSavings.length > 0)">
+      <!-- 예금 상품 -->
+      <div v-if="joinedDeposits && joinedDeposits.length > 0">
+        <h4 class="section-title">예금 상품</h4>
+        <div
+          v-for="product in joinedDeposits"
+          :key="product.id"
+          class="card shadow-sm mb-3"
+        >
+          <div class="card-body d-flex align-items-center">
+            <!-- 상품 로고 -->
+            <img
+              :src="`/bank_image/${product.bank.fin_co_no}.jpg`"
+              alt="Bank Logo"
+              class="product-logo me-3"
+            />
 
-          <!-- 상품 정보 -->
-          <div class="flex-grow-1">
-            <!-- 상품 이름과 은행 이름 -->
-            <div class="d-flex align-items-center ">
-              <h5 class="card-title mb-1 me-2" style="font-weight: 550;">{{ product.product.fin_prdt_nm }}</h5>
-              <div class="divider"></div>
-              <p class="card-text bank-name ms-2">{{ product.bank.kor_co_nm }}</p>
+            <!-- 상품 정보 -->
+            <div class="flex-grow-1">
+              <!-- 상품 이름과 은행 이름 -->
+              <div class="d-flex align-items-center ">
+                <h5 class="card-title mb-1 me-2" style="font-weight: 550;">{{ product.product.fin_prdt_nm }}</h5>
+                <div class="divider"></div>
+                <p class="card-text bank-name ms-2">{{ product.bank.kor_co_nm }}</p>
+              </div>
+              <!-- 가입일과 만기일 -->
+              <p class="card-text text-muted" style="font-size: 14px;">
+                가입일 : {{ product.joined_date }} | 만기일 : {{ product.expired_date }}
+              </p>
             </div>
-            <!-- 가입일과 만기일 -->
-            <p class="card-text text-mute" style="font-size: 14px;">
-              가입일 : {{ product.joined_date }}  |  만기일 : {{ product.expired_date }}
-            </p>
-          </div>
 
-          <!-- 가입 이율과 버튼 -->
-          <div class="d-flex align-items-center gap-3">
-            <span class="card-text m-0" style="font-size: large;">
-              적용 금리 :
-            </span>
-            <span class="card-rate-text m-0">
-               {{ formatRate(product.final_intr_rate) }}%
-            </span>
-            <button
-              class="btn-small-common btn-mint"
-              @click="cancelSubscription(product.id)"
-            >
-              해지하기
-            </button>
+            <!-- 가입 이율과 버튼 -->
+            <div class="d-flex align-items-center gap-3">
+              <span class="card-text m-0" style="font-size: large;">
+                적용 금리:
+              </span>
+              <span class="card-rate-text m-0">
+                {{ formatRate(product.final_intr_rate) }}%
+              </span>
+              <button
+                class="btn-small-common btn-mint"
+                @click="cancelSubscription(product.id, true)"
+                >
+                해지하기
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- 적금 상품 -->
+<div v-if ="joinedSavings && joinedSavings.length > 0">
+  <h4 class="section-title">적금 상품</h4>
+  <div
+    v-for="product in joinedSavings"
+    :key="product.id"
+    class="card shadow-sm mb-3"
+  >
+    <div class="card-body d-flex align-items-center">
+      <!-- 상품 로고 -->
+      <img
+        :src="`/bank_image/${product.bank.fin_co_no}.jpg`"
+        alt="Bank Logo"
+        class="product-logo me-3"
+      />
+
+      <!-- 상품 정보 -->
+      <div class="flex-grow-1">
+        <!-- 상품 이름과 은행 이름 -->
+        <div class="d-flex align-items-center">
+          <h5 class="card-title mb-1 me-2" style="font-weight: 550;">{{ product.product.fin_prdt_nm }}</h5>
+          <div class="divider"></div>
+          <p class="card-text bank-name ms-2">{{ product.bank.kor_co_nm }}</p>
+        </div>
+        <!-- 가입일과 만기일 -->
+        <p class="card-text text-muted" style="font-size: 14px;">
+          가입일 : {{ product.joined_date }} | 만기일 : {{ product.expired_date }}
+        </p>
+      </div>
+
+      <!-- 가입 이율과 버튼 -->
+      <div class="d-flex align-items-center gap-3">
+        <span class="card-text m-0" style="font-size: large;">
+          적용 금리:
+        </span>
+        <span class="card-rate-text m-0">
+          {{ formatRate(product.final_intr_rate) }}%
+        </span>
+        <button
+          class="btn-small-common btn-mint"
+          @click="cancelSubscription(product.id, false)"
+        >
+          해지하기
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     </div>
 
     <!-- 가입한 상품이 없는 경우 -->
@@ -60,15 +115,20 @@ import { ref, onMounted } from "vue";
 import { useDepositsStore } from "@/stores/deposits";
 import { useRoute, useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
+import { useSavingsStore } from "@/stores/savings";
 const router = useRouter();
 const route = useRoute();
-const store = useDepositsStore();
-const { joinedProducts, getJoinedProducts, deleteDeposits } = storeToRefs(store);
+const depositsStore = useDepositsStore();
+const savingsStore = useSavingsStore();
+const { joinedDeposits, getJoinedDeposits, deleteDeposits } = storeToRefs(depositsStore);
+const { joinedSavings, getJoinedSavings, deleteSavings } = storeToRefs(savingsStore);
 
 // 페이지 로드 시 데이터 가져오기
 onMounted(() => {
-  store.getJoinedProducts()
-  console.log(joinedProducts)
+  depositsStore.getJoinedDeposits()
+  console.log(depositsStore.joinedDeposits)
+  savingsStore.getJoinedSavings()
+  console.log(savingsStore.joinedSavings)
 });
 
 const formatRate = (rate) => {
@@ -79,10 +139,14 @@ const formatRate = (rate) => {
   return rate.slice(0, 4); // 문자열이면 slice 적용
 };
 // 해지 버튼 클릭 시 동작 (현재는 console.log)
-const cancelSubscription = (productId) => {
-  console.log(`상품 ID ${productId} 해지 요청`);
-  // 실제 API 호출로 해지 로직 구현 예정
-  store.deleteDeposits()
+const cancelSubscription = (productId, isDeposit) => {
+  if (isDeposit) {
+    console.log(`예금 상품 ID ${productId} 해지 요청`);
+    depositsStore.deleteDeposits(productId); // 예금 해지 로직
+  } else {
+    console.log(`적금 상품 ID ${productId} 해지 요청`);
+    savingsStore.deleteSavings(productId); // 적금 해지 로직
+  }
 };
 </script>
 

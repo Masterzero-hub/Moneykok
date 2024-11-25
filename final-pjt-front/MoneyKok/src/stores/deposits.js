@@ -130,6 +130,8 @@ export const useDepositsStore = defineStore("deposits", () => {
       })
       .then((res) => {
         console.log("가입 해지 완료", res.data);
+        joinedDeposits.value = joinedDeposits.value.filter((deposit) => deposit.id !== depositId);
+        
       })
       .catch((error) => {
         console.error("가입 해지 오류", error);
@@ -137,11 +139,12 @@ export const useDepositsStore = defineStore("deposits", () => {
   };
 
   // 가입 상품 조회
-  const joinedProducts = ref([]);
+  
+  const joinedDeposits = ref([])
 
-  const getJoinedProducts = () => {
+  const getJoinedDeposits = () => {
     axios
-      .get("http://127.0.0.1:8000/joined-products/", 
+      .get("http://127.0.0.1:8000/deposits/joined-products/", 
         {
           headers: {
             Authorization: `Token ${token.value}`,
@@ -149,7 +152,7 @@ export const useDepositsStore = defineStore("deposits", () => {
         }
       )
       .then((res) => {
-        joinedProducts.value = res.data;
+        joinedDeposits.value = res.data
       })
       .catch((error) => {
         console.error("가입 상품 데이터를 불러오는 중 오류가 발생했습니다:", error);
@@ -166,13 +169,13 @@ export const useDepositsStore = defineStore("deposits", () => {
     joinAmount,
     finalJoinRate,
     joinConditions,
-    joinedProducts,
+    joinedDeposits,
     getProducts,
     getProductDetail,
     getFilteredProducts,
     resetState,
     joinProduct,
-    getJoinedProducts,
+    getJoinedDeposits,
     deleteDeposits
   };
 });
