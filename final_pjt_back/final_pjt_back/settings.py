@@ -45,7 +45,8 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'no-reply@moneykok.com'
 
 # 예금 API & KEY
-DEPOSIT_URL=env('DEPOSIT_URL')
+DEPOSIT_URL="http://finlife.fss.or.kr/finlifeapi/"
+PRODUCTS_URL="http://finlife.fss.or.kr/finlifeapi/"
 API_KEY=env('API_KEY')
 
 # GROQ_API_KEY
@@ -67,6 +68,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 INSTALLED_APPS = [
     'accounts',
     'deposits',
+    'savings',
     'communities',
     'exchange',
     'dj_rest_auth',

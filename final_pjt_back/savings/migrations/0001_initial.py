@@ -10,20 +10,13 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('deposits', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Banks',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fin_co_no', models.CharField(max_length=7)),
-                ('kor_co_nm', models.TextField()),
-            ],
-        ),
-        migrations.CreateModel(
-            name='DepositProducts',
+            name='SavingsProducts',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('fin_prdt_cd', models.TextField(unique=True)),
@@ -33,13 +26,35 @@ class Migration(migrations.Migration):
                 ('join_member', models.TextField()),
                 ('join_way', models.TextField()),
                 ('spcl_cnd', models.TextField()),
-                ('deposit_min_amount', models.IntegerField(blank=True, null=True)),
-                ('deposit_max_amount', models.IntegerField(blank=True, null=True)),
+                ('savings_min_amount', models.IntegerField(blank=True, null=True)),
+                ('savings_max_amount', models.IntegerField(blank=True, null=True)),
                 ('bank', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='deposits.banks')),
             ],
         ),
         migrations.CreateModel(
-            name='JoinedDeposits',
+            name='SavingsSpecialCondition',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('category', models.CharField(choices=[('거래 연동', '거래 연동'), ('사용 실적', '사용 실적'), ('신규 가입', '신규 가입'), ('비대면/모바일 뱅킹', '비대면/모바일 뱅킹'), ('마케팅 및 기타 동의', '마케팅 및 기타 동의'), ('기타', '기타')], max_length=20)),
+                ('condition_title', models.TextField()),
+                ('condition_content', models.TextField()),
+                ('prime_rate', models.FloatField()),
+                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='savings.savingsproducts')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='SavingsOptions',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('intr_rate_type_nm', models.CharField(max_length=100)),
+                ('intr_rate', models.FloatField()),
+                ('intr_rate2', models.FloatField()),
+                ('save_trm', models.IntegerField()),
+                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='options', to='savings.savingsproducts')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='JoinedSavings',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('save_trm', models.IntegerField()),
@@ -47,30 +62,8 @@ class Migration(migrations.Migration):
                 ('joined_date', models.DateField(auto_now=True)),
                 ('expired_date', models.DateField()),
                 ('final_intr_rate', models.FloatField()),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='joined_product', to='deposits.depositproducts')),
+                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='joined_product', to='savings.savingsproducts')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='DepositSpecialCondition',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('category', models.CharField(choices=[('거래 연동', '거래 연동'), ('사용 실적', '사용 실적'), ('신규 가입', '신규 가입'), ('비대면/모바일 뱅킹', '비대면/모바일 뱅킹'), ('마케팅 및 기타 동의', '마케팅 및 기타 동의'), ('기타', '기타')], max_length=20)),
-                ('condition_title', models.TextField()),
-                ('condition_content', models.TextField()),
-                ('prime_rate', models.FloatField()),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='deposits.depositproducts')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='DepositOptions',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('intr_rate_type_nm', models.CharField(max_length=100)),
-                ('intr_rate', models.FloatField()),
-                ('intr_rate2', models.FloatField()),
-                ('save_trm', models.IntegerField()),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='options', to='deposits.depositproducts')),
             ],
         ),
     ]

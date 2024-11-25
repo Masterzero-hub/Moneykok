@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('deposits/', include('deposits.urls')),
+    path('savings/', include('savings.urls')),
     path('communities/', include('communities.urls')),
     path('exchange/', include('exchange.urls')),
     path('joined-products/', views.joined_products, name="joined_products" )

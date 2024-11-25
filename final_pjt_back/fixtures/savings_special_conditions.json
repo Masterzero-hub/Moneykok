@@ -1,0 +1,1938 @@
+[
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "category": "거래 연동",
+    "condition_title": "거래실적 인정기간",
+    "condition_content": "우리은행 입출식 계좌에서 아래 각 항목별 실적이 있는 월 수가 계약기간의 1/2이상인 경우",
+    "prime_rate": 0.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "category": "마케팅 및 기타 동의",
+    "condition_title": "마케팅 동의",
+    "condition_content": "우리은행 상품서비스 마케팅 동의 항목 중 전화(휴대폰) 및 SMS항목을 모두 동의한 후 만기해지시점까지 유지",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "category": "신규 가입",
+    "condition_title": "금리우대쿠폰",
+    "condition_content": "이 상품 가입 시 금리우대쿠폰을 적용한 경우",
+    "prime_rate": 0.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 4,
+  "fields": {
+    "product": 2,
+    "category": "거래 연동",
+    "condition_title": "우리꿈통장, WON통장 연결",
+    "condition_content": "이 적금을 우리꿈통장, WON통장에 연결하여 가입하는 경우",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 5,
+  "fields": {
+    "product": 2,
+    "category": "거래 연동",
+    "condition_title": "타행계좌 등록",
+    "condition_content": "우리 오픈뱅킹 서비스에 타행계좌가 등록되어 있는 경우",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "category": "기타",
+    "condition_title": "합산 최대 연 0.2%p 우대",
+    "condition_content": "아래 각 항(가, 나)의 조건을 충족하는 경우",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 7,
+  "fields": {
+    "product": 4,
+    "category": "비대면/모바일 뱅킹",
+    "condition_title": "당행 인터넷/모바일뱅킹을 통하여 최초로 적립식예금 가입",
+    "condition_content": "당행 인터넷/모바일뱅킹을 통하여 최초로 적립식예금 가입 시",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 8,
+  "fields": {
+    "product": 4,
+    "category": "비대면/모바일 뱅킹",
+    "condition_title": "해당 상품을 모바일뱅킹을 통해 가입",
+    "condition_content": "해당 상품을 모바일뱅킹을 통해 가입",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 9,
+  "fields": {
+    "product": 4,
+    "category": "거래 연동",
+    "condition_title": "상품 가입 전 최근 3개월 이내 당행 인터넷/모바일뱅킹을 통한 이체거래 3회 이상",
+    "condition_content": "상품 가입 전 최근 3개월 이내 당행 인터넷/모바일뱅킹을 통한 이체거래 3회 이상",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 10,
+  "fields": {
+    "product": 4,
+    "category": "거래 연동",
+    "condition_title": "상품 가입 전 수수료우대 통장 보유 고객",
+    "condition_content": "상품 가입 전 수수료우대 통장 보유 고객",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 11,
+  "fields": {
+    "product": 4,
+    "category": "사용 실적",
+    "condition_title": "최고우대금리",
+    "condition_content": "최고우대금리",
+    "prime_rate": 0.55
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 12,
+  "fields": {
+    "product": 6,
+    "category": "신규 가입",
+    "condition_title": "인터넷/모바일뱅킹으로 신규",
+    "condition_content": "인터넷/모바일뱅킹으로 신규 가입",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 13,
+  "fields": {
+    "product": 6,
+    "category": "마케팅 및 기타 동의",
+    "condition_title": "상품 가입 전 마케팅활용[개인(신용)정보수집이용동의] 전체 동의",
+    "condition_content": "상품 가입 전 마케팅활용[개인(신용)정보수집이용동의] 전체 동의",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 14,
+  "fields": {
+    "product": 6,
+    "category": "거래 연동",
+    "condition_title": "당행 계좌로 자동이체 8회 이상 입금",
+    "condition_content": "당행 계좌로 자동이체 8회 이상 입금",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 15,
+  "fields": {
+    "product": 6,
+    "category": "사용 실적",
+    "condition_title": "원금합계 100만원 이상",
+    "condition_content": "원금합계 100만원 이상",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 16,
+  "fields": {
+    "product": 6,
+    "category": "사용 실적",
+    "condition_title": "원금합계 200만원 이상",
+    "condition_content": "원금합계 200만원 이상",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 17,
+  "fields": {
+    "product": 6,
+    "category": "기타",
+    "condition_title": "최고우대금리",
+    "condition_content": "계약기간 1년인 경우 만기일 기준",
+    "prime_rate": 0.8
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 18,
+  "fields": {
+    "product": 8,
+    "category": "기타",
+    "condition_title": "우대이율",
+    "condition_content": "6개월제 최대 0.55%, 12개월제 최대 0.90%",
+    "prime_rate": 0.55
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 19,
+  "fields": {
+    "product": 8,
+    "category": "기타",
+    "condition_title": "우대이율",
+    "condition_content": "6개월제 최대 0.55%, 12개월제 최대 0.90%",
+    "prime_rate": 0.9
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 20,
+  "fields": {
+    "product": 9,
+    "category": "기타",
+    "condition_title": "조건 달성여부에 따른 우대금리",
+    "condition_content": "조건 달성여부에 따라 우대금리 적용",
+    "prime_rate": 0.4
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 21,
+  "fields": {
+    "product": 9,
+    "category": "기타",
+    "condition_title": "개인형 우대이율",
+    "condition_content": "개인형 우대이율: 최대 0.4%",
+    "prime_rate": 0.4
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 22,
+  "fields": {
+    "product": 9,
+    "category": "기타",
+    "condition_title": "기업형 우대이율",
+    "condition_content": "기업형(개인사업자 및 법인)우대이율: 최대 0.4%",
+    "prime_rate": 0.4
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 23,
+  "fields": {
+    "product": 10,
+    "category": "신규 가입",
+    "condition_title": "신규 가입 시 우대이율",
+    "condition_content": "신규 시 우대이율 0.05%",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 24,
+  "fields": {
+    "product": 10,
+    "category": "신규 가입",
+    "condition_title": "해지 시 우대이율",
+    "condition_content": "해지 시 우대이율 최대 0.15%",
+    "prime_rate": 0.15
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 25,
+  "fields": {
+    "product": 10,
+    "category": "신규 가입",
+    "condition_title": "우대이율 최대",
+    "condition_content": "우대이율 최대 0.2%",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 26,
+  "fields": {
+    "product": 11,
+    "category": "기타",
+    "condition_title": "우대이율",
+    "condition_content": "6개월 미만 최대2.00%, 6개월 이상 2.20%",
+    "prime_rate": 0.02
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 27,
+  "fields": {
+    "product": 12,
+    "category": "기타",
+    "condition_title": "우대이율",
+    "condition_content": "우대이율 최대 6.00%",
+    "prime_rate": 6.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 28,
+  "fields": {
+    "product": 14,
+    "category": "신규 가입",
+    "condition_title": "예금가입일~만기일전일까지 당행이선정한 전라남도 관광지 방문 인증",
+    "condition_content": "예금가입일부터 만기일까지 당행이 선정한 전라남도 관광지 방문 인증 시 우대 조건이 적용된다.",
+    "prime_rate": 1.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 29,
+  "fields": {
+    "product": 14,
+    "category": "사용 실적",
+    "condition_title": "신용(체크)카드사용실적300만원이상",
+    "condition_content": "신용(체크)카드 사용 실적이 300만원 이상인 경우 우대 조건이 적용된다.",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 30,
+  "fields": {
+    "product": 14,
+    "category": "마케팅 및 기타 동의",
+    "condition_title": "개인(신용)정보 동의",
+    "condition_content": "개인(신용) 정보 동의 시 우대 조건이 적용된다.",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 31,
+  "fields": {
+    "product": 14,
+    "category": "기타",
+    "condition_title": "최고우대금리 1.9%p",
+    "condition_content": "최고 우대 금리는 1.9%p이다.",
+    "prime_rate": 1.9
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 32,
+  "fields": {
+    "product": 15,
+    "category": "신규 가입",
+    "condition_title": "VIP 고객 또는 VIP 고객 선정 경험이 있는 경우",
+    "condition_content": "이 예금 가입시 VIP 고객이거나 가입일 이후부터 만기일 전일까지 VIP 고객에 선정된 경험이 있는 경우",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 33,
+  "fields": {
+    "product": 15,
+    "category": "사용 실적",
+    "condition_title": "정기예금 500만원 이상 가입 및 유지",
+    "condition_content": "이 예금 가입일에 정기예금 500만원 이상(만기 1년 이상) 가입하고 만기일 전일까지 유지한 경우",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 34,
+  "fields": {
+    "product": 15,
+    "category": "기타",
+    "condition_title": "최고우대금리",
+    "condition_content": "최고우대금리 0.50%p",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 35,
+  "fields": {
+    "product": 16,
+    "category": "거래 연동",
+    "condition_title": "자투리 출금계좌 평잔 50만원 이상 유지",
+    "condition_content": "자투리 출금계좌 평잔 50만원 이상 유지",
+    "prime_rate": 0.8
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 36,
+  "fields": {
+    "product": 16,
+    "category": "신규 가입",
+    "condition_title": "첫거래고객",
+    "condition_content": "첫거래고객",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 37,
+  "fields": {
+    "product": 16,
+    "category": "신규 가입",
+    "condition_title": "JBANK저금통적금 1개월 내 재신규",
+    "condition_content": "JBANK저금통적금 1개월 내 재신규",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 38,
+  "fields": {
+    "product": 16,
+    "category": "신규 가입",
+    "condition_title": "신규가입 시점에서 적금 목표금액 최소 30만원 이상 설정하고, 적금 신규일로부터 3개월 내 잔액이 목표금액 이상인 경우",
+    "condition_content": "신규가입 시점에서 적금 목표금액 최소 30만원 이상 설정하고, 적금 신규일로부터 3개월 내 잔액이 목표금액 이상인 경우",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 39,
+  "fields": {
+    "product": 16,
+    "category": "기타",
+    "condition_title": "거래조건에 따라 최고 2.1%p 우대금리 적용",
+    "condition_content": "거래조건에 따라 최고 2.1%p 우대금리 적용",
+    "prime_rate": 2.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 40,
+  "fields": {
+    "product": 16,
+    "category": "기타",
+    "condition_title": "추천인 우대금리",
+    "condition_content": "추천인 우대금리",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 41,
+  "fields": {
+    "product": 17,
+    "category": "사용 실적",
+    "condition_title": "매월 1회이상 지속적 납입",
+    "condition_content": "매월 1회 이상 지속적 납입 시 1년제",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 42,
+  "fields": {
+    "product": 17,
+    "category": "사용 실적",
+    "condition_title": "목표 금액 달성",
+    "condition_content": "목표 금액 달성",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 43,
+  "fields": {
+    "product": 17,
+    "category": "사용 실적",
+    "condition_title": "신용카드, 체크카드 합산 사용액 월 10만원 이상 사용",
+    "condition_content": "신용카드, 체크카드 합산 사용액 월 10만원 이상 사용",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 44,
+  "fields": {
+    "product": 17,
+    "category": "마케팅 및 기타 동의",
+    "condition_title": "청년이니까 응원합니다 이벤트",
+    "condition_content": "청년이니까 응원합니다 이벤트",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 45,
+  "fields": {
+    "product": 18,
+    "category": "거래 연동",
+    "condition_title": "계좌 연결",
+    "condition_content": "탐나는전 선불카드 충전계좌를 당행 입출금계좌로 등록",
+    "prime_rate": 0.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 46,
+  "fields": {
+    "product": 18,
+    "category": "거래 연동",
+    "condition_title": "자동이체",
+    "condition_content": "평잔 50만원 이상 유지",
+    "prime_rate": 0.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 47,
+  "fields": {
+    "product": 18,
+    "category": "거래 연동",
+    "condition_title": "자동이체",
+    "condition_content": "월30만원 이상 사용 유지",
+    "prime_rate": 0.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 48,
+  "fields": {
+    "product": 18,
+    "category": "거래 연동",
+    "condition_title": "자동이체",
+    "condition_content": "JBANK로그인",
+    "prime_rate": 0.002
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 49,
+  "fields": {
+    "product": 18,
+    "category": "사용 실적",
+    "condition_title": "카드 결제",
+    "condition_content": "탐나는전 체크카드 월30만원 이상 사용",
+    "prime_rate": 0.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 50,
+  "fields": {
+    "product": 18,
+    "category": "사용 실적",
+    "condition_title": "카드 결제",
+    "condition_content": "탐나는전 선불카드 충전계좌 평잔 50만원 이상",
+    "prime_rate": 0.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 51,
+  "fields": {
+    "product": 18,
+    "category": "신규 가입",
+    "condition_title": "추천인 코드",
+    "condition_content": "추천인 코드로 3명 이상 가입",
+    "prime_rate": 0.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 52,
+  "fields": {
+    "product": 18,
+    "category": "기타",
+    "condition_title": "만기시 제공",
+    "condition_content": "최고 2.7%p 추가 우대",
+    "prime_rate": 0.027
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 53,
+  "fields": {
+    "product": 19,
+    "category": "거래 연동",
+    "condition_title": "자동이체 우대조건",
+    "condition_content": "당행 계좌간 자동이체를 통해 이 예금으로 자동이체 된 금액",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 54,
+  "fields": {
+    "product": 20,
+    "category": "거래 연동",
+    "condition_title": "당행 계좌간 자동이체",
+    "condition_content": "당행 계좌간 자동이체를 통해 6회 이상 입금",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 55,
+  "fields": {
+    "product": 21,
+    "category": "거래 연동",
+    "condition_title": "오픈뱅킹 계좌 추가 등록/유지",
+    "condition_content": "가입기간 내 오픈뱅킹을 통해 계좌 추가 등록/유지시 우대",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 56,
+  "fields": {
+    "product": 21,
+    "category": "사용 실적",
+    "condition_title": "게임 50회 참여",
+    "condition_content": "만기 전전월까지 게임 50회 참여시 0.9%",
+    "prime_rate": 0.9
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 57,
+  "fields": {
+    "product": 5,
+    "category": "거래 연동",
+    "condition_title": "예금기간 중 입금횟수 10회 이상",
+    "condition_content": "예금기간 중 입금횟수 10회 이상",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 58,
+  "fields": {
+    "product": 5,
+    "category": "거래 연동",
+    "condition_title": "상품 가입 전 영플러스통장 보유 또는 재예치일 기준 영플러스통장 전월 평잔 10만원 이상",
+    "condition_content": "상품 가입 전 영플러스통장 보유 또는 재예치일 기준 영플러스통장 전월 평잔 10만원 이상",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 59,
+  "fields": {
+    "product": 5,
+    "category": "비대면/모바일 뱅킹",
+    "condition_title": "해당 상품을 인터넷/모바일뱅킹을 통해 가입",
+    "condition_content": "해당 상품을 인터넷/모바일뱅킹을 통해 가입",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 60,
+  "fields": {
+    "product": 5,
+    "category": "기타",
+    "condition_title": "입학 및 졸업 축하금리",
+    "condition_content": "입학 및 졸업 축하금리",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 61,
+  "fields": {
+    "product": 5,
+    "category": "거래 연동",
+    "condition_title": "최고우대금리",
+    "condition_content": "최고우대금리",
+    "prime_rate": 0.55
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 62,
+  "fields": {
+    "product": 22,
+    "category": "신규 가입",
+    "condition_title": "신규일로부터 6개월전까지 당행 적금 미보유",
+    "condition_content": "신규일로부터 6개월전까지 당행 적금 미보유",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 63,
+  "fields": {
+    "product": 22,
+    "category": "신규 가입",
+    "condition_title": "월부금이 50만원 이상인 경우",
+    "condition_content": "월부금이 50만원 이상인 경우",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 64,
+  "fields": {
+    "product": 22,
+    "category": "신규 가입",
+    "condition_title": "신용(체크)카드 최초발급 후 10만원 이내 이용",
+    "condition_content": "신용(체크)카드 최초발급 후 10만원 이내 이용",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 65,
+  "fields": {
+    "product": 22,
+    "category": "신규 가입",
+    "condition_title": "전자명함을 통한 신규",
+    "condition_content": "전자명함을 통한 신규",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 66,
+  "fields": {
+    "product": 22,
+    "category": "거래 연동",
+    "condition_title": "이 예금을 자동이체로 납입하는 경우",
+    "condition_content": "이 예금을 자동이체로 납입하는 경우",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 67,
+  "fields": {
+    "product": 23,
+    "category": "거래 연동",
+    "condition_title": "오픈뱅킹서비스 가입",
+    "condition_content": "오픈뱅킹서비스 가입 시 0.20%의 우대금리 제공",
+    "prime_rate": 0.002
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 68,
+  "fields": {
+    "product": 23,
+    "category": "거래 연동",
+    "condition_title": "당행 입출금통장에서 자동이체",
+    "condition_content": "당행 입출금통장에서 자동이체 시 입금건별 0.20%의 우대금리 제공",
+    "prime_rate": 0.002
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 69,
+  "fields": {
+    "product": 23,
+    "category": "신규 가입",
+    "condition_title": "금리우대쿠폰",
+    "condition_content": "이 상품 신규 시 금리우대쿠폰을 등록하면 0.30%의 우대금리 제공",
+    "prime_rate": 0.003
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 70,
+  "fields": {
+    "product": 24,
+    "category": "신규 가입",
+    "condition_title": "신규고객 우대금리",
+    "condition_content": "당행 1년 이내 예적금(청약포함) 신규해지 이력 미보유",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 71,
+  "fields": {
+    "product": 24,
+    "category": "신규 가입",
+    "condition_title": "신규고객 우대금리",
+    "condition_content": "신규 고객",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 72,
+  "fields": {
+    "product": 24,
+    "category": "기타",
+    "condition_title": "ESG 실천 우대금리",
+    "condition_content": "ESG 실천",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 73,
+  "fields": {
+    "product": 24,
+    "category": "기타",
+    "condition_title": "공동가입우대금리",
+    "condition_content": "공동 가입",
+    "prime_rate": 1.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 74,
+  "fields": {
+    "product": 25,
+    "category": "거래 연동",
+    "condition_title": "주거래우대",
+    "condition_content": "주거래에 대한 우대 조건",
+    "prime_rate": 0.005
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 75,
+  "fields": {
+    "product": 25,
+    "category": "거래 연동",
+    "condition_title": "공과금 자동이체",
+    "condition_content": "공과금 자동이체에 대한 우대 조건",
+    "prime_rate": 0.004
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 76,
+  "fields": {
+    "product": 25,
+    "category": "신규 가입",
+    "condition_title": "신규고객",
+    "condition_content": "신규 고객에 대한 우대 조건",
+    "prime_rate": 0.002
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 77,
+  "fields": {
+    "product": 25,
+    "category": "신규 가입",
+    "condition_title": "전자명함을 통한 신규",
+    "condition_content": "전자명함을 통한 신규 가입에 대한 우대 조건",
+    "prime_rate": 0.002
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 78,
+  "fields": {
+    "product": 25,
+    "category": "기타",
+    "condition_title": "주택청약종합저축 보유",
+    "condition_content": "주택청약종합저축 보유에 대한 우대 조건",
+    "prime_rate": 0.001
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 79,
+  "fields": {
+    "product": 26,
+    "category": "마케팅 및 기타 동의",
+    "condition_title": "마케팅 동의",
+    "condition_content": "마케팅 동의",
+    "prime_rate": 0.0015
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 80,
+  "fields": {
+    "product": 26,
+    "category": "기타",
+    "condition_title": "목돈마련 축하이율",
+    "condition_content": "목돈마련 축하이율 0.30~1.00%",
+    "prime_rate": 0.003
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 81,
+  "fields": {
+    "product": 26,
+    "category": "기타",
+    "condition_title": "친구 추천번호",
+    "condition_content": "친구 추천번호 0.30~0.60%",
+    "prime_rate": 0.003
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 82,
+  "fields": {
+    "product": 27,
+    "category": "신규 가입",
+    "condition_title": "첫 거래 고객",
+    "condition_content": "적금 가입 전 일 기준 당행 활동 계좌 미 보유",
+    "prime_rate": 2.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 83,
+  "fields": {
+    "product": 27,
+    "category": "사용 실적",
+    "condition_title": "기간 내 적금 입금",
+    "condition_content": "입금 일마다 0.10%씩 우대, 최대 2.50%",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 84,
+  "fields": {
+    "product": 27,
+    "category": "마케팅 및 기타 동의",
+    "condition_title": "마케팅 동의 및 모바일 메세지 수신 동의",
+    "condition_content": "만기 유지 시 0.50% 우대",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 85,
+  "fields": {
+    "product": 28,
+    "category": "거래 연동",
+    "condition_title": "목표달성 축하금리",
+    "condition_content": "당행 입출금식 계좌에서 이 적금으로 자동이체를 통해 3회 이상 납입하고 만기일 전일까지 목표금액(신규 시 직접 설정) 이상 납입하는 경우",
+    "prime_rate": 0.01
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 86,
+  "fields": {
+    "product": 28,
+    "category": "거래 연동",
+    "condition_title": "최초거래고객 우대금리",
+    "condition_content": "신규 고객",
+    "prime_rate": 0.005
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 87,
+  "fields": {
+    "product": 29,
+    "category": "거래 연동",
+    "condition_title": "지로 또는 공과금 자동이체 우대금리",
+    "condition_content": "지로 또는 공과금 자동이체",
+    "prime_rate": 0.005
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 88,
+  "fields": {
+    "product": 29,
+    "category": "신규 가입",
+    "condition_title": "최초거래고객 우대금리",
+    "condition_content": "최초거래고객",
+    "prime_rate": 0.005
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 89,
+  "fields": {
+    "product": 29,
+    "category": "거래 연동",
+    "condition_title": "에너지 절감 우대금리",
+    "condition_content": "에너지 절감",
+    "prime_rate": 0.01
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 90,
+  "fields": {
+    "product": 29,
+    "category": "거래 연동",
+    "condition_title": "최고 연 2.00%p",
+    "condition_content": "최고 연 2.00%p",
+    "prime_rate": 0.02
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 91,
+  "fields": {
+    "product": 30,
+    "category": "거래 연동",
+    "condition_title": "당행 급여이체 실적",
+    "condition_content": "당행 급여이체 실적(월50만원 이상) 6개월 이상",
+    "prime_rate": 0.01
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 92,
+  "fields": {
+    "product": 30,
+    "category": "신규 가입",
+    "condition_title": "가입시점 중소기업 근로자 확인",
+    "condition_content": "가입시점 중소기업 근로자로 확인된 경우",
+    "prime_rate": 0.012
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 93,
+  "fields": {
+    "product": 30,
+    "category": "신규 가입",
+    "condition_title": "가입시점 중소기업 근로자 확인",
+    "condition_content": "가입시점 중소기업 근로자로 확인된 경우",
+    "prime_rate": 0.022
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 94,
+  "fields": {
+    "product": 13,
+    "category": "신용(체크)카드사용실적",
+    "condition_title": "신용(체크)카드사용실적300만원이상",
+    "condition_content": "신용(체크)카드사용실적300만원이상",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 95,
+  "fields": {
+    "product": 13,
+    "category": "신용(체크)카드사용실적",
+    "condition_title": "해지원금 기준 500만원이상",
+    "condition_content": "해지원금 기준 500만원이상",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 96,
+  "fields": {
+    "product": 13,
+    "category": "신용(체크)카드사용실적",
+    "condition_title": "해피라이프_여행스케치외화적금V 동일자가입",
+    "condition_content": "해피라이프_여행스케치외화적금V 동일자가입",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 97,
+  "fields": {
+    "product": 13,
+    "category": "개인정보 동의",
+    "condition_title": "개인(신용)정보 동의",
+    "condition_content": "개인(신용)정보 동의",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 98,
+  "fields": {
+    "product": 13,
+    "category": "신규 가입",
+    "condition_title": "최고우대금리 1.20%p",
+    "condition_content": "최고우대금리 1.20%p",
+    "prime_rate": 1.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 99,
+  "fields": {
+    "product": 33,
+    "category": "신규 가입",
+    "condition_title": "단체가입/나라사랑/쿠폰 우대이율",
+    "condition_content": "단체가입, 나라사랑, 쿠폰을 통해 우대이율을 받을 수 있습니다. 우대이율은 1년, 2년, 3년, 5년 계약기간별로 차등 적용되며, 중복적용되지 않습니다.",
+    "prime_rate": 0.6
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 100,
+  "fields": {
+    "product": 33,
+    "category": "거래 연동",
+    "condition_title": "교차거래 우대이율",
+    "condition_content": "교차거래를 통해 우대이율을 받을 수 있습니다.",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 101,
+  "fields": {
+    "product": 34,
+    "category": "사용 실적",
+    "condition_title": "종이통장 줄이기 미션",
+    "condition_content": "종이통장 줄이기",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 102,
+  "fields": {
+    "product": 34,
+    "category": "사용 실적",
+    "condition_title": "종이서식 줄이기 미션",
+    "condition_content": "종이서식 줄이기",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 103,
+  "fields": {
+    "product": 34,
+    "category": "사용 실적",
+    "condition_title": "퀴즈미션",
+    "condition_content": "퀴즈",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 104,
+  "fields": {
+    "product": 34,
+    "category": "기타",
+    "condition_title": "1년제 최고 연 0.8%p",
+    "condition_content": "1년제 최고 연 0.8%p",
+    "prime_rate": 0.8
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 105,
+  "fields": {
+    "product": 34,
+    "category": "기타",
+    "condition_title": "2년제 최고 연 0.9%p",
+    "condition_content": "2년제 최고 연 0.9%p",
+    "prime_rate": 0.9
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 106,
+  "fields": {
+    "product": 34,
+    "category": "기타",
+    "condition_title": "3년제 최고 연 1.0%p",
+    "condition_content": "3년제 최고 연 1.0%p",
+    "prime_rate": 1.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 107,
+  "fields": {
+    "product": 35,
+    "category": "기타",
+    "condition_title": "반려동물 등록",
+    "condition_content": "연 0.2%p",
+    "prime_rate": 0.002
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 108,
+  "fields": {
+    "product": 35,
+    "category": "기타",
+    "condition_title": "미지(유기)입양",
+    "condition_content": "연 0.2%p",
+    "prime_rate": 0.002
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 109,
+  "fields": {
+    "product": 35,
+    "category": "기타",
+    "condition_title": "반려동물애정활동",
+    "condition_content": "연 0.2%p",
+    "prime_rate": 0.002
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 110,
+  "fields": {
+    "product": 35,
+    "category": "기타",
+    "condition_title": "반려동물요금제",
+    "condition_content": "연 0.2%p",
+    "prime_rate": 0.002
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 111,
+  "fields": {
+    "product": 35,
+    "category": "기타",
+    "condition_title": "KB거래감사",
+    "condition_content": "연 0.2%p",
+    "prime_rate": 0.002
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 112,
+  "fields": {
+    "product": 35,
+    "category": "신규 가입",
+    "condition_title": "KB첫거래",
+    "condition_content": "연 0.5%p",
+    "prime_rate": 0.005
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 113,
+  "fields": {
+    "product": 35,
+    "category": "기타",
+    "condition_title": "최고 연 1.5%p",
+    "condition_content": "항목별 적용 조건 충족시",
+    "prime_rate": 0.015
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 114,
+  "fields": {
+    "product": 36,
+    "category": "사용 실적",
+    "condition_title": "목표달성 축하 우대이율",
+    "condition_content": "50만원 이하: 연 0.5%p, 50만원 초과: 연 1.0%p",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 115,
+  "fields": {
+    "product": 36,
+    "category": "사용 실적",
+    "condition_title": "별 모으기 우대이율",
+    "condition_content": "10개: 연 0.5%p, 20개: 연 1.0%p",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 116,
+  "fields": {
+    "product": 36,
+    "category": "사용 실적",
+    "condition_title": "목표달성 축하 우대이율",
+    "condition_content": "50만원 이하: 연 0.5%p, 50만원 초과: 연 1.0%p",
+    "prime_rate": 1.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 117,
+  "fields": {
+    "product": 36,
+    "category": "사용 실적",
+    "condition_title": "별 모으기 우대이율",
+    "condition_content": "10개: 연 0.5%p, 20개: 연 1.0%p",
+    "prime_rate": 1.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 118,
+  "fields": {
+    "product": 36,
+    "category": "사용 실적",
+    "condition_title": "함께해요 우대이율",
+    "condition_content": "",
+    "prime_rate": 2.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 119,
+  "fields": {
+    "product": 36,
+    "category": "기타",
+    "condition_title": "최고 연 4.0%p",
+    "condition_content": "",
+    "prime_rate": 4.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 120,
+  "fields": {
+    "product": 37,
+    "category": "신규 가입",
+    "condition_title": "KB패밀리 우대이율",
+    "condition_content": "KB패밀리 회원일 경우",
+    "prime_rate": 0.01
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 121,
+  "fields": {
+    "product": 37,
+    "category": "신규 가입",
+    "condition_title": "KB국민인증 우대이율",
+    "condition_content": "KB국민인증 회원일 경우",
+    "prime_rate": 0.005
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 122,
+  "fields": {
+    "product": 37,
+    "category": "신규 가입",
+    "condition_title": "내차든든 우대이율",
+    "condition_content": "내차든든 회원일 경우",
+    "prime_rate": 0.03
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 123,
+  "fields": {
+    "product": 37,
+    "category": "신규 가입",
+    "condition_title": "혜택수신 우대이율",
+    "condition_content": "혜택수신 회원일 경우",
+    "prime_rate": 0.01
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 124,
+  "fields": {
+    "product": 37,
+    "category": "기타",
+    "condition_title": "최고 연 5.5%p",
+    "condition_content": "항목별 적용 조건 충족시",
+    "prime_rate": 0.055
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 125,
+  "fields": {
+    "product": 38,
+    "category": "거래 연동",
+    "condition_title": "소득이체",
+    "condition_content": "연 0.6%",
+    "prime_rate": 0.6
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 126,
+  "fields": {
+    "product": 38,
+    "category": "거래 연동",
+    "condition_title": "오픈뱅킹",
+    "condition_content": "연 0.6%",
+    "prime_rate": 0.6
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 127,
+  "fields": {
+    "product": 38,
+    "category": "거래 연동",
+    "condition_title": "카드이용",
+    "condition_content": "연 0.3%",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 128,
+  "fields": {
+    "product": 38,
+    "category": "거래 연동",
+    "condition_title": "청약보유",
+    "condition_content": "연 0.3%",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 129,
+  "fields": {
+    "product": 38,
+    "category": "마케팅 및 기타 동의",
+    "condition_title": "마케팅동의",
+    "condition_content": "연 0.1%",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 130,
+  "fields": {
+    "product": 38,
+    "category": "기타",
+    "condition_title": "가산금리",
+    "condition_content": "최고 연 1.30%",
+    "prime_rate": 1.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 131,
+  "fields": {
+    "product": 39,
+    "category": "사용 실적",
+    "condition_title": "목표금액 달성 축하금리",
+    "condition_content": "목표금액을 달성 시 우대금리 적용",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 132,
+  "fields": {
+    "product": 39,
+    "category": "신규 가입",
+    "condition_title": "MZ세대(만 19~34세) 우대금리",
+    "condition_content": "MZ세대 고객에게 우대금리 적용",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 133,
+  "fields": {
+    "product": 39,
+    "category": "사용 실적",
+    "condition_title": "직전 1년간 당행 예적금(청약포함) 미보유 고객",
+    "condition_content": "직전 1년간 당행 예적금(청약포함)을 미보유한 고객에게 우대금리 적용",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 134,
+  "fields": {
+    "product": 40,
+    "category": "거래 연동",
+    "condition_title": "급여실적",
+    "condition_content": "급여이체 실적 또는 개인사업자 계좌 실적이 있는 경우",
+    "prime_rate": 1.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 135,
+  "fields": {
+    "product": 40,
+    "category": "거래 연동",
+    "condition_title": "급여이체 실적",
+    "condition_content": "급여이체 실적이 있는 경우",
+    "prime_rate": 1.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 136,
+  "fields": {
+    "product": 40,
+    "category": "거래 연동",
+    "condition_title": "개인사업자 계좌 실적",
+    "condition_content": "개인사업자 계좌 실적이 있는 경우",
+    "prime_rate": 1.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 137,
+  "fields": {
+    "product": 40,
+    "category": "거래 연동",
+    "condition_title": "비대면 채널 이체 실적",
+    "condition_content": "비대면 채널 이체 실적이 있는 경우",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 138,
+  "fields": {
+    "product": 40,
+    "category": "마케팅 및 기타 동의",
+    "condition_title": "마케팅 동의",
+    "condition_content": "마케팅 동의가 있는 경우",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 139,
+  "fields": {
+    "product": 40,
+    "category": "기타",
+    "condition_title": "농업계고 및 청년농부사관학교 졸업자",
+    "condition_content": "농업계고 및 청년농부사관학교 졸업자",
+    "prime_rate": 2.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 140,
+  "fields": {
+    "product": 41,
+    "category": "비대면/모바일 뱅킹",
+    "condition_title": "온실가스 줄이기 실천서약서 동의",
+    "condition_content": "온실가스 줄이기 실천서약서를 동의하면 우대금리 0.1%p를 받을 수 있습니다.",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 141,
+  "fields": {
+    "product": 41,
+    "category": "비대면/모바일 뱅킹",
+    "condition_title": "통장미발급",
+    "condition_content": "통장미발급을 하면 우대금리 0.3%p를 받을 수 있습니다.",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 142,
+  "fields": {
+    "product": 41,
+    "category": "비대면/모바일 뱅킹",
+    "condition_title": "손하나로인증 서비스 등록",
+    "condition_content": "손하나로인증 서비스를 등록하면 우대금리 0.2%p를 받을 수 있습니다.",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 143,
+  "fields": {
+    "product": 41,
+    "category": "사용 실적",
+    "condition_title": "대중교통이용",
+    "condition_content": "대중교통을 이용하면 우대금리 0.2%p를 받을 수 있습니다.",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 144,
+  "fields": {
+    "product": 41,
+    "category": "사용 실적",
+    "condition_title": "NH내가Green초록세상예금 동시 보유",
+    "condition_content": "NH내가Green초록세상예금을 동시 보유하면 우대금리 0.2%p를 받을 수 있습니다.",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 145,
+  "fields": {
+    "product": 41,
+    "category": "기타",
+    "condition_title": "우대금리 최대한도",
+    "condition_content": "우대금리 최대한도는 1.0%p입니다.",
+    "prime_rate": 1.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 146,
+  "fields": {
+    "product": 42,
+    "category": "신규 가입",
+    "condition_title": "고향사랑기부금 납부고객 우대",
+    "condition_content": "고향사랑기부금 납부고객에게 적용",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 147,
+  "fields": {
+    "product": 42,
+    "category": "신규 가입",
+    "condition_title": "고향사랑특별금리",
+    "condition_content": "상품 가입고객 모두에게 적용, 금리시장상황에 따라 변동 가능",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 148,
+  "fields": {
+    "product": 42,
+    "category": "신규 가입",
+    "condition_title": "만 65세 이상 고령자 우대",
+    "condition_content": "만 65세 이상 고령자에게 적용",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 149,
+  "fields": {
+    "product": 42,
+    "category": "신규 가입",
+    "condition_title": "만 19~34세 MZ고객 우대",
+    "condition_content": "만 19~34세 MZ고객에게 적용",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 150,
+  "fields": {
+    "product": 42,
+    "category": "사용 실적",
+    "condition_title": "NH채움카드 또는 [zgm.고향으로 카드] 이용실적 우대",
+    "condition_content": "NH채움카드 또는 [zgm.고향으로 카드] 이용실적에 따라 우대",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 151,
+  "fields": {
+    "product": 43,
+    "category": "거래 연동",
+    "condition_title": "급여입금실적 보유",
+    "condition_content": "가입기간 중 3개월 이상 급여이체시, 주택청약종합저축 또는 펀드가입, NH채움카드 결제실적 1백만원 이상",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 152,
+  "fields": {
+    "product": 43,
+    "category": "거래 연동",
+    "condition_title": "급여입금실적 보유",
+    "condition_content": "가입기간 중 3개월 이상 급여이체시, 주택청약종합저축 또는 펀드가입, NH채움카드 결제실적 1백만원 이상",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 153,
+  "fields": {
+    "product": 43,
+    "category": "비대면/모바일 뱅킹",
+    "condition_title": "인터넷(스마트)뱅킹 또는 올원뱅크로 가입",
+    "condition_content": "",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 154,
+  "fields": {
+    "product": 44,
+    "category": "거래 연동",
+    "condition_title": "주거래 하나우대",
+    "condition_content": "적금만기 전 전월말 기준 본인 명의 당행 입출금 통장 통해 계약 기간 1/2 이상 이체된 주거래 실적 1종",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 155,
+  "fields": {
+    "product": 44,
+    "category": "거래 연동",
+    "condition_title": "주거래 플러스 우대",
+    "condition_content": "주거래 하나우대와 동일한 요건의 거래 실적 2종 이상 경우",
+    "prime_rate": 0.9
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 156,
+  "fields": {
+    "product": 44,
+    "category": "거래 연동",
+    "condition_title": "온라인.재예치 우대",
+    "condition_content": "온라인 거래",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 157,
+  "fields": {
+    "product": 45,
+    "category": "거래 연동",
+    "condition_title": "월부금 자동이체실적",
+    "condition_content": "계약기간의 1/2이상 월부금 자동이체실적",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 158,
+  "fields": {
+    "product": 46,
+    "category": "기타",
+    "condition_title": "금리우대 코드 입력",
+    "condition_content": "금리우대 코드를 입력하는 경우 우대금리 적용",
+    "prime_rate": 0.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 159,
+  "fields": {
+    "product": 47,
+    "category": "거래 연동",
+    "condition_title": "입금 시 우대금리 제공",
+    "condition_content": "입금할 때마다 우대금리를 랜덤으로 제공하며, 입금 시 제공되는 우대금리를 누적으로 합산하여 만기 해지 시 적용",
+    "prime_rate": 6.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 160,
+  "fields": {
+    "product": 48,
+    "category": "거래 연동",
+    "condition_title": "급여이체 또는 통신비 자동이체",
+    "condition_content": "급여이체 또는 통신비 자동이체",
+    "prime_rate": 0.6
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 161,
+  "fields": {
+    "product": 49,
+    "category": "신규 가입",
+    "condition_title": "해양플라스틱감축서약",
+    "condition_content": "신규시",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 162,
+  "fields": {
+    "product": 49,
+    "category": "신규 가입",
+    "condition_title": "봉사활동 또는 상품홍보",
+    "condition_content": "만기시",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 163,
+  "fields": {
+    "product": 49,
+    "category": "신규 가입",
+    "condition_title": "입출금통장 최초신규",
+    "condition_content": "만기시",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 164,
+  "fields": {
+    "product": 49,
+    "category": "거래 연동",
+    "condition_title": "자동이체 출금실적",
+    "condition_content": "만기시",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 165,
+  "fields": {
+    "product": 49,
+    "category": "기타",
+    "condition_title": "최대우대금리",
+    "condition_content": "",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 166,
+  "fields": {
+    "product": 51,
+    "category": "신규 가입",
+    "condition_title": "해양플라스틱감축서약",
+    "condition_content": "신규시",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 167,
+  "fields": {
+    "product": 51,
+    "category": "신규 가입",
+    "condition_title": "봉사활동 또는 상품홍보",
+    "condition_content": "만기시",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 168,
+  "fields": {
+    "product": 51,
+    "category": "신규 가입",
+    "condition_title": "입출금통장 최초신규",
+    "condition_content": "만기시",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 169,
+  "fields": {
+    "product": 51,
+    "category": "거래 연동",
+    "condition_title": "자동이체 출금실적",
+    "condition_content": "만기시",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 170,
+  "fields": {
+    "product": 51,
+    "category": "기타",
+    "condition_title": "최대우대금리",
+    "condition_content": "",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 171,
+  "fields": {
+    "product": 52,
+    "category": "거래 연동",
+    "condition_title": "자동이체시 우대금리 제공",
+    "condition_content": "전체 계약월수의 1/2이상을 자동이체로 납입하고 만기 해지하는 경우, 만기 자동연장된 원리금은 우대금리를 제공하지 않음",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 172,
+  "fields": {
+    "product": 54,
+    "category": "거래 연동",
+    "condition_title": "매일 우대금리",
+    "condition_content": "매 입금 시 마다 연 0.10%p 제공(최대 연 3.10%p)",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 173,
+  "fields": {
+    "product": 54,
+    "category": "거래 연동",
+    "condition_title": "보너스 우대금리",
+    "condition_content": "누적하여 5/10/15/20/25/31회 입금 시 해당 우대금리 제공(최대 연 2.40%p)",
+    "prime_rate": 0.24
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 174,
+  "fields": {
+    "product": 55,
+    "category": "거래 연동",
+    "condition_title": "주 단위 자동이체",
+    "condition_content": "적금 가입 시 설정되는 주 단위 자동이체를 통하여 25회 이상 적립",
+    "prime_rate": 2.0
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 175,
+  "fields": {
+    "product": 56,
+    "category": "기타",
+    "condition_title": "만기 해지 시",
+    "condition_content": "연 2.50% 제공",
+    "prime_rate": 2.5
+  }
+},
+{
+  "model": "savings.savingsspecialcondition",
+  "pk": 176,
+  "fields": {
+    "product": 57,
+    "category": "거래 연동",
+    "condition_title": "월 단위 자동이체 성공",
+    "condition_content": "적금 가입 시 설정되는 월 단위 자동이체를 모두 성공하는 경우",
+    "prime_rate": 0.005
+  }
+}
+]
