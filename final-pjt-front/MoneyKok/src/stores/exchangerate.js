@@ -16,7 +16,6 @@ export const useExchangeStore = defineStore("exchange", () => {
         curName.value.push(item.cur_nm);
         exchangeInfo.value.push(item)
       });
-      console.log('curNa')
     })
       .catch((error) => {
         console.log(error);

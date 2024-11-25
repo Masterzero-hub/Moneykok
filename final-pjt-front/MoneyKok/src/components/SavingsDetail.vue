@@ -112,6 +112,7 @@
 
 <script setup>
 import { useSavingsStore } from "@/stores/savings";
+import { useUserStore } from "@/stores/user";
 import { onMounted, ref, computed, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
@@ -119,7 +120,8 @@ import { useRoute, useRouter } from "vue-router";
 const router = useRouter();
 const route = useRoute();
 const savingCode = route.params.savings_code; // 적금 코드로 변수 변경
-const store = useSavingsStore(); // 적금 스토어 사용
+const savingsStore = useSavingsStore(); // 적금 스토어 사용
+const userStore = useUserStore();
 const {
   products,
   productDetail,
@@ -134,15 +136,16 @@ const {
   joinConditions,
   resetState,
   joinProduct,
-} = storeToRefs(store);
+} = storeToRefs(savingsStore);
+const { isLogin } = storeToRefs(userStore)
 
 // 가입 가능 기간 목록
 const terms = [6, 12, 24, 36];
 
 // 초기 데이터 로드
 onMounted(() => {
-  store.getProductDetail(savingCode); // 적금 상세 정보 로드
-  store.resetState();
+    savingsStore.getProductDetail(savingCode); // 적금 상세 정보 로드
+    savingsStore.resetState();
   console.log(productDetail.value);
 });
 
@@ -150,8 +153,8 @@ onMounted(() => {
 watch(
   () => route.params.saving_code,
   (newSavingCode) => {
-    store.resetState(); // 상태 초기화
-    store.getProductDetail(newSavingCode); // 새로운 적금 상세 데이터 요청
+    savingsStore.resetState(); // 상태 초기화
+    savingsStore.getProductDetail(newSavingCode); // 새로운 적금 상세 데이터 요청
   }
 );
 
@@ -203,6 +206,13 @@ const selectJoinTerm = (term) => {
 
 // 가입 처리
 const handleJoin = () => {
+  if (isLogin.value == false) {
+    // 로그인 여부 확인
+    alert("로그인이 필요합니다.");
+    router.push({ name: "login" }); // 로그인 페이지로 이동
+    return;
+  }
+
   if (!joinTerm.value || !joinAmount.value) {
     alert("가입 기간과 가입 금액을 입력해주세요.");
     return;
@@ -210,7 +220,7 @@ const handleJoin = () => {
   // 최종 이자율 저장
   finalJoinRate.value = calculatedRate.value;
 
-  store.joinProduct(savingCode); // 적금 가입 처리
+  savingsStore.joinProduct(savingCode); // 적금 가입 처리
   console.log(
     `가입 완료: 기간=${joinTerm.value}개월, 금액=${joinAmount.value}만원, 이자율=${finalJoinRate.value}%`
   );
@@ -221,8 +231,14 @@ const handleJoin = () => {
 };
 </script>
 
-
 <style scoped>
+/* 카드 스타일 */
+.card {
+  /* transition 속성 제거 */
+  transform: none; /* 호버 시 크기 변화를 없앰 */
+  box-shadow: none; /* 호버 시 그림자 효과를 없앰 */
+}
+
 /* 체크박스 스타일 */
 .checkbox-list {
   display: flex;

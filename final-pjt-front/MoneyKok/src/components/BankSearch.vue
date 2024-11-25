@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5">
       <!-- 헤더 -->
-      <div class="row mb-5">
+      <div class="row mb-4">
         <div class="col-md-8 text-start">
           <h2 class="section-title">은행 찾기</h2>
           <!-- <p class="text-muted">
