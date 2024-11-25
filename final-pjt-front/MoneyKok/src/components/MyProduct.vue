@@ -67,7 +67,6 @@ const { joinedProducts, getJoinedProducts } = storeToRefs(store);
 
 // 페이지 로드 시 데이터 가져오기
 onMounted(() => {
-  // 실제 구현 시, 서버로부터 데이터를 받아오는 로직을 추가
   store.getJoinedProducts()
   console.log(joinedProducts)
 });

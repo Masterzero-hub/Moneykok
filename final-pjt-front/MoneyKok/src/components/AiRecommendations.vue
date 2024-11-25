@@ -1,13 +1,13 @@
 <template>
     <div class="container mt-5">
       <!-- 제목 -->
-      <h2 class="text-center mb-5">AI 추천 결과</h2>
+      <h2 class="text-center mb-4">AI 추천 결과</h2>
   
       <!-- 상품 카드 리스트 -->
       <div class="row">
         <div
-          v-for="(product, index) in recommendedProducts"
-          :key="index"
+          v-for="product in recommendedProducts.recommended_products"
+          :key="product.id"
           class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch"
         >
           <div class="product-card">
@@ -16,8 +16,7 @@
               <div class="bank-info d-flex align-items-center justify-content-center">
                 <!-- 은행 로고 -->
                 <img
-                   :src="`/bank_image/${product.bank.fin_co_no}.jpg`"
-                  alt="Bank Logo"
+                  :src="`/bank_image/${product.bank.fin_co_no}.jpg`"                  alt="Bank Logo"
                   class="bank-logo me-2"
                 />
                 <!-- 은행 이름 -->
@@ -31,7 +30,7 @@
               <tbody>
                 <tr>
                   <th>최대 금리</th>
-                  <td>{{ product.final_intr_rate }}%</td>
+                  <td class="max-rate">{{ getMaxInterestRate(product.options) }}%</td>
                 </tr>
                 <tr>
                   <th>가입 조건</th>
@@ -48,16 +47,19 @@
                 <tr>
                   <th>우대 조건</th>
                   <td>
-                    <ul class="benefit-list">
-                      <li
-                        v-for="(condition, cIndex) in product.special_conditions"
-                        :key="cIndex"
-                      >
-                        {{ condition.condition_title }} -
-                        {{ condition.condition_content }} (우대금리:
-                        {{ condition.prime_rate }}%)
-                      </li>
-                    </ul>
+                    <template v-if="product.special_conditions.length > 0">
+                      <ul class="benefit-list">
+                        <li
+                          v-for="(condition, cIndex) in product.special_conditions"
+                          :key="cIndex"
+                        >
+                          {{ condition.condition_title }} - {{ condition.condition_content }} (우대금리: {{ condition.prime_rate }}%)
+                        </li>
+                      </ul>
+                    </template>
+                    <template v-else>
+                      없음
+                    </template>
                   </td>
                 </tr>
               </tbody>
@@ -65,7 +67,7 @@
   
             <!-- 버튼 -->
             <div class="text-center mt-auto">
-              <button class="btn-common btn-mint btn-view" @click="goDetail(product.id)">자세히 보기</button>
+              <button class="btn-common btn-mint btn-view" @click="goDetail(product.fin_prdt_cd)">자세히 보기</button>
             </div>
           </div>
         </div>
@@ -80,7 +82,7 @@
   import { useAiStore } from "@/stores/ai";
   
   const store = useAiStore();
-  const { filters, recommendedProducts, getRecommendtaion } = storeToRefs(store);
+  const { recommendedProducts, getRecommendtaion } = storeToRefs(store);
   const router = useRouter();
   
 // ----- 초기 렌더링 -----
@@ -88,6 +90,12 @@ onMounted(() => {
   store.getRecommendtaion();
   console.log('ai 추천 완료 :' , recommendedProducts)
 });
+
+// 최대 금리 계산 함수
+const getMaxInterestRate = (options) => {
+  if (!options || options.length === 0) return "정보 없음";
+  return Math.max(...options.map((opt) => opt.intr_rate2)).toFixed(2);
+};
 
 
   const goDetail = function (depositCode) {
@@ -165,6 +173,11 @@ onMounted(() => {
   
   .product-details td {
     text-align: left;
+  }
+
+  .max-rate {
+    font-weight: bolder;
+    font-size: large;
   }
   
   /* 혜택 리스트 스타일 */

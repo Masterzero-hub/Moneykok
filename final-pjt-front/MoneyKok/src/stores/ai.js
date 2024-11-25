@@ -4,13 +4,7 @@ import axios from "axios";
 import { useUserStore } from './user';
 
 export const useAiStore = defineStore("ai", () => {
-  const filters = ref({
-    productType: "",
-    joinTerm: null,
-    amount: null,
-    bank: [],
-    conditions: [],
-  });
+  const productType = ref("")
 
   const recommendedProducts = ref([])
 
@@ -23,7 +17,7 @@ export const useAiStore = defineStore("ai", () => {
   const getRecommendtaion = function() {
     axios
       .get(
-        `http://127.0.0.1:8000/${filters.value.productType}/recommend-products/`,
+        `http://127.0.0.1:8000/${productType.value}/recommend-products/`,
         // {
         //   productType: productType.value,
         //   joinTerm: joinTerm.value,
@@ -45,5 +39,5 @@ export const useAiStore = defineStore("ai", () => {
       });
   };
 
-  return { filters, recommendedProducts, getRecommendtaion };
+  return { productType, recommendedProducts, getRecommendtaion };
 });
