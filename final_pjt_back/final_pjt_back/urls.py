@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from deposits import views
 
 
 urlpatterns = [
@@ -25,6 +24,4 @@ urlpatterns = [
     path('deposits/', include('deposits.urls')),
     path('savings/', include('savings.urls')),
     path('communities/', include('communities.urls')),
-    path('exchange/', include('exchange.urls')),
-    path('joined-products/', views.joined_products, name="joined_products" )
-]
+    path('exchange/', include('exchange.urls')),]
