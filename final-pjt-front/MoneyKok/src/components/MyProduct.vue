@@ -1,9 +1,9 @@
 <template>
   <div class="container mt-5">
     <!-- 가입한 상품 목록 -->
-    <div v-if="joinedProducts.length > 0">
+    <div v-if="joinedProducts.deposits.length > 0">
       <div
-        v-for="product in joinedProducts"
+        v-for="product in joinedProducts.deposits"
         :key="product.id"
         class="card shadow-sm mb-3"
       >
@@ -63,7 +63,7 @@ import { storeToRefs } from "pinia";
 const router = useRouter();
 const route = useRoute();
 const store = useDepositsStore();
-const { joinedProducts, getJoinedProducts } = storeToRefs(store);
+const { joinedProducts, getJoinedProducts, deleteDeposits } = storeToRefs(store);
 
 // 페이지 로드 시 데이터 가져오기
 onMounted(() => {
@@ -82,6 +82,7 @@ const formatRate = (rate) => {
 const cancelSubscription = (productId) => {
   console.log(`상품 ID ${productId} 해지 요청`);
   // 실제 API 호출로 해지 로직 구현 예정
+  store.deleteDeposits()
 };
 </script>
 

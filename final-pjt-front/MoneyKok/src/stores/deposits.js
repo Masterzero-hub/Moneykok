@@ -122,17 +122,17 @@ export const useDepositsStore = defineStore("deposits", () => {
 
   // 예금 상품 가입 해지 처리 함수
   const deleteDeposits = function (depositId) {
-    return axios
-      .delete(`http://127.0.0.1:8000/communities/${depositId}/`, {
+    axios
+      .delete(`http://127.0.0.1:8000/deposits/${depositId}/delete/`, {
         headers: {
           Authorization: `Token ${token.value}`,
         },
       })
       .then((res) => {
-        console.log("게시글 삭제 완료", res.data);
+        console.log("가입 해지 완료", res.data);
       })
       .catch((error) => {
-        console.error("게시글 삭제 오류", error);
+        console.error("가입 해지 오류", error);
       });
   };
 
@@ -172,6 +172,7 @@ export const useDepositsStore = defineStore("deposits", () => {
     getFilteredProducts,
     resetState,
     joinProduct,
-    getJoinedProducts
+    getJoinedProducts,
+    deleteDeposits
   };
 });
