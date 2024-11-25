@@ -77,6 +77,7 @@ class JoinedDepositSerializer(serializers.ModelSerializer):
     class Meta:
         model = JoinedDeposits
         fields = [
+            'id',          # 기본 키
             'user',
             'bank',
             'product',
