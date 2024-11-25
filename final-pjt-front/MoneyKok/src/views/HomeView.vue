@@ -22,7 +22,8 @@
         <div class="service-card-content">
           <h2>내 조건에 딱 맞는 예적금 상품을 찾을 수 있어요</h2>
           <p>은행 · 저축은행을 포함한 3,000여 금융 상품을 비교하고 신청할 수 있어요.</p>
-          <button class="btn-common" @click="goDeposits">예적금 상품 조회하기</button>
+          <button class="btn-common" @click="goDeposits">예금 상품 조회하기</button>
+          <button class="btn-common ms-4" @click="gosavings">적금 상품 조회하기</button>
         </div>
       </div>
 
@@ -81,6 +82,10 @@ const goAiRecommend = function() {
 
 const goDeposits = function() {
   router.push({ name : 'deposits'})
+}
+
+const gosavings = function() {
+  router.push({ name : 'savings'})
 }
 
 const goExchangeRate = function() {

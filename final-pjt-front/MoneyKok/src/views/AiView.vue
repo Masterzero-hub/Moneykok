@@ -43,46 +43,21 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useAiStore } from "@/stores/ai";
+import { useUserStore } from "@/stores/user";
 
-const store = useAiStore();
-const { productType } = storeToRefs(store);
+const aiStore = useAiStore();
+const userStore = useUserStore()
+
+const { productType } = storeToRefs(aiStore);
 const router = useRouter();
 
-const username = "김사피";
+const username = userStore.name
 
 const productTypesList = [
   { label: "예금", value: "deposits" },
   { label: "적금", value: "savings" },
 ];
-const terms = [6, 12, 24, 36];
-const banks = [
-  { name: "우리은행", code: "0010001" },
-  { name: "한국스탠다드차드은행", code: "0010002" },
-  { name: "아이엠뱅크", code: "0010016" },
-  { name: "부산은행", code: "0010017" },
-  { name: "광주은행", code: "0010019" },
-  { name: "제주은행", code: "0010020" },
-  { name: "전북은행", code: "0010022" },
-  { name: "경남은행", code: "0010024" },
-  { name: "중소기업은행", code: "0010026" },
-  { name: "한국산업은행", code: "0010030" },
-  { name: "국민은행", code: "0010927" },
-  { name: "신한은행", code: "0011625" },
-  { name: "농협은행주식회사", code: "0013175" },
-  { name: "하나은행", code: "0013909" },
-  { name: "주식회사 케이뱅크", code: "0014674" },
-  { name: "수협은행", code: "0014807" },
-  { name: "카카오뱅크", code: "0015130" },
-  { name: "토스뱅크 주식회사", code: "0017801" },
-];
-const conditions = [
-  "신규 가입",
-  "거래 연동",
-  "사용 실적",
-  "비대면/모바일 뱅킹",
-  "마케팅 및 기타 동의",
-  "기타",
-];
+
 
 // 상품 유형 선택
 const selectProductType = (type) => {
