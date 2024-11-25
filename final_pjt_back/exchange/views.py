@@ -17,8 +17,8 @@ def exchange(request):
         EXCHANGE_URL = 'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON'
         params = {
             'authkey': settings.EXCHANGE_API_KEY,
-            # 'searchdate': timezone.now().strftime('%Y%m%d'),
-            'searchdate': '20241122',
+            'searchdate': timezone.now().strftime('%Y%m%d'),
+            # 'searchdate': '20241122',
             'data': 'AP01'
         }
 

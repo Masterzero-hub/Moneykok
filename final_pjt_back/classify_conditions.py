@@ -62,9 +62,10 @@ def parse_special_conditions(spcl_cnd_text):
                 {"role": "system", "content": "당신은 우대조건 정보를 분석하는 전문가입니다."},
                 {"role": "user", "content": prompt},
             ],
-            model="llama-3.1-8b-instant",
+            model="llama-3.2-90b-vision-preview",
             temperature=0,
             max_tokens=4096,
+            
         )
         assistant_message = response.choices[0].message.content.strip()
 

@@ -1,37 +1,51 @@
 import os
-import django
-
-# Django 환경 설정
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "final_pjt_back.settings")
-django.setup()
-
-from deposits.models import DepositSpecialCondition
-from savings.models import SavingsSpecialCondition
 from django.core.serializers import serialize
 
 # 저장 디렉토리 지정 (필요 시 경로 수정)
 output_dir = "fixtures"
 os.makedirs(output_dir, exist_ok=True)
 
-def export_to_json():
+def export_to_json(model, file_name=None):
     """
-    DepositSpecialCondition 및 SavingsSpecialCondition 데이터를 JSON 파일로 내보냄
+    특정 모델 데이터를 JSON 파일로 내보내는 함수
+
+    Args:
+        model: Django 모델 클래스
+        file_name: 저장할 JSON 파일명 (기본값은 모델 이름을 사용)
     """
-    # DepositSpecialCondition 데이터 추출 및 저장
-    deposit_conditions = DepositSpecialCondition.objects.all()
-    deposit_json = serialize("json", deposit_conditions, indent=2)
-    deposit_file_path = os.path.join(output_dir, "deposits_special_conditions.json")
-    with open(deposit_file_path, "w", encoding="utf-8") as deposit_file:
-        deposit_file.write(deposit_json)
-    print(f"DepositSpecialCondition 데이터가 저장되었습니다: {deposit_file_path}")
+    # 모델 이름으로 기본 파일명 생성
+    model_name = model.__name__
+    file_name = file_name or f"{model_name.lower()}_data.json"
 
-    # SavingsSpecialCondition 데이터 추출 및 저장
-    savings_conditions = SavingsSpecialCondition.objects.all()
-    savings_json = serialize("json", savings_conditions, indent=2)
-    savings_file_path = os.path.join(output_dir, "savings_special_conditions.json")
-    with open(savings_file_path, "w", encoding="utf-8") as savings_file:
-        savings_file.write(savings_json)
-    print(f"SavingsSpecialCondition 데이터가 저장되었습니다: {savings_file_path}")
+    # 모델 데이터 추출
+    data = model.objects.all()
+    json_data = serialize("json", data, indent=2)
 
-# 함수 실행
-export_to_json()
+    # 파일 경로 지정
+    file_path = os.path.join(output_dir, file_name)
+
+    # JSON 파일 저장
+    with open(file_path, "w", encoding="utf-8") as json_file:
+        json_file.write(json_data)
+    print(f"{model_name} 데이터가 저장되었습니다: {file_path}")
+
+
+from deposits.models import DepositProducts, DepositSpecialCondition
+from savings.models import SavingsProducts, SavingsSpecialCondition
+from accounts.models import User
+from communities.models import Article, Comment
+
+
+#1 DepositSpecialCondition 데이터를 JSON으로 내보내기
+# export_to_json(DepositSpecialCondition)
+
+#2 SavingsSpecialCondition 데이터를 JSON으로 내보내기
+# export_to_json(SavingsSpecialCondition)
+
+
+
+# export_to_json(User)
+# export_to_json(User)
+# export_to_json(User)
+# export_to_json(Article)
+# export_to_json(Comment)
