@@ -7,7 +7,7 @@ from accounts.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','nickname']
+        fields = ['id','email','nickname']
 
 # 댓글 정보
 class CommentSerializer(serializers.ModelSerializer):

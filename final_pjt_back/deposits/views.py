@@ -181,6 +181,29 @@ def joined_products(request):
     except Exception as e:
         return Response({'error': f'서버 오류: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
+# 가입한 상품 해지하기
+@api_view(["DELETE"])
+def joined_deposists_delete(request, joined_deposits_id):
+    try:
+        user = request.user
+         # 삭제할 상품 찾기
+        try:
+            joined_product = JoinedDeposits.objects.get(pk=joined_deposits_id, user=user)
+        except JoinedDeposits.DoesNotExist:
+            return Response({'error': '해당 상품이 존재하지 않거나 권한이 없습니다.'}, status=status.HTTP_404_NOT_FOUND)
+
+        # 삭제 전에 이름 저장
+        joined_product_name = joined_product.product.fin_prdt_nm  # 예금 상품 이름
+
+        # 상품 삭제
+        joined_product.delete()
+
+        # 결과 반환
+        return Response(f"'{joined_product_name}' 상품이 삭제되었습니다.", status=status.HTTP_204_NO_CONTENT)
+
+    except Exception as e:
+        return Response({'error': f'서버 오류: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
 
 @api_view(['GET'])
 def recommend_products(request):
