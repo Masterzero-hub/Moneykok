@@ -429,8 +429,8 @@
   // 상세페이지 이동
   const goSavingDetail = function (product_code) {
     router.push({
-      name: "savingdetail",
-      params: { saving_code: product_code },
+      name: "savingsdetail",
+      params: { savings_code : product_code },
     });
   };
   

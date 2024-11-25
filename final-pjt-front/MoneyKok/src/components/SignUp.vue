@@ -242,6 +242,8 @@ const checkVerificationCode = () => {
     .then(() => {
       store.codeSent = true; // `store.` 추가
       alert("이메일 인증에 성공하였습니다.");
+      store.verificationCode = null
+      store.codeSent = false
     })
     .catch(() => {
       alert("이메일 인증에 실패했습니다.");

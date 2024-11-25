@@ -11,13 +11,13 @@ export const useExchangeStore = defineStore("exchange", () => {
   // 환율 정보 가져오기 함수
   const getExchangeInfo = () => {
     axios.get('http://127.0.0.1:8000/exchange/')
-      .then((res) => {
-        console.log(res)
-        // res.data.forEach(item => {
-        //   curName.value = item.cur_nm);
-        //   exchangeInfo.value = item;
-        // });
-      })
+    .then((response) => {
+      response.data.forEach(item => {
+        curName.value.push(item.cur_nm);
+        exchangeInfo.value.push(item)
+      });
+      console.log('curNa')
+    })
       .catch((error) => {
         console.log(error);
       });
