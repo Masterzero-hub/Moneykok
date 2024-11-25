@@ -77,6 +77,7 @@ class JoinedSavingsDetailedSerializer(serializers.ModelSerializer):
     class Meta:
         model = JoinedSavings
         fields = [
+            'id',          # 기본 키
             'user',
             'bank',
             'product',
