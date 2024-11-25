@@ -113,12 +113,31 @@ export const useSavingsStore = defineStore("savings", () => {
       });
   };
 
-  // 가입 상품 조회
-  const joinedProducts = ref([]);
 
-  const getJoinedProducts = () => {
+  // 예금 상품 가입 해지 처리 함수
+  const deleteSavings = function (savingsId) {
     axios
-      .get("http://127.0.0.1:8000/joined-products/", 
+      .delete(`http://127.0.0.1:8000/savings/${savingsId}/delete/`, {
+        headers: {
+          Authorization: `Token ${token.value}`,
+        },
+      })
+      .then((res) => {
+        console.log("가입 해지 완료", res.data);
+        joinedSavings.value = joinedSavings.value.filter((savings) => savings.id !== savingsId);
+      })
+      .catch((error) => {
+        console.error("가입 해지 오류", error);
+      });
+  };
+
+
+  // 가입 상품 조회
+  const joinedSavings = ref([]);
+
+  const getJoinedSavings = () => {
+    axios
+      .get("http://127.0.0.1:8000/savings/joined-products/", 
         {
           headers: {
             Authorization: `Token ${token.value}`,
@@ -126,7 +145,7 @@ export const useSavingsStore = defineStore("savings", () => {
         }
       )
       .then((res) => {
-        joinedProducts.value = res.data;
+        joinedSavings.value = res.data;
       })
       .catch((error) => {
         console.error("가입 상품 데이터를 불러오는 중 오류가 발생했습니다:", error);
@@ -142,12 +161,13 @@ export const useSavingsStore = defineStore("savings", () => {
     joinAmount,
     finalJoinRate,
     joinConditions,
-    joinedProducts,
+    joinedSavings,
     getProducts,
     getProductDetail,
     getFilteredProducts,
     resetState,
     joinProduct,
-    getJoinedProducts,
+    deleteSavings,
+    getJoinedSavings,
   };
 });
