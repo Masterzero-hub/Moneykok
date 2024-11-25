@@ -320,11 +320,8 @@ import { storeToRefs } from "pinia";
 const store = useDepositsStore();
 const {
   products,
-  getProducts,
-  productDetail,
   filters,
   filteredProducts,
-  getFilteredProducts,
 } = storeToRefs(store);
 const router = useRouter();
 

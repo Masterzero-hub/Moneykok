@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5 ai-recommendation">
     <!-- 제목 -->
-    <h2 class="mb-5 text-center">
+    <h2 class="mb-4 text-center">
       <span class="highlight">{{ username }}</span
       >님 맞춤 상품 추천
     </h2>
@@ -9,16 +9,16 @@
     <!-- 사용자 입력 영역 -->
     <div style="margin-left: 120px;">
       <!-- 상품 유형 선택 -->
-      <div class="row align-items-center mb-5">
+      <div class="row align-items-center mb-5 mt-6">
         <label class="col-md-2 col-form-label">상품 유형</label>
         <div class="col-md-10 d-flex search-btn">
           <button
-            v-for="type in productTypes"
+            v-for="type in productTypesList"
             :key="type.value"
             class="btn me-5"
             :class="{
-              'btn-primary': filters.productType === type.value,
-              'btn-outline-primary': filters.productType !== type.value,
+              'btn-primary': productType === type.value,
+              'btn-outline-primary': productType !== type.value,
             }"
             @click="selectProductType(type.value)"
           >
@@ -26,188 +26,8 @@
           </button>
         </div>
       </div>
-
-      <!-- 가입 기간 선택 -->
-      <div class="row mb-3 align-items-center mb-5">
-        <label class="col-md-2 col-form-label">가입 기간</label>
-        <div class="col-md-10">
-          <div class="search-btn">
-            <button
-              v-for="term in terms"
-              :key="term"
-              class="btn"
-              :class="{
-                'btn-primary': filters.joinTerm === term,
-                'btn-outline-primary': filters.joinTerm !== term,
-              }"
-              @click="selectDuration(term)"
-            >
-              {{ term }}개월
-            </button>
-          </div>
-        </div>
       </div>
 
-      <!-- 가입 금액 입력 -->
-      <div class="row align-items-center mb-5">
-        <label class="col-md-2 col-form-label">가입 금액</label>
-        <div class="col-md-10 d-flex align-items-center" style="font-size: 20px;">
-          <button
-            class="btn-common btn-mint mt-1 mb-1"
-            data-bs-toggle="modal"
-            data-bs-target="#amountModal"
-          >
-            금액 입력하기
-          </button>
-          <p v-if="filters.amount" class="mt-3 ms-3">
-            입력 금액: <span class="highlight">{{ filters.amount }}만원</span>
-          </p>
-        </div>
-      </div>
-
-      <!-- 은행 선택 -->
-      <div class="row mb-3 align-items-center mb-5">
-        <label class="col-md-2 col-form-label">은행 선택</label>
-        <div class="col-md-10 d-flex align-items-center" style="font-size: 20px;">
-          <button
-            class="btn-common btn-mint mt-2 mb-2"
-            data-bs-toggle="modal"
-            data-bs-target="#bankModal"
-          >
-            은행 선택하기
-          </button>
-          <p
-            v-if="filters.bank.length > 0"
-            class="mt-2 ms-3"
-            style="margin-left: 10px; margin-bottom: 10px"
-          >
-            선택된 은행:
-            <span class="highlight" v-for="(bankCode, index) in filters.bank" :key="index">
-              {{
-                banks.find((bank) => bank.code === bankCode)?.name ||
-                "알 수 없는 은행"
-              }}<span v-if="index < filters.bank.length - 1">, </span>
-            </span>
-          </p>
-        </div>
-      </div>
-
-      <!-- 은행 선택 모달 -->
-      <div
-        class="modal fade"
-        id="bankModal"
-        tabindex="-1"
-        aria-labelledby="bankModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="bankModalLabel">은행 선택</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="row gy-3">
-                <div
-                  v-for="bank in banks"
-                  :key="bank.name"
-                  class="col-6 col-md-4 col-lg-3"
-                >
-                  <div
-                    class="bank-item text-center p-3 shadow-sm rounded"
-                    :class="{
-                      'selected-bank':
-                        filters.bank && filters.bank.includes(bank.code),
-                    }"
-                    @click="toggleBankSelection(bank.code)"
-                  >
-                    <img
-                      :src="`/bank_image/${bank.code}.jpg`"
-                      width="100px"
-                      height="100px"
-                      :alt="bank.name"
-                      class="bank-logo mb-2"
-                    />
-                    <p class="mb-0">{{ bank.name }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 금액 입력 모달 -->
-      <div
-        class="modal fade"
-        id="amountModal"
-        tabindex="-1"
-        aria-labelledby="amountModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="amountModalLabel">
-                가입 금액 입력 (만원)
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <input
-                type="number"
-                v-model="filters.amount"
-                class="form-control"
-                placeholder="금액을 입력하세요"
-              />
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-mint"
-                data-bs-dismiss="modal"
-              >
-                확인
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 우대 조건 -->
-      <div class="mb-5">
-        <div class="row mb-3 align-items-start">
-          <label class="col-md-2 col-form-label mt-2">우대 조건</label>
-          <div class="col-md-10">
-            <div class="search-btn">
-              <button
-                v-for="condition in conditions"
-                :key="condition"
-                class="btn mb-2"
-                :class="
-                  filters.conditions.includes(condition)
-                    ? 'btn-primary'
-                    : 'btn-outline-primary'
-                "
-                @click="selectCondition(condition)"
-              >
-                {{ condition }}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- AI 추천 버튼 -->
     <div class="text-center mt-5">
@@ -225,12 +45,12 @@ import { storeToRefs } from "pinia";
 import { useAiStore } from "@/stores/ai";
 
 const store = useAiStore();
-const { filters } = storeToRefs(store);
+const { productType } = storeToRefs(store);
 const router = useRouter();
 
 const username = "김사피";
 
-const productTypes = [
+const productTypesList = [
   { label: "예금", value: "deposits" },
   { label: "적금", value: "savings" },
 ];
@@ -266,57 +86,57 @@ const conditions = [
 
 // 상품 유형 선택
 const selectProductType = (type) => {
-  filters.value.productType = type;
+  productType.value = type;
 };
 
 // 가입 기간 선택
-const selectDuration = (term) => {
-  filters.value.joinTerm = term;
-};
+// const selectDuration = (term) => {
+//   filters.value.joinTerm = term;
+// };
 
 // 가입 금액 입력
-const setAmount = (amount) => {
-  filters.value.amount = amount;
-};
+// const setAmount = (amount) => {
+//   filters.value.amount = amount;
+// };
 
-const selectBank = (bankCode) => {
-  // 이미 선택된 은행인지 확인
-  const index = filters.value.bank.indexOf(bankCode);
+// const selectBank = (bankCode) => {
+//   // 이미 선택된 은행인지 확인
+//   const index = filters.value.bank.indexOf(bankCode);
 
-  if (index > -1) {
-    // 선택된 은행이 이미 포함된 경우: 제거
-    filters.value.bank.splice(index, 1);
-  } else {
-    // 포함되지 않은 경우: 추가
-    filters.value.bank.push(bankCode);
-  }
+//   if (index > -1) {
+//     // 선택된 은행이 이미 포함된 경우: 제거
+//     filters.value.bank.splice(index, 1);
+//   } else {
+//     // 포함되지 않은 경우: 추가
+//     filters.value.bank.push(bankCode);
+//   }
 
-  console.log("현재 선택된 은행:", filters.value.bank);
-};
+//   console.log("현재 선택된 은행:", filters.value.bank);
+// };
 
-const toggleBankSelection = (bankCode) => {
-  selectBank(bankCode);
-};
+// const toggleBankSelection = (bankCode) => {
+//   selectBank(bankCode);
+// };
 
-// 우대 조건 추가/제거 함수
-const selectCondition = (condition) => {
-  const index = filters.value.conditions.indexOf(condition);
+// // 우대 조건 추가/제거 함수
+// const selectCondition = (condition) => {
+//   const index = filters.value.conditions.indexOf(condition);
 
-  // 조건이 이미 포함된 경우: 제거
-  if (index > -1) {
-    filters.value.conditions.splice(index, 1);
-    console.log(filters.value);
-  }
-  // 조건이 포함되지 않은 경우: 추가
-  else {
-    filters.value.conditions.push(condition);
-    console.log(filters.value);
-  }
-};
+//   // 조건이 이미 포함된 경우: 제거
+//   if (index > -1) {
+//     filters.value.conditions.splice(index, 1);
+//     console.log(filters.value);
+//   }
+//   // 조건이 포함되지 않은 경우: 추가
+//   else {
+//     filters.value.conditions.push(condition);
+//     console.log(filters.value);
+//   }
+// };
 
 // AI 추천 요청
 const goRecommendations = () => {
-  console.log("Filters:", filters.value); // 확인용 출력
+  // console.log("Filters:", filters.value); // 확인용 출력
   router.push({ name: "ai-recommendations" });
 };
 </script>

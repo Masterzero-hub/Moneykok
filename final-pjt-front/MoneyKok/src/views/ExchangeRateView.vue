@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container">
+        <div class="container mt-5">
             <h2 class="mb-4">환율 계산기</h2>
 
             <!-- 검색 조건 -->
