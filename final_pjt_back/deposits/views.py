@@ -16,8 +16,6 @@ from .serializers import (
     DepositJoinSerializer,
     JoinedDepositSerializer
 )
-from savings.models import JoinedSavings
-from savings.serializers import JoinedSavingsSerializer
 from .utils import filter_deposit_products
 
 from sklearn.metrics.pairwise import cosine_similarity
@@ -164,41 +162,31 @@ def deposit_join(request, fin_prdt_cd):
         return Response({'error': f'서버 오류: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # 가입한 상품 목록 보여주기
-# 가입한 상품 목록 보여주기
 @api_view(["GET"])
-def joined_products(request):
+def joined_deposits(request):
     try:
         user = request.user
         if not user.is_authenticated:
             return Response({"error": "로그인이 필요합니다."}, status=status.HTTP_401_UNAUTHORIZED)
 
-        # 특정 사용자의 가입 데이터를 가져옴
+        # 특정 사용자의 예금 데이터를 가져옴
         joined_deposits = JoinedDeposits.objects.filter(user=user)
-        joined_savings = JoinedSavings.objects.filter(user=user)
 
-        # 가입된 상품이 하나도 없을 경우
-        if not joined_deposits.exists() and not joined_savings.exists():
-            return Response({"message": "해당 사용자의 가입된 상품이 없습니다."}, status=status.HTTP_404_NOT_FOUND)
+        # 가입된 상품이 없을 경우
+        if not joined_deposits.exists():
+            return Response({"message": "해당 사용자의 가입된 예금 상품이 없습니다."}, status=status.HTTP_404_NOT_FOUND)
 
         # 만기일 기준으로 정렬
         joined_deposits = joined_deposits.order_by("expired_date")
-        joined_savings = joined_savings.order_by("expired_date")
 
         # 직렬화
-        serializer_deposits = JoinedDepositSerializer(joined_deposits, many=True)
-        serializer_savings = JoinedSavingsSerializer(joined_savings, many=True)
+        serializer = JoinedDepositSerializer(joined_deposits, many=True)
 
-        # 결과 데이터 구성
-        result_data = {
-            "deposits": serializer_deposits.data,
-            "savings": serializer_savings.data,
-        }
-
-        return Response(result_data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     except Exception as e:
         return Response({"error": f"서버 오류: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
+    
     
 # 가입한 상품 해지하기
 @api_view(["DELETE"])

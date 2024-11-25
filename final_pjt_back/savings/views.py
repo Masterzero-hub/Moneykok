@@ -163,16 +163,16 @@ def joined_savings(request):
     try:
         user = request.user
         # 특정 사용자의 가입 데이터를 가져옴
-        joined_products = JoinedSavings.objects.filter(user=user)
+        joined_savings = JoinedSavings.objects.filter(user=user)
 
-        if not joined_products.exists():
+        if not joined_savings .exists():
             return Response({"message": "No subscriptions found for this user."}, status=status.HTTP_404_NOT_FOUND)
 
         # 만기일 기준으로 정렬
-        joined_products = sorted(joined_products, key=lambda x: x.expired_date)
+        joined_savings = sorted(joined_savings , key=lambda x: x.expired_date)
 
         # 직렬화
-        serializer = JoinedSavingsDetailedSerializer(joined_products, many=True)
+        serializer = JoinedSavingsDetailedSerializer(joined_savings , many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     except Exception as e:
         return Response({'error': f'서버 오류: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

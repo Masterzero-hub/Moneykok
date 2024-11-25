@@ -1,9 +1,21 @@
 import os
+import django
 from django.core.serializers import serialize
+
+# Django 설정 초기화
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "final_pjt_back.settings")
+django.setup()
+
 
 # 저장 디렉토리 지정 (필요 시 경로 수정)
 output_dir = "fixtures"
 os.makedirs(output_dir, exist_ok=True)
+
+from deposits.models import DepositProducts, DepositSpecialCondition
+from savings.models import SavingsProducts, SavingsSpecialCondition
+from accounts.models import User
+from communities.models import Article, Comment
+from exchange.models import Exchange
 
 def export_to_json(model, file_name=None):
     """
@@ -30,12 +42,6 @@ def export_to_json(model, file_name=None):
     print(f"{model_name} 데이터가 저장되었습니다: {file_path}")
 
 
-from deposits.models import DepositProducts, DepositSpecialCondition
-from savings.models import SavingsProducts, SavingsSpecialCondition
-from accounts.models import User
-from communities.models import Article, Comment
-
-
 #1 DepositSpecialCondition 데이터를 JSON으로 내보내기
 # export_to_json(DepositSpecialCondition)
 
@@ -49,3 +55,4 @@ from communities.models import Article, Comment
 # export_to_json(User)
 # export_to_json(Article)
 # export_to_json(Comment)
+export_to_json(Exchange)
