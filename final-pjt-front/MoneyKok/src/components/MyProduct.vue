@@ -9,6 +9,7 @@
           v-for="product in joinedDeposits"
           :key="product.id"
           class="card shadow-sm mb-3"
+          @click="goDepositDetail(product.product.fin_prdt_cd)"
         >
           <div class="card-body d-flex align-items-center">
             <!-- 상품 로고 -->
@@ -58,6 +59,7 @@
     v-for="product in joinedSavings"
     :key="product.id"
     class="card shadow-sm mb-3"
+    @click="goSavingsDetail(product.product.fin_prdt_cd)"
   >
     <div class="card-body d-flex align-items-center">
       <!-- 상품 로고 -->
@@ -148,13 +150,22 @@ const cancelSubscription = (productId, isDeposit) => {
     savingsStore.deleteSavings(productId); // 적금 해지 로직
   }
 };
+
+
+const goDepositDetail = function (depositCode) {
+  router.push({ name : 'depositdetail', params : { deposit_code : depositCode }})
+}
+
+const goSavingsDetail = function (savingsCode) {
+  router.push({ name : 'savingsdetail', params : { savings_code : savingsCode }})
+}
 </script>
 
 <style scoped>
-.section-title {
+/* .section-title {
   font-size: 1.5rem;
   font-weight: bold;
-}
+} */
 
 .product-logo {
   width: 60px;
