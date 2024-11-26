@@ -110,7 +110,7 @@ def savings_join(request, fin_prdt_cd):
         # 입력 값 검증
         try:
             save_trm = int(save_trm)
-            save_amount = int(save_amount) * 10000
+            save_amount = int(save_amount)
             final_intr_rate = float(final_intr_rate)
         except ValueError:
             return Response({'error': '입력 값은 숫자 형식이어야 합니다.'}, status=status.HTTP_400_BAD_REQUEST)
