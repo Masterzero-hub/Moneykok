@@ -145,9 +145,8 @@ export const useUserStore = defineStore('user', () => {
   };
 
 
-  const myArticles = ref([]);
-  const myComments = ref([]);
-  
+  const myCommunityInfo = ref([]);
+
   // 내가 작성한 게시글 및 댓글 조회 요청
   const getMyCommunityInfo = function() {
     axios.get(`http://127.0.0.1:8000/communities/profile/${email.value}/`,
@@ -158,8 +157,26 @@ export const useUserStore = defineStore('user', () => {
       }
     )
       .then((res) => {
-        myArticles.value = res.data.article_set
-        myComments.value = res.data.comment_set
+        myCommunityInfo.value = res.data
+        console.log('내 게시글 및 댓글 조회 성공', res.data)
+      })
+      .catch((error) => {
+        console.error("내 게시글 및 댓글 조회 오류", error);
+      });
+  }
+
+  const userCommunityInfo = ref([]);
+
+  const getUserCommunityInfo = function(userEmail) {
+    axios.get(`http://127.0.0.1:8000/communities/profile/${userEmail}/`,
+      {
+        headers: {
+          Authorization: `Token ${token.value}`
+        },
+      }
+    )
+      .then((res) => {
+        userCommunityInfo.value = res.data
         console.log('내 게시글 및 댓글 조회 성공', res.data)
       })
       .catch((error) => {
@@ -169,7 +186,8 @@ export const useUserStore = defineStore('user', () => {
 
   return { isLogin, name, nickname, email, password, confirmPassword, newPassword, confirmNewPassword, phone, formattedPhone, birthYear, birthMonth, birthDay, birthDate, gender, income, verificationCode, codeSent, token,
     nameError, emailError, emailHasError, passwordError, passwordHasError, confirmPasswordError, phoneError, phoneHasError,
-    myArticles, myComments,
-    checkName, checkEmail, checkPassword, checkNewPassword, checkConfirmPassword, checkNewConfirmPassword, checkPhone, formatPhoneNumber, getMyCommunityInfo
+    myCommunityInfo, userCommunityInfo,
+    checkName, checkEmail, checkPassword, checkNewPassword, checkConfirmPassword, checkNewConfirmPassword, checkPhone, formatPhoneNumber, getMyCommunityInfo, getUserCommunityInfo
    }
-}, { persist: true })
+},{ persist: true }
+)

@@ -18,6 +18,7 @@ import MyProduct from '@/components/MyProduct.vue'
 import PersonalInfo from '@/components/PersonalInfo.vue'
 import AiRecommendations from '@/components/AiRecommendations.vue'
 import CommunityProfile from '@/components/CommunityProfile.vue'
+import UserProfile from '@/components/UserProfile.vue'
 
 
 const router = createRouter({
@@ -39,9 +40,9 @@ const router = createRouter({
       component: AiView
     },
     {
-      path: '/ai-recommendations',
-      name: 'ai-recommendations',
-      component: AiRecommendations
+      path: "/ai-recommendations/:productType?", // 선택적으로 productType 매개변수 사용
+      name: "ai-recommendations",
+      component: () => import("@/components/AiRecommendations.vue"),
     },
     {
       path: '/community',
@@ -90,6 +91,11 @@ const router = createRouter({
           component: CommunityProfile
         },
       ],
+    },
+    {
+      path: '/userprofile/:user_email',
+      name: 'userprofile',
+      component: UserProfile
     },
     {
       path: '/passwordchange',
