@@ -50,6 +50,7 @@ class SavingsProductsGETSerializer(serializers.ModelSerializer):
             'join_member', # 가입 대상
             'join_way',    # 가입 방법
             'spcl_cnd',    # 우대 조건
+            'processed_spcl_cnd',
             'savings_min_amount',
             'savings_max_amount',
             'options',     # 옵션 정보
