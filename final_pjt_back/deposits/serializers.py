@@ -50,6 +50,7 @@ class DepositProductsGETSerializer(serializers.ModelSerializer):
             'join_member', # 가입 대상
             'join_way',    # 가입 방법
             'spcl_cnd',    # 우대 조건
+            'processed_spcl_cnd',
             'deposit_min_amount',
             'deposit_max_amount',
             'options',     # 옵션 정보
