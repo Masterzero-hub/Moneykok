@@ -85,7 +85,7 @@ fake = Faker('ko_KR')  # 한국어 로컬 설정
 
 def generate_joined_data(data_type, count=50):
     """
-    사용자 소득(income), 나이(age), 성별(gender)을 기반으로 현실적인 JoinedDeposits 또는 JoinedSavings 더미 데이터를 생성합니다.
+    사용자 나이(age), 소득(income), 성별(gender)에 따라 상품 ID를 기반으로 그룹핑하여 JoinedDeposits 또는 JoinedSavings 데이터를 생성합니다.
 
     :param data_type: 'deposits' 또는 'savings'
     :param count: 생성할 데이터 개수 (기본값: 50)
@@ -93,80 +93,80 @@ def generate_joined_data(data_type, count=50):
     if data_type == 'deposits':
         model_name = "deposits.JoinedDeposits"
         products = list(DepositProducts.objects.all())
-        save_dir = 'dummy_data/joined_deposits.json'
+        save_dir = 'fixtures/dummy_data/joined_deposits.json'
     elif data_type == 'savings':
         model_name = "savings.JoinedSavings"
         products = list(SavingsProducts.objects.all())
-        save_dir = 'dummy_data/joined_savings.json'
+        save_dir = 'fixtures/dummy_data/joined_savings.json'
     else:
         raise ValueError("data_type은 'deposits' 또는 'savings' 중 하나여야 합니다.")
 
-    users = list(User.objects.all())
-
+    users = list(User.objects.all()[:500])
     if not users or not products:
         raise ValueError("User나 Product 데이터가 충분하지 않습니다.")
-
-    # 상품을 소득 수준, 나이, 성별에 따라 그룹화
-    product_groups = {
-        "low_income": [p for p in products if p.min_amount <= 300],
-        "mid_income": [p for p in products if 300 < p.min_amount <= 500],
-        "high_income": [p for p in products if p.min_amount > 500],
-    }
-    age_groups = {
-        "young": [p for p in products if p.target_age_group == "young"],
-        "middle": [p for p in products if p.target_age_group == "middle"],
-        "senior": [p for p in products if p.target_age_group == "senior"],
-    }
-    gender_groups = {
-        "male": [p for p in products if p.preferred_gender == "male"],
-        "female": [p for p in products if p.preferred_gender == "female"],
-    }
 
     os.makedirs(os.path.dirname(save_dir), exist_ok=True)
     data_list = []
 
+    # 상품 ID를 기준으로 그룹화 (간단히 무작위로 나눔)
+    age_groups = {
+        "age_group_1": [p.id for p in products[:len(products)//4]],
+        "age_group_2": [p.id for p in products[len(products)//4:len(products)//2]],
+        "age_group_3": [p.id for p in products[len(products)//2:3*len(products)//4]],
+        "age_group_4": [p.id for p in products[3*len(products)//4:]],
+    }
+
+    gender_groups = {
+        "male": [p.id for p in products[::2]],  # 짝수 ID
+        "female": [p.id for p in products[1::2]],  # 홀수 ID
+    }
+
+    income_groups = {
+        "income_group_1": [p.id for p in products[:len(products)//4]],
+        "income_group_2": [p.id for p in products[len(products)//4:len(products)//2]],
+        "income_group_3": [p.id for p in products[len(products)//2:3*len(products)//4]],
+        "income_group_4": [p.id for p in products[3*len(products)//4:]],
+    }
+
     for i in range(count):
         user = random.choice(users)
-        age = user.age  # 사용자의 나이
-        income = user.income  # 사용자의 소득 (만원 단위)
-        gender = user.gender  # 사용자의 성별
+        age = now().year - user.birthdate.year
+        income = user.income
+        gender = user.gender
 
-        # 사용자 소득에 맞는 상품 그룹 선택
-        if income <= 3000:
-            available_products = product_groups["low_income"]
-        elif income <= 5000:
-            available_products = product_groups["mid_income"]
-        else:
-            available_products = product_groups["high_income"]
-
-        # 사용자 나이에 따른 상품 필터링
+        # 사용자 나이에 따른 그룹 선택
         if age < 30:
-            available_products = [p for p in available_products if p in age_groups["young"]]
+            available_products = age_groups["age_group_1"]
+        elif age < 40:
+            available_products = age_groups["age_group_2"]
         elif age < 60:
-            available_products = [p for p in available_products if p in age_groups["middle"]]
+            available_products = age_groups["age_group_3"]
         else:
-            available_products = [p for p in available_products if p in age_groups["senior"]]
+            available_products = age_groups["age_group_4"]
 
-        # 사용자 성별에 따른 상품 필터링
+        # 사용자 성별에 따른 필터링
         if gender == "male":
             available_products = [p for p in available_products if p in gender_groups["male"]]
-        elif gender == "female":
+        else:
             available_products = [p for p in available_products if p in gender_groups["female"]]
 
-        # 적합한 상품에서 무작위로 선택
-        if not available_products:
-            available_products = products  # 모든 상품으로 fallback
-        product = random.choice(available_products)
-
-        # 소득 기반 가입 금액 설정 (만원 단위 소득 반영)
+        # 사용자 소득에 따른 필터링
         if income <= 3000:
-            save_amount = random.randint(500, 3000)  # 50만~300만 원
+            available_products = [p for p in available_products if p in income_groups["income_group_1"]]
         elif income <= 5000:
-            save_amount = random.randint(3000, 5000)  # 300만~500만 원
+            available_products = [p for p in available_products if p in income_groups["income_group_2"]]
+        elif income <= 7000:
+            available_products = [p for p in available_products if p in income_groups["income_group_3"]]
         else:
-            save_amount = random.randint(5000, 8000)  # 500만~800만 원
+            available_products = [p for p in available_products if p in income_groups["income_group_4"]]
+
+        # 적합한 상품에서 무작위 선택
+        if not available_products:
+            available_products = [p.id for p in products]  # 모든 상품으로 fallback
+        product_id = random.choice(available_products)
 
         save_trm = random.choice([6, 12, 24, 36])  # 가입 기간
+        save_amount = random.randint(500, 8000)  # 가입 금액 (만원 단위)
         joined_date = now().date() - timedelta(days=random.randint(30, 365 * 3))
         expired_date = joined_date + timedelta(days=save_trm * 30)
         final_intr_rate = round(random.uniform(1.0, 5.0), 2)
@@ -176,7 +176,7 @@ def generate_joined_data(data_type, count=50):
         data["pk"] = i + 1
         data["fields"] = {
             "user": user.id,
-            "product": product.id,
+            "product": product_id,
             "save_trm": save_trm,
             "save_amount": save_amount,
             "joined_date": str(joined_date),

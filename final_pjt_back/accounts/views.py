@@ -69,13 +69,14 @@ def send_code_email(request):
         send_mail(
             subject='Moneykok 이메일 인증',
             message=f'''
-            안녕하세요.
+            안녕하세요, MoneyKok입니다.
+            
             요청하신 이메일 인증 코드입니다.
-
+            
             인증 코드: {verification.verification_code}
-
+            
             본 인증 코드는 10분 후 만료됩니다.
-            '''.strip(),
+            ''',
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[email],
             fail_silently=False,
