@@ -47,15 +47,8 @@
                 <tr>
                   <th>우대 조건</th>
                   <td>
-                    <template v-if="product.special_conditions.length > 0">
-                      <ul class="benefit-list">
-                        <li
-                          v-for="(condition, cIndex) in product.special_conditions"
-                          :key="cIndex"
-                        >
-                          {{ condition.condition_title }} - {{ condition.condition_content }} (우대금리: {{ condition.prime_rate }}%)
-                        </li>
-                      </ul>
+                    <template v-if="product.processed_spcl_cnd">
+                          {{ product.processed_spcl_cnd }}
                     </template>
                     <template v-else>
                       없음

@@ -71,10 +71,10 @@
               <h4>우대 조건</h4>
               <div
                 v-for="condition in productDetail.special_conditions"
-                :key="condition.condition_title"
+                :key="condition.condition_content"
                 class="d-flex align-items-center justify-content-between mb-2"
               >
-                <p class="mb-0">{{ condition.condition_title }}</p>
+                <p class="mb-0">{{ condition.condition_content }}</p>
                 <div>
                   <span class="me-2">+{{ condition.prime_rate }}%</span>
                   <input

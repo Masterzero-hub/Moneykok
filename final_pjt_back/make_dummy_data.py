@@ -48,13 +48,13 @@ def generate_user_data(count=30):
         # 성별에 따른 소득 범위 설정
         gender = random.choice(['남성', '여성'])
         if age < 25:
-            income = random.randint(15, 30) * 100000  # 젊은 층 소득
+            income = random.randint(25, 32) * 100  # 젊은 층 소득
         elif age < 35:
-            income = random.randint(30, 50) * 100000  # 초기 경력 소득
+            income = random.randint(32, 40) * 100  # 초기 경력 소득
         elif age < 50:
-            income = random.randint(50, 100) * 100000  # 중장년층 소득
+            income = random.randint(40, 44) * 100  # 중장년층 소득
         else:
-            income = random.randint(40, 80) * 100000  # 장년층 소득
+            income = random.randint(44, 80) * 100  # 장년층 소득
 
         user_data["model"] = "accounts.User"
         user_data["pk"] = i + 1
@@ -85,8 +85,8 @@ fake = Faker('ko_KR')  # 한국어 로컬 설정
 
 def generate_joined_data(data_type, count=50):
     """
-    사용자 소득(income)을 기반으로 현실적인 JoinedDeposits 또는 JoinedSavings 더미 데이터를 생성합니다.
-    
+    사용자 소득(income), 나이(age), 성별(gender)을 기반으로 현실적인 JoinedDeposits 또는 JoinedSavings 더미 데이터를 생성합니다.
+
     :param data_type: 'deposits' 또는 'savings'
     :param count: 생성할 데이터 개수 (기본값: 50)
     """
@@ -106,23 +106,67 @@ def generate_joined_data(data_type, count=50):
     if not users or not products:
         raise ValueError("User나 Product 데이터가 충분하지 않습니다.")
 
+    # 상품을 소득 수준, 나이, 성별에 따라 그룹화
+    product_groups = {
+        "low_income": [p for p in products if p.min_amount <= 300],
+        "mid_income": [p for p in products if 300 < p.min_amount <= 500],
+        "high_income": [p for p in products if p.min_amount > 500],
+    }
+    age_groups = {
+        "young": [p for p in products if p.target_age_group == "young"],
+        "middle": [p for p in products if p.target_age_group == "middle"],
+        "senior": [p for p in products if p.target_age_group == "senior"],
+    }
+    gender_groups = {
+        "male": [p for p in products if p.preferred_gender == "male"],
+        "female": [p for p in products if p.preferred_gender == "female"],
+    }
+
     os.makedirs(os.path.dirname(save_dir), exist_ok=True)
     data_list = []
 
     for i in range(count):
         user = random.choice(users)
-        product = random.choice(products)
+        age = user.age  # 사용자의 나이
+        income = user.income  # 사용자의 소득 (만원 단위)
+        gender = user.gender  # 사용자의 성별
 
-        # 소득 기반으로 적절한 가입 금액 설정
-        income = user.income
-        if income < 3000000:  # 소득이 낮은 경우
-            save_amount = random.randint(500000, 3000000)  # 50만~300만 원
-        elif income < 7000000:  # 중간 소득
-            save_amount = random.randint(3000000, 10000000)  # 300만~1000만 원
-        else:  # 고소득
-            save_amount = random.randint(10000000, 50000000)  # 1000만~5000만 원
+        # 사용자 소득에 맞는 상품 그룹 선택
+        if income <= 3000:
+            available_products = product_groups["low_income"]
+        elif income <= 5000:
+            available_products = product_groups["mid_income"]
+        else:
+            available_products = product_groups["high_income"]
 
-        save_trm = random.choice([6, 12, 24, 36])  # 가입 기간 (6~36개월)
+        # 사용자 나이에 따른 상품 필터링
+        if age < 30:
+            available_products = [p for p in available_products if p in age_groups["young"]]
+        elif age < 60:
+            available_products = [p for p in available_products if p in age_groups["middle"]]
+        else:
+            available_products = [p for p in available_products if p in age_groups["senior"]]
+
+        # 사용자 성별에 따른 상품 필터링
+        if gender == "male":
+            available_products = [p for p in available_products if p in gender_groups["male"]]
+        elif gender == "female":
+            available_products = [p for p in available_products if p in gender_groups["female"]]
+
+        # 적합한 상품에서 무작위로 선택
+        if not available_products:
+            available_products = products  # 모든 상품으로 fallback
+        product = random.choice(available_products)
+
+        # 소득 기반 가입 금액 설정 (만원 단위 소득 반영)
+        if income <= 3000:
+            save_amount = random.randint(500, 3000)  # 50만~300만 원
+        elif income <= 5000:
+            save_amount = random.randint(3000, 5000)  # 300만~500만 원
+        else:
+            save_amount = random.randint(5000, 8000)  # 500만~800만 원
+
+        save_trm = random.choice([6, 12, 24, 36])  # 가입 기간
         joined_date = now().date() - timedelta(days=random.randint(30, 365 * 3))
         expired_date = joined_date + timedelta(days=save_trm * 30)
         final_intr_rate = round(random.uniform(1.0, 5.0), 2)

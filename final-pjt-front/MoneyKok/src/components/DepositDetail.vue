@@ -5,11 +5,8 @@
         <div class="card-header">
           <!-- 로고와 상품명 -->
           <div class="card-header-left">
-            <img
-              :src="`/bank_image/${productDetail.bank.fin_co_no}.jpg`"
-              alt="Bank Logo"
-              class="logo-img rounded-circle"
-            />
+            <img :src="`/bank_image/${productDetail.bank.fin_co_no}.jpg`" alt="Bank Logo"
+              class="logo-img rounded-circle" />
             <h2 class="mb-0">{{ productDetail.fin_prdt_nm }}</h2>
           </div>
         </div>
@@ -21,23 +18,27 @@
           <p><strong>가입 대상:</strong> {{ productDetail.join_member }}</p>
           <p><strong>가입 방법:</strong> {{ productDetail.join_way }}</p>
           <p>
+            <strong>가입 한도:</strong>
+            (최저)
+            {{ productDetail.deposit_min_amount !== null ? productDetail.deposit_min_amount+'만원' : '제한 없음' }}
+            (최고)
+            {{ productDetail.deposit_max_amount !== null ? productDetail.deposit_max_amount+'만원' : '제한 없음' }}
+          </p>
+          <p>
             <strong>우대 조건: </strong>
-            <button
-              v-for="condition in [
-                ...new Set(
-                  productDetail.special_conditions.map((cond) => cond.category)
-                ),
-              ]"
-              :key="condition"
-              class="conditons-btn me-3"
-            >
+            <button v-for="condition in [
+              ...new Set(
+                productDetail.special_conditions.map((cond) => cond.category)
+              ),
+            ]" :key="condition" class="conditons-btn me-3">
               {{ condition }}
             </button>
           </p>
           <p><strong>기타 안내: </strong>{{ productDetail.etc_note }}</p>
+          <p><strong>우대 조건 안내: </strong>{{ productDetail.processed_spcl_cnd }}</p>
 
-         <!-- 이자율 계산기 -->
-         <div class="container mt-5">
+          <!-- 이자율 계산기 -->
+          <div class="container mt-5">
             <hr />
             <h2 class="text-center mb-4 mt-5">이자 계산기</h2>
 
@@ -56,13 +57,8 @@
 
             <!-- 저축 기간 선택 -->
             <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
-              <button
-                v-for="option in productDetail.options"
-                :key="option.id"
-                class="option-btn btn-outline-primary"
-                :class="{ active: joinTerm === option.save_trm }"
-                @click="selectJoinTerm(option.save_trm)"
-              >
+              <button v-for="option in productDetail.options" :key="option.id" class="option-btn btn-outline-primary"
+                :class="{ active: joinTerm === option.save_trm }" @click="selectJoinTerm(option.save_trm)">
                 <p class="mb-1">{{ option.save_trm }}개월</p>
                 <p class="mb-0">기본 {{ option.intr_rate }}%</p>
               </button>
@@ -71,32 +67,20 @@
             <!-- 우대 조건 체크 -->
             <div class="mb-4">
               <h4>우대 조건</h4>
-              <div
-                v-for="condition in productDetail.special_conditions"
-                :key="condition.condition_title"
-                class="d-flex align-items-center justify-content-between mb-2"
-              >
-                <p class="mb-0">{{ condition.condition_title }}</p>
+              <div v-for="condition in productDetail.special_conditions" :key="condition.condition_content"
+                class="d-flex align-items-center justify-content-between mb-2">
+                <p class="mb-0">{{ condition.condition_content }}</p>
                 <div>
                   <span class="me-2">+{{ condition.prime_rate }}%</span>
-                  <input
-                    type="checkbox"
-                    :value="condition"
-                    v-model="joinConditions"
-                  />
+                  <input type="checkbox" :value="condition" v-model="joinConditions" />
                 </div>
               </div>
             </div>
 
             <!-- 가입 금액 입력 및 가입하기 버튼 -->
             <div class="d-flex justify-content-center align-items-center mt-4">
-              <input
-                v-model="joinAmount"
-                type="number"
-                class="form-control me-3"
-                placeholder="가입 금액 (만원)"
-                style="max-width: 200px;"
-              />
+              <input v-model="joinAmount" type="number" class="form-control me-3" placeholder="가입 금액 (만원)"
+                style="max-width: 200px;" />
               <button class="btn-small-common btn-mint" @click="handleJoin">
                 가입하기
               </button>
@@ -217,7 +201,7 @@ const selectJoinTerm = (term) => {
 
 // 가입 처리
 const handleJoin = () => {
-  if (isLogin.value == false ) {
+  if (isLogin.value == false) {
     // 로그인 여부 확인
     alert("로그인이 필요합니다.");
     router.push({ name: "login" }); // 로그인 페이지로 이동
@@ -249,8 +233,10 @@ const handleJoin = () => {
 /* 카드 스타일 */
 .card {
   /* transition 속성 제거 */
-  transform: none; /* 호버 시 크기 변화를 없앰 */
-  box-shadow: none; /* 호버 시 그림자 효과를 없앰 */
+  transform: none;
+  /* 호버 시 크기 변화를 없앰 */
+  box-shadow: none;
+  /* 호버 시 그림자 효과를 없앰 */
 }
 
 /* 체크박스 스타일 */
@@ -277,8 +263,10 @@ input[type="checkbox"] {
 }
 
 p {
-  font-size: 20px !important; /* 글자 크기 설정 (단위: px, em, rem, %) */
-  line-height: 2 !important; /* 줄 간격 */
+  font-size: 20px !important;
+  /* 글자 크기 설정 (단위: px, em, rem, %) */
+  line-height: 2 !important;
+  /* 줄 간격 */
 }
 
 /* 카드 스타일 */
@@ -290,23 +278,30 @@ p {
 
 .card-header {
   display: flex;
-  justify-content: space-between; /* 왼쪽과 오른쪽 공간 나누기 */
-  align-items: center; /* 세로축 가운데 정렬 */
-  padding: 15px 20px; /* 여백 설정 */
-  border-bottom: 1px solid #ddd; /* 카드 헤더 하단 구분선 */
+  justify-content: space-between;
+  /* 왼쪽과 오른쪽 공간 나누기 */
+  align-items: center;
+  /* 세로축 가운데 정렬 */
+  padding: 15px 20px;
+  /* 여백 설정 */
+  border-bottom: 1px solid #ddd;
+  /* 카드 헤더 하단 구분선 */
 }
 
 .card-header-left {
   display: flex;
-  align-items: center; /* 로고와 상품명을 세로 정렬 */
-  gap: 10px; /* 로고와 상품명 간격 */
+  align-items: center;
+  /* 로고와 상품명을 세로 정렬 */
+  gap: 10px;
+  /* 로고와 상품명 간격 */
 }
 
 /* 은행명 스타일 */
 .bank {
   font-size: 25px;
   font-weight: 400;
-  text-align: right; /* 오른쪽 정렬 */
+  text-align: right;
+  /* 오른쪽 정렬 */
 }
 
 /* 로고 스타일 */
@@ -323,9 +318,12 @@ p {
 }
 
 .card-body p {
-  margin: 10px 0; /* 줄글 사이에 여백 추가 */
-  line-height: 1.6; /* 줄 간격 증가로 가독성 향상 */
-  font-size: 16px; /* 글자 크기 조정 */
+  margin: 10px 0;
+  /* 줄글 사이에 여백 추가 */
+  line-height: 1.6;
+  /* 줄 간격 증가로 가독성 향상 */
+  font-size: 16px;
+  /* 글자 크기 조정 */
 }
 
 .card p {
@@ -344,53 +342,70 @@ p {
 
 /* 버튼 스타일 */
 .option-btn {
-  border-color: var(--mint-color) !important; /* 새로운 테두리 색상 */
+  border-color: var(--mint-color) !important;
+  /* 새로운 테두리 색상 */
   margin-right: 15px;
   color: var(--mint-color) !important;
   background-color: inherit;
 }
 
 .option-btn.active {
-  background-color: var(
-    --mint-color
-  ) !important; /* 활성화된 상태에서 배경색 유지 */
-  color: white !important; /* 활성화된 상태에서 텍스트 색상 */
+  background-color: var(--mint-color) !important;
+  /* 활성화된 상태에서 배경색 유지 */
+  color: white !important;
+  /* 활성화된 상태에서 텍스트 색상 */
 }
 
 /* 호버 시 버튼 스타일 */
 .option-btn:hover {
-  background-color: var(--mint-color) !important; /* 호버 시 배경색 변경 */
-  color: white !important; /* 호버 시 글자색 변경 */
-  border-color: var(--mint-color); /* 호버 시 테두리 색상 변경 */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  background-color: var(--mint-color) !important;
+  /* 호버 시 배경색 변경 */
+  color: white !important;
+  /* 호버 시 글자색 변경 */
+  border-color: var(--mint-color);
+  /* 호버 시 테두리 색상 변경 */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  /* 그림자 효과 */
 }
 
 .btn-primary {
   background-color: var(--mint-color) !important;
   color: white;
-  border-color: var(--mint-color) !important; /* 활성화 상태 테두리 색상 */
+  border-color: var(--mint-color) !important;
+  /* 활성화 상태 테두리 색상 */
 }
 
 .btn-outline-primary {
-  border-color: var(--mint-color) !important; /* 비활성화 상태 테두리 색상 */
+  border-color: var(--mint-color) !important;
+  /* 비활성화 상태 테두리 색상 */
 }
 
 .conditons-btn {
-  background-color: var(--orange-color) !important; /* 기본 배경색: Orange */
-  color: white; /* 텍스트 색상 */
-  font-size: 18px; /* 폰트 크기 */
-  padding: 1px 10px; /* 내부 여백 */
-  border: none; /* 테두리 제거 */
-  border-radius: 10px; /* 둥근 모서리 */
+  background-color: var(--orange-color) !important;
+  /* 기본 배경색: Orange */
+  color: white;
+  /* 텍스트 색상 */
+  font-size: 18px;
+  /* 폰트 크기 */
+  padding: 1px 10px;
+  /* 내부 여백 */
+  border: none;
+  /* 테두리 제거 */
+  border-radius: 10px;
+  /* 둥근 모서리 */
   white-space: nowrap;
 }
 
 input[type="checkbox"] {
-  transform: scale(1.8); /* 체크박스 크기를 1.5배로 확대 */
-  margin-left: 10px; /* 체크박스와 텍스트 사이 간격 */
+  transform: scale(1.8);
+  /* 체크박스 크기를 1.5배로 확대 */
+  margin-left: 10px;
+  /* 체크박스와 텍스트 사이 간격 */
 }
+
 /* 체크박스가 활성화되었을 때 */
 input[type="checkbox"]:checked {
-  accent-color: var(--mint-color); /* 원하는 활성화 색상으로 변경 */
+  accent-color: var(--mint-color);
+  /* 원하는 활성화 색상으로 변경 */
 }
 </style>

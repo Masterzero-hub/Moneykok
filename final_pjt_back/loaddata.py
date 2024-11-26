@@ -23,5 +23,7 @@ def load_data(directory="fixtures"):
                 print(f"Error loading {filename}: {e}")
 
 if __name__ == "__main__":
-    load_data()
+    load_data("fixtures/banks_products_data")
+    load_data("fixtures/options_data")
     load_data("fixtures/dummy_data")
+    load_data()
