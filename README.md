@@ -110,33 +110,33 @@
 
 ## 🖥️ 페이지 프리뷰
 1. 메인 페이지
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3YT80z_gOFc?si=tilPLmLLMTro7u3X" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/3YT80z_gOFc?si=tilPLmLLMTro7u3X" frameborder="0" gesture="media" allowfullscreen=""></iframe>
 - 페이지 이동시 스크롤 위치 초기화
 
 
-2. 회원 가입
+1. 회원 가입
    - 이메일
-3. 회원정보
+2. 회원정보
    - 가입한 상품 
    - 커뮤니티 프로필
    - 개인 정보
-4. 예금 상품 전체 조회
+3. 예금 상품 전체 조회
    - 페이지010-\d{4}-\d{4}$네이션
    - 검색 조건 필터링
-5. 예금 상품 상세 **조회** 
+4. 예금 상품 상세 **조회** 
    - 이자율 계산하기
    - 가입하기
-6. 금융 상품 AI 추천
-7. 커뮤니티 (게시글 및 댓글 CRUD)
+5. 금융 상품 AI 추천
+6. 커뮤니티 (게시글 및 댓글 CRUD)
 
    - 게시글 작성, 수정, 삭제 
    - 게시글 조회 (작성자 프로필로 이동)
    - 댓글 작성, 수정, 삭제
 
-8. 환율 계산기
+7. 환율 계산기
    - 원화 -> 외화
    - 외화 -> 원화
-9.  은행 찾기
+8.  은행 찾기
    - 검색으로 찾기
    - 근처 은행 찾기
 
