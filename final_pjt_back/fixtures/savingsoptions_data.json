@@ -1,2 +1,1938 @@
 [
+{
+  "model": "savings.savingsoptions",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 4.2,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 4.2,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 4.2,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 4,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 4.0,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 5,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 4.0,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 6,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 4.0,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 7,
+  "fields": {
+    "product": 2,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.7,
+    "intr_rate2": 3.9,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 8,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.25,
+    "intr_rate2": 3.25,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 9,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.2,
+    "intr_rate2": 3.2,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 10,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.15,
+    "intr_rate2": 3.15,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 11,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 2.9,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 12,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.4,
+    "intr_rate2": 3.4,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 13,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.35,
+    "intr_rate2": 3.35,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 14,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 3.3,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 15,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.0,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 16,
+  "fields": {
+    "product": 4,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.31,
+    "intr_rate2": 3.86,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 17,
+  "fields": {
+    "product": 4,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.18,
+    "intr_rate2": 3.73,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 18,
+  "fields": {
+    "product": 4,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.2,
+    "intr_rate2": 3.75,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 19,
+  "fields": {
+    "product": 5,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.51,
+    "intr_rate2": 4.06,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 20,
+  "fields": {
+    "product": 6,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.95,
+    "intr_rate2": 3.75,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 21,
+  "fields": {
+    "product": 6,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.65,
+    "intr_rate2": 4.45,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 22,
+  "fields": {
+    "product": 7,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.25,
+    "intr_rate2": 3.7,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 23,
+  "fields": {
+    "product": 7,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.2,
+    "intr_rate2": 3.65,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 24,
+  "fields": {
+    "product": 7,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 3.75,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 25,
+  "fields": {
+    "product": 7,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.65,
+    "intr_rate2": 3.1,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 26,
+  "fields": {
+    "product": 8,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.7,
+    "intr_rate2": 3.25,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 27,
+  "fields": {
+    "product": 8,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 3.7,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 28,
+  "fields": {
+    "product": 9,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 3.3,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 29,
+  "fields": {
+    "product": 9,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.4,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 30,
+  "fields": {
+    "product": 9,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 2.9,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 31,
+  "fields": {
+    "product": 9,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 2.9,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 32,
+  "fields": {
+    "product": 10,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 2.7,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 33,
+  "fields": {
+    "product": 10,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 2.7,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 34,
+  "fields": {
+    "product": 10,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.2,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 35,
+  "fields": {
+    "product": 10,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 3.1,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 36,
+  "fields": {
+    "product": 11,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 4.8,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 37,
+  "fields": {
+    "product": 11,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 4.8,
+    "save_trm": 3
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 38,
+  "fields": {
+    "product": 11,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 5.0,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 39,
+  "fields": {
+    "product": 11,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 5.0,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 40,
+  "fields": {
+    "product": 12,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.0,
+    "intr_rate2": 8.0,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 41,
+  "fields": {
+    "product": 12,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.0,
+    "intr_rate2": 8.0,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 42,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 3.8,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 43,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 3.8,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 44,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 3.8,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 45,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 3.7,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 46,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 4.0,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 47,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 4.0,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 48,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 4.0,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 49,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.7,
+    "intr_rate2": 3.9,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 50,
+  "fields": {
+    "product": 14,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 4.7,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 51,
+  "fields": {
+    "product": 14,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 4.5,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 52,
+  "fields": {
+    "product": 15,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.1,
+    "intr_rate2": 3.6,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 53,
+  "fields": {
+    "product": 15,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 3.3,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 54,
+  "fields": {
+    "product": 16,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.25,
+    "intr_rate2": 5.35,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 55,
+  "fields": {
+    "product": 16,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.95,
+    "intr_rate2": 5.05,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 56,
+  "fields": {
+    "product": 17,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.6,
+    "intr_rate2": 5.1,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 57,
+  "fields": {
+    "product": 17,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.8,
+    "intr_rate2": 5.3,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 58,
+  "fields": {
+    "product": 18,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.1,
+    "intr_rate2": 4.8,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 59,
+  "fields": {
+    "product": 18,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.3,
+    "intr_rate2": 5.0,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 60,
+  "fields": {
+    "product": 19,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.35,
+    "intr_rate2": 3.45,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 61,
+  "fields": {
+    "product": 19,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.45,
+    "intr_rate2": 3.55,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 62,
+  "fields": {
+    "product": 19,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.45,
+    "intr_rate2": 3.55,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 63,
+  "fields": {
+    "product": 20,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.45,
+    "intr_rate2": 3.55,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 64,
+  "fields": {
+    "product": 20,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.55,
+    "intr_rate2": 3.65,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 65,
+  "fields": {
+    "product": 20,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.55,
+    "intr_rate2": 3.65,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 66,
+  "fields": {
+    "product": 21,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.0,
+    "intr_rate2": 6.0,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 67,
+  "fields": {
+    "product": 22,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.15,
+    "intr_rate2": 4.15,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 68,
+  "fields": {
+    "product": 22,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.25,
+    "intr_rate2": 4.25,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 69,
+  "fields": {
+    "product": 22,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.35,
+    "intr_rate2": 4.35,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 70,
+  "fields": {
+    "product": 23,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.35,
+    "intr_rate2": 4.05,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 71,
+  "fields": {
+    "product": 23,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.45,
+    "intr_rate2": 4.15,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 72,
+  "fields": {
+    "product": 23,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.55,
+    "intr_rate2": 4.25,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 73,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.55,
+    "intr_rate2": 5.05,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 74,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.55,
+    "intr_rate2": 5.05,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 75,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.55,
+    "intr_rate2": 5.05,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 76,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.25,
+    "intr_rate2": 4.75,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 77,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.2,
+    "intr_rate2": 4.7,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 78,
+  "fields": {
+    "product": 25,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 4.9,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 79,
+  "fields": {
+    "product": 25,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.35,
+    "intr_rate2": 4.95,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 80,
+  "fields": {
+    "product": 25,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.4,
+    "intr_rate2": 5.0,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 81,
+  "fields": {
+    "product": 26,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.45,
+    "intr_rate2": 5.2,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 82,
+  "fields": {
+    "product": 26,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.45,
+    "intr_rate2": 5.2,
+    "save_trm": 3
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 83,
+  "fields": {
+    "product": 26,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.45,
+    "intr_rate2": 5.2,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 84,
+  "fields": {
+    "product": 27,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.2,
+    "intr_rate2": 7.7,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 85,
+  "fields": {
+    "product": 28,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 4.8,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 86,
+  "fields": {
+    "product": 28,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.1,
+    "intr_rate2": 4.6,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 87,
+  "fields": {
+    "product": 28,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 4.4,
+    "save_trm": 3
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 88,
+  "fields": {
+    "product": 28,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 4.4,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 89,
+  "fields": {
+    "product": 29,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 4.5,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 90,
+  "fields": {
+    "product": 30,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.5,
+    "intr_rate2": 5.7,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 91,
+  "fields": {
+    "product": 31,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.54,
+    "intr_rate2": 2.54,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 92,
+  "fields": {
+    "product": 31,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.48,
+    "intr_rate2": 2.48,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 93,
+  "fields": {
+    "product": 31,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.31,
+    "intr_rate2": 2.31,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 94,
+  "fields": {
+    "product": 31,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.29,
+    "intr_rate2": 2.29,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 95,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.74,
+    "intr_rate2": 2.74,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 96,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.76,
+    "intr_rate2": 2.76,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 97,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.08,
+    "intr_rate2": 3.08,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 98,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.94,
+    "intr_rate2": 2.94,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 99,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.68,
+    "intr_rate2": 2.68,
+    "save_trm": 3
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 100,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.68,
+    "intr_rate2": 2.68,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 101,
+  "fields": {
+    "product": 33,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 3.4,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 102,
+  "fields": {
+    "product": 33,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.7,
+    "intr_rate2": 3.7,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 103,
+  "fields": {
+    "product": 33,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 4.0,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 104,
+  "fields": {
+    "product": 34,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.55,
+    "intr_rate2": 3.35,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 105,
+  "fields": {
+    "product": 34,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.75,
+    "intr_rate2": 3.65,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 106,
+  "fields": {
+    "product": 34,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.05,
+    "intr_rate2": 4.05,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 107,
+  "fields": {
+    "product": 35,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.25,
+    "intr_rate2": 4.75,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 108,
+  "fields": {
+    "product": 35,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.05,
+    "intr_rate2": 4.55,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 109,
+  "fields": {
+    "product": 35,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.75,
+    "intr_rate2": 4.25,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 110,
+  "fields": {
+    "product": 36,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.0,
+    "intr_rate2": 6.0,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 111,
+  "fields": {
+    "product": 36,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.0,
+    "intr_rate2": 6.0,
+    "save_trm": 3
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 112,
+  "fields": {
+    "product": 36,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.0,
+    "intr_rate2": 6.0,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 113,
+  "fields": {
+    "product": 37,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 8.0,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 114,
+  "fields": {
+    "product": 38,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 4.2,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 115,
+  "fields": {
+    "product": 38,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.95,
+    "intr_rate2": 4.25,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 116,
+  "fields": {
+    "product": 38,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 4.3,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 117,
+  "fields": {
+    "product": 39,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.75,
+    "intr_rate2": 4.45,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 118,
+  "fields": {
+    "product": 39,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.55,
+    "intr_rate2": 4.25,
+    "save_trm": 3
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 119,
+  "fields": {
+    "product": 39,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.45,
+    "intr_rate2": 4.15,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 120,
+  "fields": {
+    "product": 40,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 2.75,
+    "intr_rate2": 6.25,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 121,
+  "fields": {
+    "product": 40,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 2.85,
+    "intr_rate2": 6.35,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 122,
+  "fields": {
+    "product": 40,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 2.9,
+    "intr_rate2": 6.4,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 123,
+  "fields": {
+    "product": 41,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.85,
+    "intr_rate2": 3.85,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 124,
+  "fields": {
+    "product": 41,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 3.9,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 125,
+  "fields": {
+    "product": 41,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 4.0,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 126,
+  "fields": {
+    "product": 42,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.15,
+    "intr_rate2": 4.15,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 127,
+  "fields": {
+    "product": 42,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.2,
+    "intr_rate2": 4.2,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 128,
+  "fields": {
+    "product": 42,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 4.3,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 129,
+  "fields": {
+    "product": 43,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 3.12,
+    "intr_rate2": 3.92,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 130,
+  "fields": {
+    "product": 43,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 3.07,
+    "intr_rate2": 3.87,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 131,
+  "fields": {
+    "product": 43,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 3.25,
+    "intr_rate2": 4.05,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 132,
+  "fields": {
+    "product": 44,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 3.3,
+    "intr_rate2": 4.3,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 133,
+  "fields": {
+    "product": 44,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 3.4,
+    "intr_rate2": 4.4,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 134,
+  "fields": {
+    "product": 44,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 3.5,
+    "intr_rate2": 4.5,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 135,
+  "fields": {
+    "product": 45,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 3.0,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 136,
+  "fields": {
+    "product": 45,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.4,
+    "intr_rate2": 2.9,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 137,
+  "fields": {
+    "product": 45,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.3,
+    "intr_rate2": 2.8,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 138,
+  "fields": {
+    "product": 45,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.2,
+    "intr_rate2": 2.7,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 139,
+  "fields": {
+    "product": 45,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 3.3,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 140,
+  "fields": {
+    "product": 45,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.7,
+    "intr_rate2": 3.2,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 141,
+  "fields": {
+    "product": 45,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 3.1,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 142,
+  "fields": {
+    "product": 45,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 3.0,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 143,
+  "fields": {
+    "product": 46,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.2,
+    "intr_rate2": 3.2,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 144,
+  "fields": {
+    "product": 46,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.4,
+    "intr_rate2": 3.4,
+    "save_trm": 3
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 145,
+  "fields": {
+    "product": 46,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.5,
+    "intr_rate2": 3.5,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 146,
+  "fields": {
+    "product": 46,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.8,
+    "intr_rate2": 3.8,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 147,
+  "fields": {
+    "product": 46,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.85,
+    "intr_rate2": 3.85,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 148,
+  "fields": {
+    "product": 46,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.9,
+    "intr_rate2": 3.9,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 149,
+  "fields": {
+    "product": 47,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 1.5,
+    "intr_rate2": 7.5,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 150,
+  "fields": {
+    "product": 48,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.8,
+    "intr_rate2": 4.4,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 151,
+  "fields": {
+    "product": 48,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.75,
+    "intr_rate2": 4.35,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 152,
+  "fields": {
+    "product": 48,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.7,
+    "intr_rate2": 4.3,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 153,
+  "fields": {
+    "product": 48,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.4,
+    "intr_rate2": 4.0,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 154,
+  "fields": {
+    "product": 49,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.5,
+    "intr_rate2": 4.0,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 155,
+  "fields": {
+    "product": 49,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.5,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 156,
+  "fields": {
+    "product": 49,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 3.8,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 157,
+  "fields": {
+    "product": 50,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 2.2,
+    "intr_rate2": 2.9,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 158,
+  "fields": {
+    "product": 50,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 1.8,
+    "intr_rate2": 2.5,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 159,
+  "fields": {
+    "product": 50,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 1.9,
+    "intr_rate2": 2.6,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 160,
+  "fields": {
+    "product": 51,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.15,
+    "intr_rate2": 3.65,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 161,
+  "fields": {
+    "product": 51,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.35,
+    "intr_rate2": 2.85,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 162,
+  "fields": {
+    "product": 51,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.35,
+    "intr_rate2": 2.85,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 163,
+  "fields": {
+    "product": 52,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.5,
+    "intr_rate2": 3.7,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 164,
+  "fields": {
+    "product": 52,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.5,
+    "intr_rate2": 3.7,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 165,
+  "fields": {
+    "product": 52,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.5,
+    "intr_rate2": 3.7,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 166,
+  "fields": {
+    "product": 52,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 3.5,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 167,
+  "fields": {
+    "product": 53,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 5.5,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 168,
+  "fields": {
+    "product": 54,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 1.5,
+    "intr_rate2": 7.0,
+    "save_trm": 1
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 169,
+  "fields": {
+    "product": 55,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.0,
+    "intr_rate2": 4.0,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 170,
+  "fields": {
+    "product": 56,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.0,
+    "intr_rate2": 4.5,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 171,
+  "fields": {
+    "product": 57,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 1.5,
+    "intr_rate2": 2.0,
+    "save_trm": 3
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 172,
+  "fields": {
+    "product": 57,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.0,
+    "intr_rate2": 2.5,
+    "save_trm": 6
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 173,
+  "fields": {
+    "product": 57,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.5,
+    "save_trm": 12
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 174,
+  "fields": {
+    "product": 57,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.5,
+    "save_trm": 24
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 175,
+  "fields": {
+    "product": 57,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.5,
+    "save_trm": 36
+  }
+},
+{
+  "model": "savings.savingsoptions",
+  "pk": 176,
+  "fields": {
+    "product": 58,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 5.5,
+    "save_trm": 12
+  }
+}
 ]

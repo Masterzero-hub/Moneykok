@@ -1,2 +1,1674 @@
 [
+{
+  "model": "deposits.depositoptions",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.0,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.37,
+    "intr_rate2": 3.37,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.42,
+    "intr_rate2": 3.42,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 4,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.37,
+    "intr_rate2": 3.37,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 5,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.7,
+    "intr_rate2": 2.7,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 6,
+  "fields": {
+    "product": 1,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.7,
+    "intr_rate2": 2.7,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 7,
+  "fields": {
+    "product": 2,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.2,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 8,
+  "fields": {
+    "product": 2,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.4,
+    "intr_rate2": 3.6,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 9,
+  "fields": {
+    "product": 2,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.35,
+    "intr_rate2": 3.55,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 10,
+  "fields": {
+    "product": 2,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.1,
+    "intr_rate2": 3.4,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 11,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.22,
+    "intr_rate2": 2.87,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 12,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.91,
+    "intr_rate2": 3.56,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 13,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.78,
+    "intr_rate2": 3.43,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 14,
+  "fields": {
+    "product": 3,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 3.45,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 15,
+  "fields": {
+    "product": 4,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 1.82,
+    "intr_rate2": 2.27,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 16,
+  "fields": {
+    "product": 4,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.32,
+    "intr_rate2": 2.77,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 17,
+  "fields": {
+    "product": 4,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.01,
+    "intr_rate2": 3.46,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 18,
+  "fields": {
+    "product": 4,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.88,
+    "intr_rate2": 3.33,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 19,
+  "fields": {
+    "product": 4,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 3.35,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 20,
+  "fields": {
+    "product": 5,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.05,
+    "intr_rate2": 3.5,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 21,
+  "fields": {
+    "product": 6,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.1,
+    "intr_rate2": 2.15,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 22,
+  "fields": {
+    "product": 6,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 3.35,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 23,
+  "fields": {
+    "product": 6,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.15,
+    "intr_rate2": 3.4,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 24,
+  "fields": {
+    "product": 6,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.1,
+    "intr_rate2": 3.35,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 25,
+  "fields": {
+    "product": 6,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.88,
+    "intr_rate2": 3.13,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 26,
+  "fields": {
+    "product": 6,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 3.15,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 27,
+  "fields": {
+    "product": 7,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.25,
+    "intr_rate2": 2.25,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 28,
+  "fields": {
+    "product": 7,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.45,
+    "intr_rate2": 3.05,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 29,
+  "fields": {
+    "product": 7,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.55,
+    "intr_rate2": 3.05,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 30,
+  "fields": {
+    "product": 7,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.75,
+    "intr_rate2": 3.2,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 31,
+  "fields": {
+    "product": 7,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 2.5,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 32,
+  "fields": {
+    "product": 7,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 2.5,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 33,
+  "fields": {
+    "product": 8,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.05,
+    "intr_rate2": 2.5,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 34,
+  "fields": {
+    "product": 8,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 3.05,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 35,
+  "fields": {
+    "product": 8,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.85,
+    "intr_rate2": 3.3,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 36,
+  "fields": {
+    "product": 8,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.45,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 37,
+  "fields": {
+    "product": 8,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.25,
+    "intr_rate2": 2.7,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 38,
+  "fields": {
+    "product": 8,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 1.95,
+    "intr_rate2": 2.4,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 39,
+  "fields": {
+    "product": 9,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.95,
+    "intr_rate2": 3.15,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 40,
+  "fields": {
+    "product": 9,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.15,
+    "intr_rate2": 3.35,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 41,
+  "fields": {
+    "product": 10,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.2,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 42,
+  "fields": {
+    "product": 10,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 2.93,
+    "intr_rate2": 3.13,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 43,
+  "fields": {
+    "product": 10,
+    "intr_rate_type_nm": "복리",
+    "intr_rate": 2.76,
+    "intr_rate2": 2.96,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 44,
+  "fields": {
+    "product": 11,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.82,
+    "intr_rate2": 2.92,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 45,
+  "fields": {
+    "product": 11,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.96,
+    "intr_rate2": 3.06,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 46,
+  "fields": {
+    "product": 11,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.01,
+    "intr_rate2": 3.11,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 47,
+  "fields": {
+    "product": 11,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 3.1,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 48,
+  "fields": {
+    "product": 11,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.83,
+    "intr_rate2": 3.03,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 49,
+  "fields": {
+    "product": 11,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.66,
+    "intr_rate2": 2.86,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 50,
+  "fields": {
+    "product": 12,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 3.3,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 51,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 3.3,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 52,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.35,
+    "intr_rate2": 3.35,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 53,
+  "fields": {
+    "product": 13,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 3.3,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 54,
+  "fields": {
+    "product": 14,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.4,
+    "intr_rate2": 2.5,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 55,
+  "fields": {
+    "product": 14,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 2.6,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 56,
+  "fields": {
+    "product": 14,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.65,
+    "intr_rate2": 2.75,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 57,
+  "fields": {
+    "product": 14,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.85,
+    "intr_rate2": 2.95,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 58,
+  "fields": {
+    "product": 14,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.95,
+    "intr_rate2": 3.05,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 59,
+  "fields": {
+    "product": 14,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.05,
+    "intr_rate2": 3.15,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 60,
+  "fields": {
+    "product": 15,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 1.8,
+    "intr_rate2": 2.9,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 61,
+  "fields": {
+    "product": 15,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.1,
+    "intr_rate2": 3.0,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 62,
+  "fields": {
+    "product": 15,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 3.3,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 63,
+  "fields": {
+    "product": 15,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 3.45,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 64,
+  "fields": {
+    "product": 15,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 3.3,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 65,
+  "fields": {
+    "product": 15,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 3.3,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 66,
+  "fields": {
+    "product": 16,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.1,
+    "intr_rate2": 2.9,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 67,
+  "fields": {
+    "product": 16,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.25,
+    "intr_rate2": 3.1,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 68,
+  "fields": {
+    "product": 16,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.45,
+    "intr_rate2": 3.2,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 69,
+  "fields": {
+    "product": 17,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.4,
+    "intr_rate2": 3.4,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 70,
+  "fields": {
+    "product": 17,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.5,
+    "intr_rate2": 3.5,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 71,
+  "fields": {
+    "product": 17,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.35,
+    "intr_rate2": 3.35,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 72,
+  "fields": {
+    "product": 18,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.25,
+    "intr_rate2": 3.6,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 73,
+  "fields": {
+    "product": 19,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.35,
+    "intr_rate2": 2.85,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 74,
+  "fields": {
+    "product": 19,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.4,
+    "intr_rate2": 2.9,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 75,
+  "fields": {
+    "product": 19,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.65,
+    "intr_rate2": 3.15,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 76,
+  "fields": {
+    "product": 19,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.75,
+    "intr_rate2": 3.25,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 77,
+  "fields": {
+    "product": 20,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 3.1,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 78,
+  "fields": {
+    "product": 20,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.95,
+    "intr_rate2": 3.25,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 79,
+  "fields": {
+    "product": 20,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 3.2,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 80,
+  "fields": {
+    "product": 21,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.35,
+    "intr_rate2": 3.5,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 81,
+  "fields": {
+    "product": 21,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.35,
+    "intr_rate2": 3.5,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 82,
+  "fields": {
+    "product": 21,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.35,
+    "intr_rate2": 3.5,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 83,
+  "fields": {
+    "product": 22,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.95,
+    "intr_rate2": 3.15,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 84,
+  "fields": {
+    "product": 22,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 3.1,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 85,
+  "fields": {
+    "product": 22,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.85,
+    "intr_rate2": 3.05,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 86,
+  "fields": {
+    "product": 23,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.22,
+    "intr_rate2": 3.22,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 87,
+  "fields": {
+    "product": 23,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.04,
+    "intr_rate2": 3.04,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 88,
+  "fields": {
+    "product": 23,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.83,
+    "intr_rate2": 2.83,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 89,
+  "fields": {
+    "product": 23,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.71,
+    "intr_rate2": 2.71,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 90,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.9,
+    "intr_rate2": 2.9,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 91,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.0,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 92,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.1,
+    "intr_rate2": 3.1,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 93,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.2,
+    "intr_rate2": 3.2,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 94,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.85,
+    "intr_rate2": 2.85,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 95,
+  "fields": {
+    "product": 24,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.85,
+    "intr_rate2": 2.85,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 96,
+  "fields": {
+    "product": 25,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 1.8,
+    "intr_rate2": 3.0,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 97,
+  "fields": {
+    "product": 25,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.2,
+    "intr_rate2": 3.35,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 98,
+  "fields": {
+    "product": 25,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.3,
+    "intr_rate2": 3.4,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 99,
+  "fields": {
+    "product": 25,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.5,
+    "intr_rate2": 3.35,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 100,
+  "fields": {
+    "product": 25,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 2.7,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 101,
+  "fields": {
+    "product": 25,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 2.7,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 102,
+  "fields": {
+    "product": 26,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.15,
+    "intr_rate2": 3.05,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 103,
+  "fields": {
+    "product": 26,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.45,
+    "intr_rate2": 3.4,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 104,
+  "fields": {
+    "product": 26,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.55,
+    "intr_rate2": 3.45,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 105,
+  "fields": {
+    "product": 26,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 3.45,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 106,
+  "fields": {
+    "product": 27,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.15,
+    "intr_rate2": 3.0,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 107,
+  "fields": {
+    "product": 27,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.45,
+    "intr_rate2": 3.35,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 108,
+  "fields": {
+    "product": 27,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.55,
+    "intr_rate2": 3.4,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 109,
+  "fields": {
+    "product": 27,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 3.35,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 110,
+  "fields": {
+    "product": 27,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 2.95,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 111,
+  "fields": {
+    "product": 27,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 2.95,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 112,
+  "fields": {
+    "product": 28,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.95,
+    "intr_rate2": 3.05,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 113,
+  "fields": {
+    "product": 28,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.25,
+    "intr_rate2": 3.35,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 114,
+  "fields": {
+    "product": 28,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.35,
+    "intr_rate2": 3.45,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 115,
+  "fields": {
+    "product": 28,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.32,
+    "intr_rate2": 3.42,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 116,
+  "fields": {
+    "product": 29,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.75,
+    "intr_rate2": 3.15,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 117,
+  "fields": {
+    "product": 29,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.65,
+    "intr_rate2": 3.05,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 118,
+  "fields": {
+    "product": 29,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.65,
+    "intr_rate2": 3.05,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 119,
+  "fields": {
+    "product": 30,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.0,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 120,
+  "fields": {
+    "product": 30,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.35,
+    "intr_rate2": 3.35,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 121,
+  "fields": {
+    "product": 30,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.45,
+    "intr_rate2": 3.45,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 122,
+  "fields": {
+    "product": 30,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.42,
+    "intr_rate2": 3.42,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 123,
+  "fields": {
+    "product": 30,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.05,
+    "intr_rate2": 3.05,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 124,
+  "fields": {
+    "product": 30,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.1,
+    "intr_rate2": 3.1,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 125,
+  "fields": {
+    "product": 31,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.75,
+    "intr_rate2": 3.55,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 126,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.0,
+    "intr_rate2": 3.0,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 127,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.2,
+    "intr_rate2": 3.35,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 128,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.3,
+    "intr_rate2": 3.4,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 129,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 3.35,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 130,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 2.9,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 131,
+  "fields": {
+    "product": 32,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.7,
+    "intr_rate2": 2.9,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 132,
+  "fields": {
+    "product": 33,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.0,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 133,
+  "fields": {
+    "product": 33,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 3.3,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 134,
+  "fields": {
+    "product": 33,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.3,
+    "intr_rate2": 3.3,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 135,
+  "fields": {
+    "product": 33,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.2,
+    "intr_rate2": 3.2,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 136,
+  "fields": {
+    "product": 33,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.0,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 137,
+  "fields": {
+    "product": 33,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.0,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 138,
+  "fields": {
+    "product": 34,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.4,
+    "intr_rate2": 2.8,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 139,
+  "fields": {
+    "product": 35,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.05,
+    "intr_rate2": 3.4,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 140,
+  "fields": {
+    "product": 35,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.1,
+    "intr_rate2": 3.45,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 141,
+  "fields": {
+    "product": 36,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.4,
+    "intr_rate2": 3.4,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 142,
+  "fields": {
+    "product": 36,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.42,
+    "intr_rate2": 3.42,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 143,
+  "fields": {
+    "product": 36,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.42,
+    "intr_rate2": 3.42,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 144,
+  "fields": {
+    "product": 37,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.55,
+    "intr_rate2": 3.6,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 145,
+  "fields": {
+    "product": 38,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.6,
+    "intr_rate2": 2.6,
+    "save_trm": 1
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 146,
+  "fields": {
+    "product": 38,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.1,
+    "intr_rate2": 3.1,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 147,
+  "fields": {
+    "product": 38,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.2,
+    "intr_rate2": 3.2,
+    "save_trm": 6
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 148,
+  "fields": {
+    "product": 38,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.1,
+    "intr_rate2": 3.1,
+    "save_trm": 12
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 149,
+  "fields": {
+    "product": 38,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 2.8,
+    "save_trm": 24
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 150,
+  "fields": {
+    "product": 38,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 2.8,
+    "intr_rate2": 2.8,
+    "save_trm": 36
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 151,
+  "fields": {
+    "product": 39,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.0,
+    "save_trm": 3
+  }
+},
+{
+  "model": "deposits.depositoptions",
+  "pk": 152,
+  "fields": {
+    "product": 39,
+    "intr_rate_type_nm": "단리",
+    "intr_rate": 3.0,
+    "intr_rate2": 3.0,
+    "save_trm": 6
+  }
+}
 ]
