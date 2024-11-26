@@ -133,6 +133,10 @@ const router = createRouter({
       component: ArticleDetail
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    // 스크롤 위치를 초기화
+    return { top: 0 };
+  },
 })
 
 export default router
