@@ -1,7 +1,9 @@
 <template>
     <div class="container mt-5">
       <!-- 제목 -->
-      <h2 class="text-center mb-4">AI 추천 결과</h2>
+      <h2 class="text-center mb-5">
+        <span class="username">{{ username }}</span>님의 상품 추천 결과
+      </h2>
   
       <!-- 상품 카드 리스트 -->
       <div v-if="recommendedProducts.recommended_products && recommendedProducts.recommended_products.length" class="row">
@@ -77,11 +79,15 @@
   import { useRouter, useRoute } from "vue-router";
   import { storeToRefs } from "pinia";
   import { useAiStore } from "@/stores/ai";
+  import { useUserStore } from "@/stores/user";
+
   
   const store = useAiStore();
+  const userStore = useUserStore();
   const { recommendedProducts, getRecommendtaion } = storeToRefs(store);
   const route = useRoute()
   const router = useRouter();
+  const username = userStore.name
   
 // ----- 초기 렌더링 -----
 onMounted(() => {
@@ -115,6 +121,10 @@ const getMaxInterestRate = (options) => {
   flex-wrap: wrap;
 }
 
+.username {
+  color: var(--orange-color);
+  font-weight: bold;
+}
 
   /* 제목 스타일 */
   h2 {
