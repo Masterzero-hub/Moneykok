@@ -110,10 +110,20 @@
 
 ## 🖥️ 페이지 프리뷰
 1. 메인 페이지
-<iframe width="640" height="360" src="https://www.youtube.com/embed/3YT80z_gOFc?si=tilPLmLLMTro7u3X" frameborder="0" gesture="media" allowfullscreen=""></iframe>
-
+https://github.com/user-attachments/assets/d47aa9af-dccf-44fb-a54f-e33ef9ce1fa6
 - 페이지 이동시 스크롤 위치 초기화
 
+2. 회원가입
+https://github.com/user-attachments/assets/c8674736-270d-4bb0-9c8a-99d69db2314c
+- 이메일 인증 요청 및 인증 성공 시 alter창 알림
+- 이메일 인증 여부에 따라 버튼 및 입력창 토글
+- 휴대폰 번호 사이 '-' 자동 생성
+- 이메일, 비밀번호, 휴대폰 형식 유효성 검사 
+ - 이메일 : 영문,숫자 + @ + 영문,숫자 + . 영문
+ - 비밀번호 : 최소 8자, 영문, 숫자, 특수문자를 포함
+ - 휴대폰 번호 : 010-4자리 숫자-4자리 숫자
+- 비밀번호 재확인
+ - 회원가입 이후 자동으로 로그인되고 메인페이지로 이동함
 
 1. 회원 가입
    - 이메일
