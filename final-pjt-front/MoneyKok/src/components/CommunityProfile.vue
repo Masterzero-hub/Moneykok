@@ -2,7 +2,7 @@
   <div class="container mt-5 community-profile">
     <!-- 좌측 프로필 카드 -->
     <div class="profile-card">
-      <img src="/favicon.ico" alt="Profile Image" class="profile-image" />
+      <img src="/장인영이라멍.jpg" alt="Profile Image" class="profile-image" />
       <h2 class="profile-name">{{ myCommunityInfo.nickname }}</h2>
       <p class="profile-description">
         {{ myCommunityInfo.profile_description }}
