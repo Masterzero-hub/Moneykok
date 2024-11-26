@@ -11,7 +11,7 @@ django.setup()
 output_dir = "fixtures"
 os.makedirs(output_dir, exist_ok=True)
 
-from deposits.models import DepositProducts, DepositSpecialCondition
+from deposits.models import Banks, DepositProducts, DepositSpecialCondition
 from savings.models import SavingsProducts, SavingsSpecialCondition
 from accounts.models import User
 from communities.models import Article, Comment
@@ -43,6 +43,7 @@ def export_to_json(model, file_name=None):
 
 
 #1 DepositSpecialCondition 데이터를 JSON으로 내보내기
+export_to_json(Banks)
 # export_to_json(DepositSpecialCondition)
 # export_to_json(DepositProducts)
 
