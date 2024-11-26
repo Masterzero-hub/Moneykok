@@ -110,7 +110,9 @@
 
 ## 🖥️ 페이지 프리뷰
 1. 메인 페이지
-https://github.com/user-attachments/assets/ec63cb16-4354-4685-9f52-3a1558c4c5d8
+[![Video Label](http://img.youtube.com/vi/3YT80z_gOFc/0.jpg)](https://youtu.be/3YT80z_gOFc)
+- 페이지 이동시 스크롤 위치 초기화
+
 
 2. 회원 가입
    - 이메일
@@ -126,9 +128,11 @@ https://github.com/user-attachments/assets/ec63cb16-4354-4685-9f52-3a1558c4c5d8
    - 가입하기
 6. 금융 상품 AI 추천
 7. 커뮤니티 (게시글 및 댓글 CRUD)
+
    - 게시글 작성, 수정, 삭제 
    - 게시글 조회 (작성자 프로필로 이동)
    - 댓글 작성, 수정, 삭제
+
 8. 환율 계산기
    - 원화 -> 외화
    - 외화 -> 원화
