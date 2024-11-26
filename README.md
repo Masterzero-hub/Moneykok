@@ -111,6 +111,7 @@
 ## 🖥️ 페이지 프리뷰
 1. 메인 페이지
 <iframe width="640" height="360" src="https://www.youtube.com/embed/3YT80z_gOFc?si=tilPLmLLMTro7u3X" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+
 - 페이지 이동시 스크롤 위치 초기화
 
 
