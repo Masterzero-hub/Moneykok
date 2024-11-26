@@ -4,34 +4,7 @@ import axios from 'axios';
 import { useUserStore } from './user';
 
 
-export const useCommunityStore = defineStore('community', () => {
-    const recommendedFriends = ref([
-        {
-          id: 1,
-          name: "김현성",
-          image: "https://via.placeholder.com/150",
-          description: "Hi, I'm a data scientist and love machine learning.",
-        },
-        {
-          id: 2,
-          name: "박스프",
-          image: "https://via.placeholder.com/150",
-          description: "I enjoy discussing finance and technology trends.",
-        },
-        {
-          id: 3,
-          name: "최낙우",
-          image: "https://via.placeholder.com/150",
-          description: "Passionate about AI and innovative technologies.",
-        },
-        {
-          id: 4,
-          name: "최낙우",
-          image: "https://via.placeholder.com/150",
-          description: "Passionate about AI and innovative technologies.",
-        },
-      ]);
-      
+export const useCommunityStore = defineStore('community', () => {      
       const articles = ref([])
       const article = ref([])
 
@@ -194,6 +167,6 @@ export const useCommunityStore = defineStore('community', () => {
           });
       };
 
-  return { recommendedFriends, articles, article, title, content, comment,
+  return { articles, article, title, content, comment,
     getArticles, createArticle, getArticleDetail, updateArticle, deleteArticle, addComment, deleteComment, updateComment }
 })

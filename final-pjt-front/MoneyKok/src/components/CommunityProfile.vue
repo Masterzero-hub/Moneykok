@@ -3,9 +3,9 @@
     <!-- 좌측 프로필 카드 -->
     <div class="profile-card">
       <img src="/favicon.ico" alt="Profile Image" class="profile-image" />
-      <h2 class="profile-name">박소프</h2>
+      <h2 class="profile-name">{{ myCommunityInfo.nickname }}</h2>
       <p class="profile-description">
-        안녕하세요, 저는 2년차 직장인 박소프 입니다! 열심히 저축해서 내 집 마련하겠습니다!
+        {{ myCommunityInfo.profile_description }}
       </p>
     </div>
 
@@ -17,7 +17,7 @@
         <ul class="list-group">
           <li 
             class="list-group-item list-item"
-            v-for="(article, index) in myArticles" 
+            v-for="(article, index) in myCommunityInfo.article_set" 
             :key="index"
             @click="goDetailPage(article.id)"
           >
@@ -32,7 +32,7 @@
         <ul class="list-group">
           <li 
             class="list-group-item list-item"
-            v-for="(comment, index) in myComments" 
+            v-for="(comment, index) in myCommunityInfo.comment_set" 
             :key="index"
             @click="goDetailPage(comment.article)"
           >
@@ -51,7 +51,7 @@ import { storeToRefs } from "pinia"; // storeToRefs 사용
 import { useRouter } from "vue-router";
 const router = useRouter()
 const store = useUserStore()
-const { myArticles, myComments, getMyCommunityInfo } = storeToRefs(store)
+const { myArticles, myComments, myCommunityInfo, getMyCommunityInfo } = storeToRefs(store)
 
 onMounted(() => {
   store.getMyCommunityInfo()

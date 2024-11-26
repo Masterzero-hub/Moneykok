@@ -4,7 +4,7 @@
       <h2 class="text-center mb-4">AI 추천 결과</h2>
   
       <!-- 상품 카드 리스트 -->
-      <div class="row">
+      <div v-if="recommendedProducts.recommended_products && recommendedProducts.recommended_products.length" class="row">
         <div
           v-for="product in recommendedProducts.recommended_products"
           :key="product.id"
@@ -72,23 +72,35 @@
           </div>
         </div>
       </div>
+
+
+
+      
     </div>
   </template>
   
   <script setup>
   import { ref, onMounted } from "vue";
-  import { useRouter } from "vue-router";
+  import { useRouter, useRoute } from "vue-router";
   import { storeToRefs } from "pinia";
   import { useAiStore } from "@/stores/ai";
   
   const store = useAiStore();
   const { recommendedProducts, getRecommendtaion } = storeToRefs(store);
+  const route = useRoute()
   const router = useRouter();
   
 // ----- 초기 렌더링 -----
 onMounted(() => {
-  store.getRecommendtaion();
-  console.log('ai 추천 완료 :' , recommendedProducts)
+  // 라우터 매개변수에서 productType 값 읽기
+  const routeProductType = route.params.productType;
+
+  if (routeProductType) {
+    store.productType = routeProductType; // Pinia 상태 업데이트
+    store.getRecommendtaion(); // API 호출
+  } else {
+    console.error("라우터 매개변수 productType이 없습니다.");
+  }
 });
 
 // 최대 금리 계산 함수
@@ -105,6 +117,12 @@ const getMaxInterestRate = (options) => {
   </script>
   
   <style scoped>
+  .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
   /* 제목 스타일 */
   h2 {
     color:black;
@@ -112,17 +130,16 @@ const getMaxInterestRate = (options) => {
   
   /* 상품 카드 스타일 */
   .product-card {
-    background-color: #fff;
-    border: 1px solid #eaeaea;
-    border-radius: 10px;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: box-shadow 0.3s ease;
-    height: 100%;
+    width: 100%; /* 카드 너비를 부모의 너비에 맞춤 */
+        background-color: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    padding: 20px;
   }
-  
+
   .product-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }

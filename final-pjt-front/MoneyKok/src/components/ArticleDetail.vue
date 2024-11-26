@@ -2,36 +2,44 @@
   <div class="container mt-5">
     <!-- 게시글 상세 조회 헤더 -->
     <div class="row align-items-center mb-4">
-      <h2 class="section-title col">게시글 상세</h2>
+      <h2 class="section-title col"></h2>
       <button class="btn-common btn-mint col-auto" @click="goBack">
         목록으로 돌아가기
       </button>
     </div>
 
     <!-- 게시글 상세 카드 -->
-    <div class="card shadow-sm p-4">
+    <div v-if="article" class="card shadow-sm p-4" :class="{ 'editing-mode': isEditing }">
       <div class="card-body">
-        <div class="mb-3">
+        <!-- 제목 -->
+        <div class="mb-3" v-if="isEditing">
           <label for="title" class="form-label">제목</label>
           <input
             type="text"
             id="title"
             v-model="editableTitle"
             class="form-control"
-            :disabled="!isEditing"
           />
         </div>
-
-        <div class="mb-3">
+        <h3 v-else class="post-title mb-2">{{ editableTitle }}</h3>
+        <!-- 작성자 닉네임 -->
+        <p class="author-name text-muted mb-0" @click="goUserProfile(article.user?.email)">
+          작성자: {{ article.user?.nickname || '알 수 없음' }}
+        </p>
+        <p class="created_at text-muted mt-0">
+          작성일시: {{ article.created_at ? article.created_at.slice(0, 19) : '날짜 정보 없음' }}
+        </p>
+        <!-- 내용 -->
+        <div v-if="isEditing" class="mb-3">
           <label for="content" class="form-label">내용</label>
           <textarea
             id="content"
             v-model="editableContent"
             class="form-control"
             rows="8"
-            :disabled="!isEditing"
           ></textarea>
         </div>
+        <p v-else class="post-content">{{ editableContent }}</p>
 
         <!-- 버튼 섹션 -->
         <div class="button-container" v-if="isCurrentUserAuthor">
@@ -64,7 +72,7 @@
     <!-- 댓글 목록 -->
     <div class="card shadow-sm p-4 mt-4">
       <h3 class="section-title mb-3">댓글</h3>
-      <div v-if="article.comments?.length > 0">
+      <div v-if="article?.comments?.length > 0">
         <ul class="list-group">
           <li
             v-for="comment in article.comments"
@@ -75,7 +83,7 @@
               <div class="comment-meta">
                 <strong>{{ comment.user.nickname }}</strong>
                 <small class="text-muted ms-2">{{
-                  comment.created_at.slice(0, 19)
+                  comment.created_at ? comment.created_at.slice(0, 19) : '날짜 정보 없음'
                 }}</small>
               </div>
               <div v-if="isCommentAuthor(comment)">
@@ -93,10 +101,7 @@
                 >
                   저장
                 </button>
-                <button
-                  class="btn btn-sm"
-                  @click="removeComment(comment.id)"
-                >
+                <button class="btn btn-sm" @click="removeComment(comment.id)">
                   삭제
                 </button>
               </div>
@@ -119,28 +124,11 @@
         <p class="text-muted text-center">아직 댓글이 없습니다.</p>
       </div>
     </div>
-
-    <!-- 댓글 작성 -->
-    <div class="card shadow-sm p-4 mt-4">
-      <h3 class="section-title">댓글 작성</h3>
-      <textarea
-        class="form-control mt-3"
-        rows="3"
-        v-model="comment"
-        placeholder="댓글을 입력하세요"
-      ></textarea>
-      <div class="text-end">
-        <button
-          class="btn-common btn-mint mt-3"
-          @click="submitComment"
-          :disabled="comment.trim() === ''"
-        >
-          댓글 작성
-        </button>
-      </div>
-    </div>
   </div>
 </template>
+
+
+
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
@@ -163,6 +151,8 @@ const {
   updateComment,
 } = storeToRefs(store);
 
+const { getUserCommunityInfo, userCommunityInfo } = storeToRefs(userStore)
+
 console.log(article.value);
 
 // 게시글 작성자인지 확인 (닉네임)
@@ -170,7 +160,6 @@ const { nickname } = storeToRefs(userStore);
 const isCurrentUserAuthor = computed(() => {
   return article.value.user?.nickname === nickname.value;
 });
-
 
 // 댓글 작성자인지 확인 (닉네임)
 const isCommentAuthor = (comment) => {
@@ -187,6 +176,10 @@ const isEditing = ref(false);
 const goBack = () => {
   router.push({ name: "community" });
 };
+
+const goUserProfile = function (userEmail) {
+  router.push({ name : 'userprofile', params: { user_email : userEmail}})
+}
 
 // 게시글 데이터 로드
 onMounted(() => {
@@ -286,6 +279,63 @@ const submitCommentEdit = (comment) => {
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  transition: none !important; /* 카드 전환 효과 제거 */
+}
+
+/* 호버 효과 완전히 제거 */
+.card:hover {
+  box-shadow: none; /* 호버 시 그림자 변화 제거 */
+  transform: none; /* 호버 시 이동 효과 제거 */
+}
+
+.card.editing-mode {
+  border: 2px solid var(--mint-color);
+}
+
+.post-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.author-name {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6c757d; /* muted color */
+  cursor: pointer; /* 호버 시 커서를 포인터로 변경 */
+}
+
+.author-name:hover {
+  font-weight: 700; /* 볼드 처리 */
+  color: #000000; /* 약간 더 어두운 색으로 변경 */
+}
+
+.reated_at {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6c757d; /* muted color */
+}
+
+
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+textarea.form-control {
+  resize: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .form-label {
@@ -320,7 +370,6 @@ textarea.form-control {
   border: none;
   transition: background-color 0.2s ease-in-out;
 }
-
 
 .section-title {
   font-size: 24px;
