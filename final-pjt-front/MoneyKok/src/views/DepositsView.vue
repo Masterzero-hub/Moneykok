@@ -488,6 +488,11 @@ const changePage = (page) => {
   if (page > 0 && page <= totalPages.value) {
     currentPage.value = page;
   }
+   // 페이지가 변경될 때 스크롤을 최상단으로 이동
+   window.scrollTo({
+      top: 0,
+      behavior: "smooth", // 부드럽게 이동 (필요 없으면 제거 가능)
+    });
 };
 </script>
 

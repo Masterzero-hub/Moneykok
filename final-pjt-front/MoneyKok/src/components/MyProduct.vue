@@ -43,7 +43,7 @@
               </span>
               <button
                 class="btn-small-common btn-mint"
-                @click="cancelSubscription(product.id, true)"
+                @click="(event) => cancelSubscription(event, product.id, true)"
                 >
                 해지하기
               </button>
@@ -93,7 +93,7 @@
         </span>
         <button
           class="btn-small-common btn-mint"
-          @click="cancelSubscription(product.id, false)"
+          @click.stop="cancelSubscription(product.id, true)"
         >
           해지하기
         </button>
@@ -141,16 +141,19 @@ const formatRate = (rate) => {
   return rate.slice(0, 4); // 문자열이면 slice 적용
 };
 // 해지 버튼 클릭 시 동작 (현재는 console.log)
-const cancelSubscription = (productId, isDeposit) => {
-  if (isDeposit) {
-    console.log(`예금 상품 ID ${productId} 해지 요청`);
-    depositsStore.deleteDeposits(productId); // 예금 해지 로직
-  } else {
-    console.log(`적금 상품 ID ${productId} 해지 요청`);
-    savingsStore.deleteSavings(productId); // 적금 해지 로직
+const cancelSubscription = (event, productId, isDeposit) => {
+  event.stopPropagation();
+
+  if (confirm("정말 해지하시겠습니까?")) {
+    if (isDeposit) {
+      depositsStore.deleteDeposits(productId); // 예금 해지 로직
+      router.push({ name: "myproduct" });
+    } else {
+      savingsStore.deleteSavings(productId); // 적금 해지 로직
+      router.push({ name: "myproduct" });
+    }
   }
 };
-
 
 const goDepositDetail = function (depositCode) {
   router.push({ name : 'depositdetail', params : { deposit_code : depositCode }})

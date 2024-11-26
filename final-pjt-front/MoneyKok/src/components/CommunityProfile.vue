@@ -3,8 +3,8 @@
     <!-- 좌측 프로필 카드 -->
     <div class="profile-card">
       <img src="/현정언니다옹.png" alt="Profile Image" class="profile-image" />
-      <h2 class="profile-name">{{ myCommunityInfo.nickname }}</h2>
-      <p class="profile-description">
+      <h2 class="profile-name mt-3">{{ myCommunityInfo.nickname }}</h2>
+      <p class="profile-description mt-5">
         안녕하세요, 반갑습니다!
       </p>
     </div>

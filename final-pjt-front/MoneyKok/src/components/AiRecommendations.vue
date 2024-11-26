@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                   <th>최소 금액</th>
-                  <td>{{ product.deposit_min_amount || "제한 없음" }}원</td>
+                  <td>{{ product.deposit_min_amount || "제한 없음" }}만원</td>
                 </tr>
                 <tr>
                   <th>우대 조건</th>
