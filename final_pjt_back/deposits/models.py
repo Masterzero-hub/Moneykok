@@ -46,8 +46,8 @@ class DepositSpecialCondition(models.Model):
 class JoinedDeposits(models.Model):
     user = models.ForeignKey("accounts.User", on_delete=models.CASCADE) # User 모델과 외래키
     product = models.ForeignKey("DepositProducts", on_delete=models.CASCADE, related_name='joined_product')  # 예금 상품과의 외래 키 관계
+    joined_date = models.DateField(auto_now=True) # 가입한날짜
     save_trm = models.IntegerField() #가입 기간
     save_amount = models.IntegerField() #가입 금액
-    joined_date = models.DateField(auto_now=True) # 가입한날짜
     expired_date = models.DateField() # 만기일
     final_intr_rate = models.FloatField()  # 저축금리

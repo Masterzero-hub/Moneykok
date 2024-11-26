@@ -73,10 +73,10 @@ class DepositJoinSerializer(serializers.ModelSerializer):
 class JoinedDepositSerializer(serializers.ModelSerializer):
     bank = BanksSerializer(source='product.bank', read_only=True)
     product = DepositProductsSaveSerializer(read_only=True)
+
     class Meta:
         model = JoinedDeposits
         fields = [
-            'id',          # 기본 키
             'user',
             'bank',
             'product',
