@@ -14,6 +14,8 @@ export const useCommunityStore = defineStore('community', () => {
       const title = ref("");
       const content = ref("");
 
+      const createdArticle = ref([]);
+
 
 
       const getArticles = function() {
@@ -46,6 +48,7 @@ export const useCommunityStore = defineStore('community', () => {
           )
             .then((res) => {
               console.log('게시글 작성 완료', res.data.title)
+              return res.data;
             })
             .catch((error) => {
               console.error("게시글 생성 오류", error);
@@ -63,7 +66,6 @@ export const useCommunityStore = defineStore('community', () => {
           })
           .then((res) => {
             console.log("게시글 상세 조회 성공", res.data);
-            article.value = res.data
             return res.data;
           })
           .catch((error) => {

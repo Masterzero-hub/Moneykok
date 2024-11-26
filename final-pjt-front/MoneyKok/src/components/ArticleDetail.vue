@@ -23,8 +23,11 @@
         </div>
         <h3 v-else class="post-title mb-2">{{ editableTitle }}</h3>
         <!-- 작성자 닉네임 -->
-        <p class="author-name text-muted mb-0" @click="goUserProfile(article.user?.email)">
-          작성자: {{ article.user?.nickname || '알 수 없음' }}
+        <p v-if="article.user && article.user.nickname" @click="goUserProfile(article.user?.email)">
+          작성자: {{ article.user.nickname }}
+        </p>
+        <p v-else>
+          작성자: 알 수 없음
         </p>
         <p class="created_at text-muted mt-0">
           작성일시: {{ article.created_at ? article.created_at.slice(0, 19) : '날짜 정보 없음' }}
@@ -124,7 +127,30 @@
         <p class="text-muted text-center">아직 댓글이 없습니다.</p>
       </div>
     </div>
+    
+    
+       <!-- 댓글 작성 -->
+       <div class="card shadow-sm p-4 mt-4">
+          <h3 class="section-title">댓글 작성</h3>
+          <textarea
+            class="form-control mt-3"
+            rows="3"
+            v-model="comment"
+            placeholder="댓글을 입력하세요"
+          ></textarea>
+          <div class="text-end">
+            <button
+              class="btn-common btn-mint mt-3"
+              @click="submitComment"
+              :disabled="comment.trim() === ''"
+            >
+              댓글 작성
+            </button>
+          </div>
+        </div>
   </div>
+
+
 </template>
 
 
@@ -181,12 +207,15 @@ const goUserProfile = function (userEmail) {
   router.push({ name : 'userprofile', params: { user_email : userEmail}})
 }
 
-// 게시글 데이터 로드
-onMounted(() => {
-  store.getArticleDetail(articleId).then((article) => {
-    editableTitle.value = article.title;
-    editableContent.value = article.content;
-  });
+onMounted(async () => {
+  try {
+    const data = await store.getArticleDetail(articleId);
+    article.value = data; // 반응형 변수에 데이터 할당
+    editableTitle.value = data.title || '';
+    editableContent.value = data.content || '';
+  } catch (error) {
+    console.error('게시글 로딩 오류:', error);
+  }
 });
 
 // 수정 취소

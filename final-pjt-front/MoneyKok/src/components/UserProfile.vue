@@ -2,11 +2,9 @@
     <div class="container mt-5 community-profile">
       <!-- 좌측 프로필 카드 -->
       <div class="profile-card">
-        <img src="/favicon.ico" alt="Profile Image" class="profile-image" />
+        <img src="/장인영이라멍.jpg" alt="Profile Image" class="profile-image" />
         <h2 class="profile-name">{{ userCommunityInfo.nickname }}</h2>
-        <p class="profile-description">
-          {{ userCommunityInfo.profile_description }}
-        </p>
+        <p class="profile-description">열심히 저축하겠습니다'ㅁ'</p>
       </div>
   
       <!-- 우측 게시글 및 댓글 -->
@@ -16,7 +14,7 @@
           <h3 class="content-title">내가 쓴 게시글</h3>
           <ul class="list-group">
             <li 
-              class="list-group-item list-item"
+              class="list-group-ifinal-pjt-front\MoneyKok\public\현정언니다옹.pngtem list-item"
               v-for="(article, index) in userCommunityInfo.article_set" 
               :key="index"
               @click="goDetailPage(article.id)"

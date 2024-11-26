@@ -243,22 +243,22 @@ axios
     alert("회원 탈퇴가 완료되었습니다.");
 
     // store 초기화
-    token = null
-    name = '';
-    nickname = '';
-    email = '';
-    birthYear = '';
-    birthMonth = '';
-    birthDay = '';
-    birthDate = '';
-    gender = '';
-    income = null;
-    formattedPhone = '';
-    phone = '';
-    password = '';
-    confirmPassword = '';
-    newPassword = '';
-    confirmNewPassword = '';
+    store.token = null
+    store.name = '';
+    store.nickname = '';
+    store.email = '';
+    store.birthYear = '';
+    store.birthMonth = '';
+    store.birthDay = '';
+    store.birthDate = '';
+    store.gender = '';
+    store.income = null;
+    store.formattedPhone = '';
+    store.phone = '';
+    store.password = '';
+    store.confirmPassword = '';
+    store.newPassword = '';
+    store.confirmNewPassword = '';
     router.push({ name: 'home' })
     console.log(`토큰값 ${token}`)
     console.log('회원탈퇴 되었습니다.')
