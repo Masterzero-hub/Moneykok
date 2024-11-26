@@ -10,6 +10,7 @@ class SavingsProducts(models.Model):
     join_member = models.TextField()  # 가입 대상
     join_way = models.TextField()  # 가입 방법
     spcl_cnd = models.TextField()  # 우대 조건
+    processed_spcl_cnd = models.TextField(null=True, blank=True)  # 가공된 우대 조건
     savings_min_amount = models.IntegerField(null=True, blank=True)  # 최소 금액(만원)
     savings_max_amount = models.IntegerField(null=True, blank=True)  # 최대 금액(만원)
 
@@ -35,7 +36,6 @@ class SavingsSpecialCondition(models.Model):
             ('기타', '기타'),
         ]
     )
-    condition_title = models.TextField()
     condition_content = models.TextField()
     prime_rate = models.FloatField()  # 우대금리
 

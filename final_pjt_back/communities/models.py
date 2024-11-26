@@ -7,7 +7,6 @@ User = get_user_model()
 # Create your models here.
 class Article(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    like_users = models.ManyToManyField(User, related_name='liked_articles')
     title = models.CharField(max_length=255)
     content = models.TextField()
     view_count = models.PositiveIntegerField(default=0)

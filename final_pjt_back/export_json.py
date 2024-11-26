@@ -43,10 +43,12 @@ def export_to_json(model, file_name=None):
 
 
 #1 DepositSpecialCondition 데이터를 JSON으로 내보내기
-# export_to_json(DepositSpecialCondition)
+export_to_json(DepositSpecialCondition)
+export_to_json(DepositProducts)
 
 #2 SavingsSpecialCondition 데이터를 JSON으로 내보내기
-# export_to_json(SavingsSpecialCondition)
+export_to_json(SavingsSpecialCondition)
+export_to_json(SavingsProducts)
 
 
 
@@ -55,4 +57,4 @@ def export_to_json(model, file_name=None):
 # export_to_json(User)
 # export_to_json(Article)
 # export_to_json(Comment)
-export_to_json(Exchange)
+# export_to_json(Exchange)

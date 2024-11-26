@@ -1,0 +1,932 @@
+[
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 1,
+  "fields": {
+    "product": 2,
+    "category": "신규 가입",
+    "condition_content": "SC제일은행 최초 거래 신규고객",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 2,
+  "fields": {
+    "product": 2,
+    "category": "거래 연동",
+    "condition_content": "SC제일마이백통장에서 출금하여 이 예금을 신규하는 경우, 가입기간 1년제, 만기해약하는 경우에 한해",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 3,
+  "fields": {
+    "product": 3,
+    "category": "신규 가입",
+    "condition_content": "목돈굴리기예금 최초 가입시",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 4,
+  "fields": {
+    "product": 3,
+    "category": "신규 가입",
+    "condition_content": "상품 가입 전 최근 1개월 이내 신용(체크)카드 신규 발급",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 5,
+  "fields": {
+    "product": 3,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "상품 가입 전 최근 1개월 이내 인터넷.폰.모바일앱뱅킹 가입",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 6,
+  "fields": {
+    "product": 3,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "해당 상품을 인터넷/모바일뱅킹을 통해 가입",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 7,
+  "fields": {
+    "product": 4,
+    "category": "거래 연동",
+    "condition_content": "지난달 당행 통장으로 연금 입금 실적 보유 - 0.10%",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 8,
+  "fields": {
+    "product": 4,
+    "category": "거래 연동",
+    "condition_content": "상품 가입 전 당행 신용(체크)카드 보유 - 0.10%",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 9,
+  "fields": {
+    "product": 4,
+    "category": "거래 연동",
+    "condition_content": "지난 3개월 예금 평잔 30만원 이상 - 0.10%",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 10,
+  "fields": {
+    "product": 4,
+    "category": "기타",
+    "condition_content": "iM행복파트너적금 동시 가입 및 만기 보유 - 0.10%",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 11,
+  "fields": {
+    "product": 4,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "해당 상품을 인터넷/모바일뱅킹을 통해 가입 - 0.05%",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 12,
+  "fields": {
+    "product": 6,
+    "category": "신규 가입",
+    "condition_content": "가입일(재예치일)로부터 3개월 이내 당행 주택청약종합저축 보유",
+    "prime_rate": 0.25
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 13,
+  "fields": {
+    "product": 6,
+    "category": "신규 가입",
+    "condition_content": "가입일(재예치일)로부터 3개월 이내 당행 신용(체크)카드 결제실적 보유(결제금액 출금기준)",
+    "prime_rate": 0.25
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 14,
+  "fields": {
+    "product": 6,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "해당 상품을 인터넷/모바일뱅킹을 통해 가입",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 15,
+  "fields": {
+    "product": 7,
+    "category": "기타",
+    "condition_content": "3~5개월 특판 - 0.75%",
+    "prime_rate": 0.75
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 16,
+  "fields": {
+    "product": 7,
+    "category": "기타",
+    "condition_content": "6~11개월 특판 - 0.65%",
+    "prime_rate": 0.65
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 17,
+  "fields": {
+    "product": 7,
+    "category": "기타",
+    "condition_content": "12개월 특판 - 0.45%",
+    "prime_rate": 0.45
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 18,
+  "fields": {
+    "product": 8,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "모바일뱅킹 금융정보 및 혜택알림 동의",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 19,
+  "fields": {
+    "product": 8,
+    "category": "신규 가입",
+    "condition_content": "더(The) 특판 정기예금 신규고객",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 20,
+  "fields": {
+    "product": 8,
+    "category": "기타",
+    "condition_content": "특판",
+    "prime_rate": 0.15
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 21,
+  "fields": {
+    "product": 9,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "모바일뱅킹 금융정보 및 혜택알림 동의",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 22,
+  "fields": {
+    "product": 9,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "비대면 정기예금 재예치",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 23,
+  "fields": {
+    "product": 10,
+    "category": "거래 연동",
+    "condition_content": "요구불평잔 300만원 이상",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 24,
+  "fields": {
+    "product": 10,
+    "category": "거래 연동",
+    "condition_content": "요구불평잔 500만원 이상",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 25,
+  "fields": {
+    "product": 10,
+    "category": "사용 실적",
+    "condition_content": "전월 신용(체크)카드결제실적 300만원 이상",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 26,
+  "fields": {
+    "product": 10,
+    "category": "사용 실적",
+    "condition_content": "전월 신용(체크)카드결제실적 500만원 이상",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 27,
+  "fields": {
+    "product": 11,
+    "category": "기타",
+    "condition_content": "1천만원 이상 가입시 - 0.20%",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 28,
+  "fields": {
+    "product": 12,
+    "category": "신규 가입",
+    "condition_content": "첫예금거래",
+    "prime_rate": 0.4
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 29,
+  "fields": {
+    "product": 12,
+    "category": "마케팅 및 기타 동의",
+    "condition_content": "개인(신용)정보 수집이용동의",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 30,
+  "fields": {
+    "product": 14,
+    "category": "거래 연동",
+    "condition_content": "급여이체",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 31,
+  "fields": {
+    "product": 14,
+    "category": "거래 연동",
+    "condition_content": "적립식예금 잔액 10만원 이상 보유",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 32,
+  "fields": {
+    "product": 14,
+    "category": "거래 연동",
+    "condition_content": "탑스, 주거래 고객",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 33,
+  "fields": {
+    "product": 14,
+    "category": "거래 연동",
+    "condition_content": "결제계좌(가맹점) 전월 입금액 10만원 이상",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 34,
+  "fields": {
+    "product": 14,
+    "category": "기타",
+    "condition_content": "비과세종합저축 대상 고객",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 35,
+  "fields": {
+    "product": 14,
+    "category": "기타",
+    "condition_content": "다자녀(3인이상 자녀)가정",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 36,
+  "fields": {
+    "product": 14,
+    "category": "기타",
+    "condition_content": "탐나는 J연금통장 가입고객",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 37,
+  "fields": {
+    "product": 14,
+    "category": "기타",
+    "condition_content": "국민연금안심통장 가입고객",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 38,
+  "fields": {
+    "product": 14,
+    "category": "기타",
+    "condition_content": "공무원연금안심통장 가입고객",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 39,
+  "fields": {
+    "product": 15,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "비대면 채널 가입시",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 40,
+  "fields": {
+    "product": 15,
+    "category": "신규 가입",
+    "condition_content": "신규일로부터 만기달 제외한 계약기간의 1/2이상 매월 Jbank로그인 시",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 41,
+  "fields": {
+    "product": 15,
+    "category": "기타",
+    "condition_content": "우대요건 충족시",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 42,
+  "fields": {
+    "product": 16,
+    "category": "기타",
+    "condition_content": "김만덕나눔적금 보유 또는 김만적 나눔적금 만기 해지고객",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 43,
+  "fields": {
+    "product": 16,
+    "category": "거래 연동",
+    "condition_content": "예금가입시 탐나는전 체크카드 보유고객",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 44,
+  "fields": {
+    "product": 16,
+    "category": "기타",
+    "condition_content": "우대요건 충족시",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 45,
+  "fields": {
+    "product": 18,
+    "category": "거래 연동",
+    "condition_content": "자동재예치 1회차",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 46,
+  "fields": {
+    "product": 18,
+    "category": "거래 연동",
+    "condition_content": "자동재예치 2회차",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 47,
+  "fields": {
+    "product": 18,
+    "category": "거래 연동",
+    "condition_content": "자동재예치 3회차",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 48,
+  "fields": {
+    "product": 18,
+    "category": "신규 가입",
+    "condition_content": "12개월 첫거래고객",
+    "prime_rate": 0.3
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 49,
+  "fields": {
+    "product": 18,
+    "category": "마케팅 및 기타 동의",
+    "condition_content": "12개월 마케팅동의고객 (~10/31일까지)",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 50,
+  "fields": {
+    "product": 19,
+    "category": "기타",
+    "condition_content": "가입금액 20백만원 이상",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 51,
+  "fields": {
+    "product": 19,
+    "category": "신규 가입",
+    "condition_content": "이 예금 신규시 금리우대쿠폰 등록",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 52,
+  "fields": {
+    "product": 19,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "경남은행 오픈뱅킹 서비스에 가입되어 있는 경우 (만기시까지 해당서비스 유지하는 경우)",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 53,
+  "fields": {
+    "product": 19,
+    "category": "거래 연동",
+    "condition_content": "자동재예치 신청",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 54,
+  "fields": {
+    "product": 20,
+    "category": "거래 연동",
+    "condition_content": "급여, 연금, 가맹점대금 중 한 종류 입금할 경우",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 55,
+  "fields": {
+    "product": 20,
+    "category": "사용 실적",
+    "condition_content": "당행 신용/체크카드 결제실적 보유할 경우",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 56,
+  "fields": {
+    "product": 20,
+    "category": "신규 가입",
+    "condition_content": "가입일 기준 6개월이내 당행 정기예금 미보유 신규 고객인 경우",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 57,
+  "fields": {
+    "product": 21,
+    "category": "기타",
+    "condition_content": "가입고객 누구나 - 0.80%",
+    "prime_rate": 0.8
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 58,
+  "fields": {
+    "product": 21,
+    "category": "신규 가입",
+    "condition_content": "신규고객 우대(최근 12개월 신규이력·해지이력 미보유) - 0.15%",
+    "prime_rate": 0.15
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 59,
+  "fields": {
+    "product": 21,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "이벤트금리(비대면금리) - 0.35%",
+    "prime_rate": 0.35
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 60,
+  "fields": {
+    "product": 21,
+    "category": "기타",
+    "condition_content": "The든든예금 전용금리 - 0.20%",
+    "prime_rate": 0.2
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 61,
+  "fields": {
+    "product": 22,
+    "category": "기타",
+    "condition_content": "고객별 우대 - 0.05%",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 62,
+  "fields": {
+    "product": 22,
+    "category": "신규 가입",
+    "condition_content": "최초신규고객 - 0.05%",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 63,
+  "fields": {
+    "product": 22,
+    "category": "기타",
+    "condition_content": "재예치고객 - 0.05%",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 64,
+  "fields": {
+    "product": 22,
+    "category": "기타",
+    "condition_content": "장기거래고객 - 0.05%",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 65,
+  "fields": {
+    "product": 22,
+    "category": "거래 연동",
+    "condition_content": "주거래우대 - 0.15%",
+    "prime_rate": 0.15
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 66,
+  "fields": {
+    "product": 26,
+    "category": "기타",
+    "condition_content": "정기예금 미보유",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 67,
+  "fields": {
+    "product": 26,
+    "category": "거래 연동",
+    "condition_content": "소득이체",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 68,
+  "fields": {
+    "product": 28,
+    "category": "거래 연동",
+    "condition_content": "급여이체실적(50만원 이상)이 있는 경우",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 69,
+  "fields": {
+    "product": 28,
+    "category": "기타",
+    "condition_content": "트리플 회전 우대이율, 4회전기간부터",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 70,
+  "fields": {
+    "product": 29,
+    "category": "마케팅 및 기타 동의",
+    "condition_content": "온실가스 줄이기 실천서약서 동의",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 71,
+  "fields": {
+    "product": 29,
+    "category": "기타",
+    "condition_content": "통장미발급",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 72,
+  "fields": {
+    "product": 29,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "손하나로인증 서비스 등록",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 73,
+  "fields": {
+    "product": 29,
+    "category": "기타",
+    "condition_content": "NH내가Green초록세상적금 동시 보유",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 74,
+  "fields": {
+    "product": 31,
+    "category": "기타",
+    "condition_content": "고향사랑기부금 납부고객 우대 - 0.50%",
+    "prime_rate": 0.5
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 75,
+  "fields": {
+    "product": 31,
+    "category": "기타",
+    "condition_content": "만65세 이상 고령자 우대 - 0.10%",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 76,
+  "fields": {
+    "product": 31,
+    "category": "기타",
+    "condition_content": "만 19~34세 MZ고객 우대 - 0.10%",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 77,
+  "fields": {
+    "product": 31,
+    "category": "사용 실적",
+    "condition_content": "NH채움카드 또는 [zgm고향으로카드] 이용실적 우대 - 0.10%",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 78,
+  "fields": {
+    "product": 31,
+    "category": "기타",
+    "condition_content": "고향사랑 특별금리 - 0.10%",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 79,
+  "fields": {
+    "product": 34,
+    "category": "신규 가입",
+    "condition_content": "최초예적금고객",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 80,
+  "fields": {
+    "product": 34,
+    "category": "기타",
+    "condition_content": "재예치",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 81,
+  "fields": {
+    "product": 34,
+    "category": "기타",
+    "condition_content": "장기거래",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 82,
+  "fields": {
+    "product": 34,
+    "category": "거래 연동",
+    "condition_content": "급여,연금이체등",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 83,
+  "fields": {
+    "product": 34,
+    "category": "사용 실적",
+    "condition_content": "수협카드결제",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 84,
+  "fields": {
+    "product": 34,
+    "category": "거래 연동",
+    "condition_content": "공과금이체등",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 85,
+  "fields": {
+    "product": 35,
+    "category": "기타",
+    "condition_content": "해양플라스틱감축서약",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 86,
+  "fields": {
+    "product": 35,
+    "category": "기타",
+    "condition_content": "봉사활동 또는 상품홍보",
+    "prime_rate": 0.15
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 87,
+  "fields": {
+    "product": 35,
+    "category": "신규 가입",
+    "condition_content": "입출금통장 최초신규",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 88,
+  "fields": {
+    "product": 35,
+    "category": "거래 연동",
+    "condition_content": "수협신용카드 자동이체 출금실적",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 89,
+  "fields": {
+    "product": 35,
+    "category": "거래 연동",
+    "condition_content": "당행 펀드 또는 적금 자동이체 출금실적",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 90,
+  "fields": {
+    "product": 35,
+    "category": "거래 연동",
+    "condition_content": "수협체크카드 자동이체 출금실적",
+    "prime_rate": 0.1
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 91,
+  "fields": {
+    "product": 37,
+    "category": "신규 가입",
+    "condition_content": "첫거래우대 - 1.00%",
+    "prime_rate": 0.01
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 92,
+  "fields": {
+    "product": 37,
+    "category": "마케팅 및 기타 동의",
+    "condition_content": "마케팅전체동의 - 0.05%",
+    "prime_rate": 0.05
+  }
+},
+{
+  "model": "deposits.depositspecialcondition",
+  "pk": 93,
+  "fields": {
+    "product": 37,
+    "category": "비대면/모바일 뱅킹",
+    "condition_content": "스마트폰뱅킹의 상품알리기 - 0.80%",
+    "prime_rate": 0.8
+  }
+}
+]
