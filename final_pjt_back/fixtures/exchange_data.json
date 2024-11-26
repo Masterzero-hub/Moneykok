@@ -1,0 +1,255 @@
+[
+{
+  "model": "exchange.exchange",
+  "pk": 1,
+  "fields": {
+    "cur_unit": "AED",
+    "cur_nm": "아랍에미리트 디르함",
+    "ttb": "376.87",
+    "tts": "384.48",
+    "deal_bas_r": "380.68"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 2,
+  "fields": {
+    "cur_unit": "AUD",
+    "cur_nm": "호주 달러",
+    "ttb": "900.5",
+    "tts": "918.69",
+    "deal_bas_r": "909.6"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 3,
+  "fields": {
+    "cur_unit": "BHD",
+    "cur_nm": "바레인 디나르",
+    "ttb": "3,671.95",
+    "tts": "3,746.14",
+    "deal_bas_r": "3,709.05"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 4,
+  "fields": {
+    "cur_unit": "BND",
+    "cur_nm": "브루나이 달러",
+    "ttb": "1,028.61",
+    "tts": "1,049.4",
+    "deal_bas_r": "1,039.01"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 5,
+  "fields": {
+    "cur_unit": "CAD",
+    "cur_nm": "캐나다 달러",
+    "ttb": "989.79",
+    "tts": "1,009.78",
+    "deal_bas_r": "999.79"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 6,
+  "fields": {
+    "cur_unit": "CHF",
+    "cur_nm": "스위스 프랑",
+    "ttb": "1,562.58",
+    "tts": "1,594.15",
+    "deal_bas_r": "1,578.37"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 7,
+  "fields": {
+    "cur_unit": "CNH",
+    "cur_nm": "위안화",
+    "ttb": "190.84",
+    "tts": "194.69",
+    "deal_bas_r": "192.77"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 8,
+  "fields": {
+    "cur_unit": "DKK",
+    "cur_nm": "덴마아크 크로네",
+    "ttb": "194.8",
+    "tts": "198.73",
+    "deal_bas_r": "196.77"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 9,
+  "fields": {
+    "cur_unit": "EUR",
+    "cur_nm": "유로",
+    "ttb": "1,453.15",
+    "tts": "1,482.5",
+    "deal_bas_r": "1,467.83"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 10,
+  "fields": {
+    "cur_unit": "GBP",
+    "cur_nm": "영국 파운드",
+    "ttb": "1,740.03",
+    "tts": "1,775.18",
+    "deal_bas_r": "1,757.61"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 11,
+  "fields": {
+    "cur_unit": "HKD",
+    "cur_nm": "홍콩 달러",
+    "ttb": "177.86",
+    "tts": "181.45",
+    "deal_bas_r": "179.66"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 12,
+  "fields": {
+    "cur_unit": "IDR(100)",
+    "cur_nm": "인도네시아 루피아",
+    "ttb": "8.72",
+    "tts": "8.89",
+    "deal_bas_r": "8.81"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 13,
+  "fields": {
+    "cur_unit": "JPY(100)",
+    "cur_nm": "일본 옌",
+    "ttb": "899.04",
+    "tts": "917.21",
+    "deal_bas_r": "908.13"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 14,
+  "fields": {
+    "cur_unit": "KRW",
+    "cur_nm": "한국 원",
+    "ttb": "0",
+    "tts": "0",
+    "deal_bas_r": "1"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 15,
+  "fields": {
+    "cur_unit": "KWD",
+    "cur_nm": "쿠웨이트 디나르",
+    "ttb": "4,498.59",
+    "tts": "4,589.48",
+    "deal_bas_r": "4,544.04"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 16,
+  "fields": {
+    "cur_unit": "MYR",
+    "cur_nm": "말레이지아 링기트",
+    "ttb": "310.91",
+    "tts": "317.2",
+    "deal_bas_r": "314.06"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 17,
+  "fields": {
+    "cur_unit": "NOK",
+    "cur_nm": "노르웨이 크로네",
+    "ttb": "124.81",
+    "tts": "127.34",
+    "deal_bas_r": "126.08"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 18,
+  "fields": {
+    "cur_unit": "NZD",
+    "cur_nm": "뉴질랜드 달러",
+    "ttb": "809.07",
+    "tts": "825.42",
+    "deal_bas_r": "817.25"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 19,
+  "fields": {
+    "cur_unit": "SAR",
+    "cur_nm": "사우디 리얄",
+    "ttb": "368.61",
+    "tts": "376.06",
+    "deal_bas_r": "372.34"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 20,
+  "fields": {
+    "cur_unit": "SEK",
+    "cur_nm": "스웨덴 크로나",
+    "ttb": "126",
+    "tts": "128.55",
+    "deal_bas_r": "127.28"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 21,
+  "fields": {
+    "cur_unit": "SGD",
+    "cur_nm": "싱가포르 달러",
+    "ttb": "1,028.61",
+    "tts": "1,049.4",
+    "deal_bas_r": "1,039.01"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 22,
+  "fields": {
+    "cur_unit": "THB",
+    "cur_nm": "태국 바트",
+    "ttb": "39.98",
+    "tts": "40.79",
+    "deal_bas_r": "40.39"
+  }
+},
+{
+  "model": "exchange.exchange",
+  "pk": 23,
+  "fields": {
+    "cur_unit": "USD",
+    "cur_nm": "미국 달러",
+    "ttb": "1,384.21",
+    "tts": "1,412.18",
+    "deal_bas_r": "1,398.2"
+  }
+}
+]
