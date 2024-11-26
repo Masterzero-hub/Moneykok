@@ -18,7 +18,6 @@ def exchange(request):
         params = {
             'authkey': settings.EXCHANGE_API_KEY,
             'searchdate': timezone.now().strftime('%Y%m%d'),
-            # 'searchdate': '20241122',
             'data': 'AP01'
         }
 
