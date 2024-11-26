@@ -9,7 +9,7 @@ class BanksSerializer(serializers.ModelSerializer):
 class SavingsProductsSaveSerializer(serializers.ModelSerializer):
     class Meta:
         model = SavingsProducts
-        fields = ('fin_prdt_cd', 'fin_prdt_nm', 'etc_note', 'join_deny', 'join_member', 'join_way', 'spcl_cnd',)
+        fields =  "__all__"
         read_only_fields = ('bank',)
 
 class SavingsProductsSerializer(serializers.ModelSerializer):
@@ -28,7 +28,7 @@ class SavingsOptionsSerializer(serializers.ModelSerializer):
 class SavingsSpecialConditionSerializer(serializers.ModelSerializer):
     class Meta:
         model = SavingsSpecialCondition
-        fields = ('category', 'condition_title', 'condition_content', 'prime_rate')
+        fields = "__all__"
         read_only_fields = ('product',)
 
 
