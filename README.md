@@ -110,7 +110,7 @@
 
 ## 🖥️ 페이지 프리뷰
 1. 메인 페이지
-[![Video Label](http://img.youtube.com/vi/3YT80z_gOFc/0.jpg)](https://youtu.be/3YT80z_gOFc)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3YT80z_gOFc?si=tilPLmLLMTro7u3X" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 - 페이지 이동시 스크롤 위치 초기화
 
 
