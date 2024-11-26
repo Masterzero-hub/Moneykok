@@ -514,6 +514,7 @@ const changePage = (page) => {
 .search-btn .btn {
   border-color: var(--mint-color) !important; /* 새로운 테두리 색상 */
   margin-right: 15px;
+  margin-bottom: 3px;
   color: var(--mint-color);
 }
 

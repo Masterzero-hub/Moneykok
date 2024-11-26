@@ -183,11 +183,11 @@ if (
     !store.phoneHasError // store. 추가
 ) {
     const payload = {
-    nickname: nickname, // store. 추가
-    formattedPhone: formattedPhone, // store. 추가
-    birthdate: `${birthYear}-${birthMonth}-${birthDay}`, // 백틱으로 수정
-    gender: gender, // store. 추가
-    income: income // store. 추가
+    nickname: store.nickname, // store. 추가
+    phone: store.formattedPhone, // store. 추가
+    birthdate: `${store.birthYear}-${store.birthMonth}-${store.birthDay}`, // 백틱으로 수정
+    gender: store.gender, // store. 추가
+    income: store.income // store. 추가
     };
 
     console.log("Payload data being sent:", payload);
@@ -200,7 +200,17 @@ if (
         }
     })
     .then((res) => {
-        console.log(res);
+        console.log('수정한 정보:', res.data);
+        // store.name = userInfo.name;
+        // store.formattedPhone = userInfo.phone;
+        // store.phone = userInfo.phone;
+        // store.nickname = res.data.nickname;
+        // store.birthDate = userInfo.birthdate;
+        // store.birthYear = userInfo.birthdate.slice(0, 4); // 맨 앞 4자리 추출
+        // store.birthMonth = userInfo.birthdate.slice(5, 7); // 월 추출 (필요 시)
+        // store.birthDay = userInfo.birthdate.slice(8, 10); // 일 추출 (필요 시)
+        // store.gender = userInfo.gender;
+        // store.income = userInfo.income;
 
         alert("회원정보 수정이 완료되었습니다!");
         router.push({ name: "home" });
