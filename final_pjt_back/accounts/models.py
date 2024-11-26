@@ -37,7 +37,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     income = models.IntegerField(verbose_name="소득")
     is_active = models.BooleanField(default=True, verbose_name="활성 상태")
     date_joined = models.DateTimeField(default=timezone.now, verbose_name="가입일")
-    # profile_img = models.ImageField(null=True)
     profile_description = models.TextField(
         default="자기소개를 입력해주세요.",
         blank=True,
